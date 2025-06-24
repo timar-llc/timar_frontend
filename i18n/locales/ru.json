@@ -7,5 +7,15 @@
   "intro_bar_description": "Выберите персональную модель AI фрилансера и мгновенно генерируйте работу в их уникальном стиле.",
   "intro_bar_button": "Присоединиться",
   "russian_language": "Русский",
-  "english_language": "Английский"
+  "english_language": "Английский",
+  "sign_in": "Вход",
+  "sign_in_email": "Email",
+  "sign_in_phone": "Телефон",
+  "sign_in_button": "Войти",
+  "sign_in_signup": "Регистрация",
+  "no_valid_email": "Неверный email",
+  "no_valid_phone": "Неверный телефон",
+  "no_valid_password": "Неверный пароль",
+  "password_min_length": "Пароль должен быть не менее 8 символов",
+  "forgot_password_button": "Забыли пароль?"
 }

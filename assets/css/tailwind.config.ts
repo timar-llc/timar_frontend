@@ -13,7 +13,9 @@ module.exports = {
         sans: ["Manrope", "ui-sans-serif", "system-ui"],
       },
     },
+    screens: {
+      mobile: { max: "500px" },
+    },
   },
   plugins: [],
 };
-

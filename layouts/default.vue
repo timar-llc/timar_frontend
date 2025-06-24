@@ -1,8 +1,8 @@
 <template>
   <div
-    class="dark:bg-black w-screen px-[46px] h-dvh text-black dark:text-white"
+    class="dark:bg-black w-full px-[46px] h-dvh text-black dark:text-white flex flex-col"
   >
     <Header />
-    <slot />
+    <slot class="flex-1" />
   </div>
 </template>

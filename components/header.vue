@@ -1,5 +1,7 @@
 <template>
-  <div class="flex gap-14 max-h-[51px] h-full items-center w-full">
+  <div
+    class="flex gap-14 max-h-[51px] h-full items-center w-full mobile:hidden"
+  >
     <NuxtLink to="/">
       <h2 class="text-2xl font-bold">{{ t("brand") }}</h2>
     </NuxtLink>
@@ -31,7 +33,7 @@
             @click="isDark = !isDark"
             :items="items"
             :ui="{
-              content: 'bg-black',
+              content: 'dark:bg-black bg-white',
             }"
           >
             <UButton
@@ -42,7 +44,7 @@
             />
           </UDropdownMenu>
         </ClientOnly>
-        <NuxtLink to="/login">
+        <NuxtLink to="/sign-in">
           <UButton
             :label="t('header_login')"
             class="h-[30px] text-[11px] rounded-[22px] font-bold cursor-pointer px-4 bg-dark border border-transparent dark:hover:border-white border-solid transition-colors duration-300 hover:bg-dark hover:border-black"

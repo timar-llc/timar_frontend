@@ -7,5 +7,13 @@
   "intro_bar_description": "Choose a freelancer's personal AI model and instantly generate work in their distinct style.",
   "intro_bar_button": "Join Us Now",
   "russian_language": "Russian",
-  "english_language": "English"
+  "english_language": "English",
+  "sign_in": "Sign In",
+  "sign_in_email": "Email",
+  "sign_in_phone": "Phone",
+  "no_valid_phone": "Invalid phone number",
+  "no_valid_email": "Invalid email",
+  "no_valid_password": "Invalid password",
+  "password_min_length": "Password must be at least 8 characters",
+  "forgot_password_button": "Forgot Password?"
 }
