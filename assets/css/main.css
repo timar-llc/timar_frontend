@@ -2,3 +2,10 @@
 @import "@nuxt/ui";
 
 @config "./tailwind.config.ts";
+
+@theme {
+  --color-black-100: #1a1a1a;
+  --color-blue: #5424fd;
+  --color-red: #f5001e;
+  --color-yellow: #fcc636;
+}

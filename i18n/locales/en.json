@@ -11,9 +11,18 @@
   "sign_in": "Sign In",
   "sign_in_email": "Email",
   "sign_in_phone": "Phone",
+  "sign_in_password": "Password",
   "no_valid_phone": "Invalid phone number",
   "no_valid_email": "Invalid email",
   "no_valid_password": "Invalid password",
   "password_min_length": "Password must be at least 8 characters",
-  "forgot_password_button": "Forgot Password?"
+  "forgot_password_button": "Forgot Password?",
+  "feed_title": "Find the perfect order",
+  "feed_description": "Work with the best clients and develop your career at your own pace",
+  "feed_orders_title": "Orders",
+  "sort_desc": "Desc",
+  "sort_asc": "Asc",
+  "sort_by_low": "Most cheapest first",
+  "sort_by_high": "Most expensive first",
+  "sidebar_complexity": "Level"
 }

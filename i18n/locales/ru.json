@@ -10,6 +10,7 @@
   "english_language": "Английский",
   "sign_in": "Вход",
   "sign_in_email": "Email",
+  "sign_in_password": "Пароль",
   "sign_in_phone": "Телефон",
   "sign_in_button": "Войти",
   "sign_in_signup": "Регистрация",
@@ -17,5 +18,11 @@
   "no_valid_phone": "Неверный телефон",
   "no_valid_password": "Неверный пароль",
   "password_min_length": "Пароль должен быть не менее 8 символов",
-  "forgot_password_button": "Забыли пароль?"
+  "forgot_password_button": "Забыли пароль?",
+  "feed_title": "Найдите идеальный заказ",
+  "feed_description": "Работайте с лучшими заказчиками и развивайте свою карьеру в удобном темпе",
+  "feed_orders_title": "Заказов",
+  "sort_by_low": "Сначала самые дешевые",
+  "sort_by_high": "Сначала самые дорогие",
+  "sidebar_complexity": "Сложность"
 }

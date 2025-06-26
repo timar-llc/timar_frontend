@@ -2,15 +2,15 @@
   <div
     class="flex gap-14 max-h-[51px] h-full items-center w-full mobile:hidden"
   >
-    <NuxtLink to="/">
+    <NuxtLink :to="localePath('/')">
       <h2 class="text-2xl font-bold">{{ t("brand") }}</h2>
     </NuxtLink>
     <div class="flex justify-between w-full ml-[50px]">
       <div
         class="flex items-center font-bold text-sm w-full text-[11px] gap-[40px]"
       >
-        <NuxtLink to="/">{{ t("header_home") }}</NuxtLink>
-        <NuxtLink to="/">{{ t("header_home") }}</NuxtLink>
+        <NuxtLink :to="localePath('/')">{{ t("header_home") }}</NuxtLink>
+        <NuxtLink :to="localePath('/')">{{ t("header_home") }}</NuxtLink>
       </div>
       <div class="flex items-center gap-4">
         <ClientOnly v-if="!colorMode?.forced">
@@ -44,7 +44,7 @@
             />
           </UDropdownMenu>
         </ClientOnly>
-        <NuxtLink to="/sign-in">
+        <NuxtLink :to="localePath('/sign-in')">
           <UButton
             :label="t('header_login')"
             class="h-[30px] text-[11px] rounded-[22px] font-bold cursor-pointer px-4 bg-dark border border-transparent dark:hover:border-white border-solid transition-colors duration-300 hover:bg-dark hover:border-black"
@@ -52,7 +52,7 @@
             variant="outline"
           />
         </NuxtLink>
-        <NuxtLink to="/signup">
+        <NuxtLink :to="localePath('/sign-up')">
           <UButton
             :label="t('header_signup')"
             class="h-[30px] text-[11px] rounded-[22px] font-bold cursor-pointer px-4 hover:opacity-75 transition-opacity duration-300"
@@ -67,7 +67,8 @@
 
 <script setup lang="ts">
 import type { DropdownMenuItem } from "@nuxt/ui";
-const { t, locale, setLocale } = useI18n();
+const { t, setLocale } = useI18n();
+const localePath = useLocalePath();
 const colorMode = useColorMode();
 const items = ref<DropdownMenuItem[]>([
   {
