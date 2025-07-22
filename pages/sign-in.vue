@@ -6,10 +6,10 @@
       <UForm
         :schema="schema"
         :state="state"
-        class="space-y-4 w-full items-center justify-around flex flex-col"
+        class="space-y-4 w-full items-center justify-around flex flex-col max-w-[300px]"
         @submit="onSubmit"
       >
-        <UTabs :items="items" class="w-full max-w-[300px] mt-4" color="neutral">
+        <UTabs :items="items" class="w-full  mt-4" color="neutral">
           <template #email>
             <UFormField label="Email" name="email" class="w-full max-w-[300px]">
               <UInput v-model="state.email" color="neutral" class="w-full" placeholder="user@example.com"/>
@@ -62,6 +62,11 @@
             </UFormField>
           </template>
         </UTabs>
+        <div class="flex items-center">
+          <NuxtLink to="/forgot-password" class="text-green-lead text-sm opacity-50 hover:opacity-100 transition-all duration-300">
+            {{ t("forgot_password_button") }}
+          </NuxtLink>
+        </div>
 
         <UButton
           type="submit"
@@ -70,6 +75,27 @@
           >{{ t("sign_in") }}</UButton
         >
       </UForm>
+      <div class="flex flex-col items-center justify-center w-full max-w-[280px] mt-4">
+      <UButton
+        color="neutral"
+        variant="outline"
+        icon="mdi:google"
+        
+        class="mt-4 w-full justify-center flex transition-all hover:scale-95 duration-300 cursor-pointer"
+      >{{ t("sign_with_google") }}</UButton>
+      <UButton
+        color="neutral"
+        variant="outline"
+        icon="mdi:github"
+        class="mt-4 w-full justify-center flex transition-all hover:scale-95 duration-300 cursor-pointer"
+      >{{ t("sign_with_github") }}</UButton>
+      <UButton
+        color="neutral"
+        variant="outline"
+        icon="mdi:telegram"
+          class="mt-4 w-full justify-center flex transition-all hover:scale-95 duration-300 cursor-pointer"
+        >{{ t("sign_with_telegram") }}</UButton>
+      </div>
     </div>
   </NuxtLayout>
 </template>

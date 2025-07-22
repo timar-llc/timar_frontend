@@ -5,7 +5,28 @@
 
 @theme {
   --color-black-100: #1a1a1a;
+  --color-black-200: #1c1f24;
   --color-blue: #5424fd;
   --color-red: #f5001e;
+  --color-green-lead: #9eff00;
+  --color-grey-lead: #1c1f24;
   --color-yellow: #fcc636;
+  --ui-bg-inverted: #9eff00;
+  --ui-bg-elevated: #f3f4f6;
+  --ui-text-muted: #1c1f24;
+  --ui-text-inverted: #1c1f24;
+  --ui-bg: #f3f4f6;
+  --ui-success: #9eff00;
+  --color-card-bg: #f3f4f6;
+}
+
+/* Переопределяем --ui-bg-elevated для тёмного режима */
+:root[class~="dark"] {
+  --ui-bg-elevated: #1c1f24;
+  --ui-text-muted: #ffffff;
+  --ui-bg: #1c1f24;
+  --color-card-bg: #1a1a1a;
+}
+button {
+  @apply cursor-pointer;
 }

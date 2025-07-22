@@ -10,11 +10,13 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Manrope", "ui-sans-serif", "system-ui"],
+        sans: ["Poppins", "ui-sans-serif", "system-ui"],
       },
     },
     screens: {
       mobile: { max: "500px" },
+      tablet: { min: "501px", max: "1000px" },
+      desktop: { min: "1001px" },
     },
   },
   plugins: [],

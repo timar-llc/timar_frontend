@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex gap-14 max-h-[51px] h-full items-center w-full mobile:hidden"
+    class="flex gap-14 max-h-[51px] h-full items-center w-full mobile:hidden mb-6"
   >
     <NuxtLink :to="localePath('/')">
       <h2 class="text-2xl font-bold">{{ t("brand") }}</h2>

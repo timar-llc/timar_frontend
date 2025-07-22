@@ -1,13 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
-  googleFonts: {
-    families: {
-      Manrope: { wght: [400, 500, 600, 700] },
-    },
-  },
   compatibilityDate: "2025-05-15",
   devtools: { enabled: true },
+
   css: ["@/assets/css/main.css"],
   devServer: {
     port: 3002,

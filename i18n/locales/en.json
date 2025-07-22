@@ -9,6 +9,9 @@
   "russian_language": "Russian",
   "english_language": "English",
   "sign_in": "Sign In",
+  "sign_with_google": "Sign in with Google",
+  "sign_with_github": "Sign in with GitHub",
+  "sign_with_telegram": "Sign in with Telegram",
   "sign_in_email": "Email",
   "sign_in_phone": "Phone",
   "sign_in_password": "Password",
@@ -24,5 +27,90 @@
   "sort_asc": "Asc",
   "sort_by_low": "Most cheapest first",
   "sort_by_high": "Most expensive first",
-  "sidebar_complexity": "Level"
+  "sidebar_complexity": "Level",
+  "vacancies_title": "Vacancies",
+  "tasks_title": "Tasks",
+  "total_project_card": "Total Projects",
+  "completed_projects_card": "Completed",
+  "satisfied_clients_card": "Satisfied Clients",
+  "total_income_card": "Total Income",
+  "profile_settings_title": "Profile Settings",
+  "profile_settings_description": "Manage your profile and account settings",
+  "profile_fullness": "Profile Fullness",
+  "portfolio_projects": {
+    "title": "Portfolio",
+    "description": "Manage your portfolio",
+    "add_project": "Add Project",
+    "delete_project": "Delete Project"
+  },
+  "basic_information": {
+    "title": "Basic Information",
+    "name": "Name",
+    "last_name": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "country": "Country",
+    "specialization": "Specialization",
+    "about": "About",
+    "profile_photo": "Profile Photo",
+    "upload_photo": "Upload Photo",
+    "delete_photo": "Delete Photo",
+    "recommended_size": "Recommended Size",
+    "format": "Format",
+    "save": "Save"
+  },
+  "skills_and_specialization": {
+    "title": "Skills and Specialization",
+    "skills": "Skills",
+    "specialization": "Specialization",
+    "add_skill": "Add Skill",
+    "add_specialization": "Add Specialization"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "description": "Manage your notifications settings",
+    "email_messages": "Email messages",
+    "invoice_messages": "Invoice messages"
+  },
+  "privacy": {
+    "title": "Privacy",
+    "description": "Manage your privacy settings"
+  },
+  "add_project": {
+    "title": "Add New Project",
+    "description": "Adding a project to your portfolio",
+    "step": "Step",
+    "of": "of",
+    "save_draft": "Save Draft",
+    "next_step": "Next Step",
+    "basic_info": {
+      "title": "Basic Info",
+      "project_name": "Project Name",
+      "project_category": "Category",
+      "project_subcategory": "Subcategory",
+      "project_description": "Description",
+      "project_price": "Price",
+      "project_duration": "Duration",
+      "project_duration_1_day": "1 day",
+      "project_duration_2_days": "2 days",
+      "project_duration_3_days": "3 days",
+      "project_duration_4_days": "4 days",
+      "project_duration_5_days": "5 days",
+      "project_duration_6_days": "6 days",
+      "project_duration_1_week": "1 week",
+      "project_duration_10_days": "10 days",
+      "project_duration_2_weeks": "2 weeks",
+      "project_duration_3_weeks": "3 weeks",
+      "project_duration_1_month": "1 month",
+      "project_duration_2_months": "2 months"
+    },
+    "media": {
+      "title": "Media",
+      "description": "Add your media"
+    },
+    "technologies": {
+      "title": "Technologies",
+      "description": "Add your technologies"
+    }
+  }
 }

@@ -9,6 +9,9 @@
   "russian_language": "Русский",
   "english_language": "Английский",
   "sign_in": "Вход",
+  "sign_with_google": "Войти с Google",
+  "sign_with_github": "Войти с GitHub",
+  "sign_with_telegram": "Войти с Telegram",
   "sign_in_email": "Email",
   "sign_in_password": "Пароль",
   "sign_in_phone": "Телефон",
@@ -24,5 +27,89 @@
   "feed_orders_title": "Заказов",
   "sort_by_low": "Сначала самые дешевые",
   "sort_by_high": "Сначала самые дорогие",
-  "sidebar_complexity": "Сложность"
+  "sidebar_complexity": "Сложность",
+  "vacancies_title": "Вакансии",
+  "tasks_title": "Задачи",
+  "total_project_card": "Всего проектов",
+  "completed_projects_card": "Завершено",
+  "satisfied_clients_card": "Довольных клиентов",
+  "total_income_card": "Общий доход",
+  "profile_settings_title": "Настройки профиля",
+  "profile_settings_description": "Управление своим профилем и настройками аккаунта",
+  "profile_fullness": "Заполненность профиля",
+  "portfolio_projects": {
+    "title": "Портфолио",
+    "description": "Управление своим портфолио",
+    "add_project": "Добавить проект",
+    "delete_project": "Удалить проект"
+  },
+  "basic_information": {
+    "title": "Основная информация",
+    "name": "Имя",
+    "last_name": "Фамилия",
+    "email": "Email",
+    "phone": "Телефон",
+    "country": "Страна",
+    "specialization": "Профессия",
+    "about": "О себе",
+    "profile_photo": "Фото профиля",
+    "upload_photo": "Загрузить фото",
+    "delete_photo": "Удалить фото",
+    "recommended_size": "Рекомендуемый размер",
+    "format": "Формат",
+    "save": "Сохранить"
+  },
+  "skills_and_specialization": {
+    "title": "Навыки и технологии",
+    "skills": "Навыки",
+    "add_skill": "Добавить навык",
+    "add_specialization": "Добавить специализацию"
+  },
+  "notifications": {
+    "title": "Уведомления",
+    "description": "Управление настройками уведомлений",
+    "email_messages": "Рассылка уведомлений на email",
+    "invoice_messages": "Рассылка чеков на email"
+  },
+  "privacy": {
+    "title": "Приватность",
+    "description": "Управление настройками приватности"
+  },
+  "add_project": {
+    "title": "Добавить новый проект",
+    "step": "Шаг",
+    "of": "из",
+    "description": "Добавление проекта в портфолио",
+    "save_draft": "Сохранить черновик",
+    "next_step": "Далее",
+    "basic_info": {
+      "title": "Основная информация",
+      "project_name": "Название проекта",
+      "project_category": "Категория",
+      "project_subcategory": "Подкатегория",
+      "project_description": "Описание проекта",
+      "project_price": "Стоимость",
+      "project_duration": "Срок выполнения",
+      "project_duration_1_day": "1 день",
+      "project_duration_2_days": "2 дня",
+      "project_duration_3_days": "3 дня",
+      "project_duration_4_days": "4 дня",
+      "project_duration_5_days": "5 дней",
+      "project_duration_6_days": "6 дней",
+      "project_duration_1_week": "1 неделя",
+      "project_duration_10_days": "10 дней",
+      "project_duration_2_weeks": "2 недели",
+      "project_duration_3_weeks": "3 недели",
+      "project_duration_1_month": "1 месяц",
+      "project_duration_2_months": "2 месяца"
+    },
+    "media": {
+      "title": "Медиафайлы",
+      "description": "Добавление медиафайлов"
+    },
+    "technologies": {
+      "title": "Технологии",
+      "description": "Добавление технологий"
+    }
+  }
 }
