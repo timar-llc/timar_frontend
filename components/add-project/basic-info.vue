@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col gap-4 rounded-lg bg-card-bg p-6 dark:border-1 dark:border-[#484848]"
+    class="flex flex-col gap-4 mt-16 rounded-lg bg-card-bg p-6 dark:border-1 dark:border-[#484848]"
   >
     <h3 class="text-lg font-bold">{{ $t("add_project.basic_info.title") }}</h3>
     <UForm

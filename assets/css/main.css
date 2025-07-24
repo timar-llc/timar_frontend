@@ -30,3 +30,9 @@
 button {
   @apply cursor-pointer;
 }
+
+@layer components {
+  .flex-between {
+    @apply flex justify-between items-center;
+  }
+}

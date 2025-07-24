@@ -5,7 +5,7 @@
     >
       <div class="flex gap-4 items-center w-full">
         <NuxtImg
-          src="https://i.pravatar.cc/150"
+        src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
           width="100"
           height="100"
           class="rounded-full"

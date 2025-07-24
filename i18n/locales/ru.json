@@ -105,11 +105,29 @@
     },
     "media": {
       "title": "Медиафайлы",
-      "description": "Добавление медиафайлов"
+      "description": "Добавление медиафайлов",
+      "drop_zone_title": "Перетащите изображения",
+      "drop_zone_description": "или нажмите для выбора файла",
+      "drop_zone_button": "Выбрать файл",
+      "drop_zone_constraints": "Максимум 10MB на файл",
+      "uploaded_files": "Загруженные файлы",
+      "tip_first_file": "Первый файл будет использоваться как главное изображение",
+      "delete_file": "Удалить файл",
+      "delete_file_description": "Вы уверены, что хотите удалить этот файл?",
+      "main_photo": "Главное фото"
     },
     "technologies": {
       "title": "Технологии",
-      "description": "Добавление технологий"
+      "description": "Добавление технологий",
+      "technologies": "Технологии",
+      "enter_technologies": "Введите технологии",
+      "popular_technologies": "Популярные технологии",
+      "recommended_technologies": "Рекомендации по выбору технологий",
+      "first_recommendation": "Выберите основные технологии, которые использовались в проекте",
+      "second_recommendation": "Укажите языки программирования, фреймворки и библиотеки",
+      "third_recommendation": "Добавьте инструменты разработки и платформы развертывания",
+      "fourth_recommendation": "Можно добавить собственные технологии, если их нет в списке",
+      "fifth_recommendation": "Рекомендуется указывать 3-10 основных технологий"
     }
   }
 }

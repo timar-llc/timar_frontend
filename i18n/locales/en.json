@@ -106,11 +106,29 @@
     },
     "media": {
       "title": "Media",
-      "description": "Add your media"
+      "description": "Add your media",
+      "drop_zone_title": "Drop this",
+      "drop_zone_description": "or click to upload",
+      "drop_zone_button": "Upload",
+      "drop_zone_constraints": "Max 10MB per file",
+      "uploaded_files": "Uploaded Files",
+      "tip_first_file": "First file will be used as a preview",
+      "delete_file": "Delete File",
+      "delete_file_description": "Are you sure you want to delete this file?",
+      "main_photo": "Main Photo"
     },
     "technologies": {
       "title": "Technologies",
-      "description": "Add your technologies"
+      "description": "Add your technologies",
+      "technologies": "Technologies",
+      "enter_technologies": "Enter technologies",
+      "popular_technologies": "Most Popular Technologies",
+      "recommended_technologies": "Recomendation to select technologies",
+      "first_recommendation": "Select the main technologies used in the project",
+      "second_recommendation": "Specify programming languages, frameworks and libraries",
+      "third_recommendation": "Add development tools and deployment platforms",
+      "fourth_recommendation": "You can add your own technologies if they are not in the list",
+      "fifth_recommendation": "It is recommended to specify 3-10 main technologies"
     }
   }
 }
