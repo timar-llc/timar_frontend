@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col gap-4 w-full relative">
     <div class="flex justify-between">
-      <h1 class="text-2xl font-bold mobile:text-lg">
+      <h1 class="text-2xl font-bold mobile:text-sm">
         {{ $t("add_project.title") }}
       </h1>
       <span class="text-sm text-gray-400">
@@ -14,7 +14,9 @@
         v-model="step"
         color="success"
         class="w-full absolute right-0 left-0 top-10 mt-2 mobile:mt-6"
-      />
+        :ui="{ title: 'mobile:hidden' }"
+      >
+      </UStepper>
       <div
         class="flex gap-2 h-10 absolute right-0 top-10 mt-2 mobile:static mobile:mt-32 mobile:mx-auto tablet:static tablet:mt-32 tablet:mx-auto"
       >
@@ -52,14 +54,15 @@ const step = ref(0);
 const items: StepperItem[] = [
   {
     title: t("add_project.basic_info.title"),
-    icon: "i-lucide-house",
+    icon: "lucide:info",
   },
   {
     title: t("add_project.media.title"),
-    icon: "i-lucide-truck",
+    icon: "lucide:image-plus",
   },
   {
     title: t("add_project.technologies.title"),
+    icon: "lucide:code",
   },
 ];
 const activeComponent = computed(() => {

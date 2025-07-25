@@ -129,5 +129,20 @@
       "fourth_recommendation": "Можно добавить собственные технологии, если их нет в списке",
       "fifth_recommendation": "Рекомендуется указывать 3-10 основных технологий"
     }
+  },
+  "achievements": {
+    "title": "Достижения",
+    "description": "Отслеживайте свой прогресс и празднуйте успехи на платформе TimarLance",
+    "total_achievements": "Всего достижений",
+    "experience_points": "Очков опыта",
+    "current_level": "Текущий уровень",
+    "progress_to_next_level": "Прогресс к следующему уровню",
+    "categories": {
+      "all": "Все достижения",
+      "common": "Обычные",
+      "rare": "Редкие",
+      "epic": "Эпические",
+      "legendary": "Легендарные"
+    }
   }
 }

@@ -130,5 +130,20 @@
       "fourth_recommendation": "You can add your own technologies if they are not in the list",
       "fifth_recommendation": "It is recommended to specify 3-10 main technologies"
     }
+  },
+  "achievements": {
+    "title": "Achievements",
+    "description": "Track your progress and celebrate your achievements on the TimarLance platform",
+    "total_achievements": "Total Achievements",
+    "experience_points": "Experience Points",
+    "current_level": "Current Level",
+    "progress_to_next_level": "Progress to Next Level",
+    "categories": {
+      "all": "All achievements",
+      "common": "Common",
+      "rare": "Rare",
+      "epic": "Epic",
+      "legendary": "Legendary"
+    }
   }
 }

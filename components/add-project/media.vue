@@ -54,11 +54,7 @@
       <div
         v-for="(item, index) in filePreviews"
         :key="item.file.name + item.file.size"
-        class="flex flex-col items-center justify-center cursor-move"
-        draggable="true"
-        @dragstart="onDragStart(index)"
-        @dragover.prevent
-        @drop="onDrop(index)"
+        class="flex flex-col items-center justify-center"
       >
         <div class="flex flex-col gap-2">
           <div class="flex-between">
@@ -81,6 +77,10 @@
             width="300"
             height="300"
             alt="preview"
+        draggable="true"
+        @dragstart="onDragStart(index)"
+        @dragover.prevent
+        @drop="onDrop(index)"
           />
         </div>
         <h1 class="text-sm text-gray-400">{{ item.file.name }}</h1>
