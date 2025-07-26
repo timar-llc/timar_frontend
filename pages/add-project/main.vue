@@ -1,9 +1,19 @@
 <template>
   <div class="flex flex-col gap-4 w-full relative">
     <div class="flex justify-between">
-      <h1 class="text-2xl font-bold mobile:text-sm">
-        {{ $t("add_project.title") }}
-      </h1>
+      <div class="flex items-center gap-2">
+        <UButton
+          icon="i-lucide-arrow-left"
+          variant="ghost"
+          size="md"
+          color="neutral"
+          class="rounded-full border-1 border-white"
+          @click="router.push(localePath(`/profile/${$route.params.username}`))"
+        />
+        <h1 class="text-2xl font-bold mobile:text-sm">
+          {{ $t("add_project.title") }}
+        </h1>
+      </div>
       <span class="text-sm text-gray-400">
         {{ $t("add_project.step") }} {{ step + 1 }} {{ $t("add_project.of") }} 3
       </span>
@@ -48,6 +58,10 @@
 <script setup lang="ts">
 import type { StepperItem } from "@nuxt/ui";
 import { getDurationList } from "@/utils/project/formatDuration";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+const localePath = useLocalePath();
 
 const { t } = useI18n();
 const step = ref(0);

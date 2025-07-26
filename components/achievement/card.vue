@@ -1,13 +1,8 @@
 <template>
   <div
-    class="rounded-lg bg-card-bg p-5 dark:border-1 dark:border-[#484848] flex flex-col h-fit relative"
+    class="rounded-lg p-5 dark:border-1 dark:border-[#484848] flex flex-col h-fit relative"
   >
-    <UChip
-      standalone
-      inset
-      class="absolute top-4 right-4"
-      color="success"
-    />
+    <UChip standalone inset class="absolute top-4 right-4" color="success" />
     <div class="flex flex-col gap-5">
       <div class="flex gap-4 items-center">
         <UIcon :name="props.achievement.icon" class="p-7" />

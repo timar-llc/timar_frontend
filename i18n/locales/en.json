@@ -145,5 +145,40 @@
       "epic": "Epic",
       "legendary": "Legendary"
     }
+  },
+  "wallet": {
+    "title": "Wallet",
+    "total_balance": {
+      "title": "Total Balance",
+      "last_update": "Last update:"
+    },
+    "withdraw": {
+      "title": "Available for withdrawal",
+      "description": "Ready to withdraw"
+    },
+    "pending": {
+      "title": "Pending",
+      "description": "Awaiting confirmation"
+    },
+    "history": {
+      "title": "Transaction history",
+      "types": {
+        "all": "All",
+        "income": "Income",
+        "withdraw": "Withdraw"
+      },
+      "methods": {
+        "bank_card": "Bank card",
+        "crypto": "Crypto",
+        "bank_transfer": "Bank transfer"
+      },
+      "statuses": {
+        "pending": "Pending",
+        "completed": "Completed",
+        "failed": "Failed"
+      },
+      "add_funds": "Add funds",
+      "withdraw_funds": "Withdraw funds"
+    }
   }
 }

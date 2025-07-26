@@ -144,5 +144,40 @@
       "epic": "Эпические",
       "legendary": "Легендарные"
     }
+  },
+  "wallet": {
+    "title": "Кошелек",
+    "total_balance": {
+      "title": "Общий баланс",
+      "last_update": "Последнее обновление:"
+    },
+    "withdraw": {
+      "title": "Доступно для вывода",
+      "description": "Готово к выводу"
+    },
+    "pending": {
+      "title": "Ожидание",
+      "description": "Ожидание подтверждения"
+    },
+    "history": {
+      "title": "История транзакций",
+      "types": {
+        "all": "Все",
+        "income": "Пополнение",
+        "withdraw": "Вывод"
+      },
+      "methods": {
+        "bank_card": "Банковская карта",
+        "crypto": "Криптовалюта",
+        "bank_transfer": "Банковский перевод"
+      },
+      "statuses": {
+        "pending": "В обработке",
+        "completed": "Завершено",
+        "failed": "Отменено"
+      },
+      "add_funds": "Пополнить баланс",
+      "withdraw_funds": "Вывести средства"
+    }
   }
 }
