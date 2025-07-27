@@ -191,7 +191,24 @@
         "cancel": "Cancel",
         "confirm": "Add"
       },
-      "withdraw_funds": "Withdraw funds"
+      "withdraw_funds": {
+        "title": "Withdraw funds",
+        "available": "Available for withdrawal",
+        "method": "Method of withdrawing funds",
+        "other_amount": "Select another amount",
+        "summary": {
+          "title": "Amount to withdraw",
+          "commission": "Commission",
+          "total": "Total to receive"
+        },
+        "all": "All",
+        "cancel": "Cancel",
+        "confirm": "Withdraw",
+        "pending_info": {
+          "title": "Processing time",
+          "description": "Up to 3 working days"
+        }
+      }
     }
   }
 }

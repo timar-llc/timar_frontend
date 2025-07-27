@@ -65,7 +65,7 @@
         class="w-full flex justify-center items-center"
         @click="openWithdrawModal"
       >
-        {{ $t("wallet.history.withdraw_funds") }}
+        {{ $t("wallet.history.withdraw_funds.title") }}
       </UButton>
     </div>
     <div

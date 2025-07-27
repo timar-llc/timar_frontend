@@ -190,7 +190,24 @@
         "cancel": "Отмена",
         "confirm": "Пополнить"
       },
-      "withdraw_funds": "Вывод средств"
+      "withdraw_funds": {
+        "title": "Вывод средств",
+        "available": "Доступно для вывода",
+        "method": "Способ вывода средств",
+        "other_amount": "Выберите другую сумму",
+        "summary": {
+          "title": "Сумма к выводу",
+          "commission": "Комиссия",
+          "total": "Итого к выплате"
+        },
+        "all": "Все",
+        "cancel": "Отмена",
+        "confirm": "Вывести",
+        "pending_info": {
+          "title": "Время обработки",
+          "description": "до 3 рабочих дней"
+        }
+      }
     }
   }
 }
