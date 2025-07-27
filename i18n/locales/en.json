@@ -177,7 +177,20 @@
         "completed": "Completed",
         "failed": "Failed"
       },
-      "add_funds": "Add funds",
+      "add_funds": {
+        "title": "Add funds",
+        "amount": "Select the amount of funds to add",
+        "other_amount": "Select another amount",
+        "method": "Method of adding funds",
+        "submit": "Add",
+        "summary": {
+          "title": "Amount to add",
+          "commission": "Commission",
+          "total": "Total to pay"
+        },
+        "cancel": "Cancel",
+        "confirm": "Add"
+      },
       "withdraw_funds": "Withdraw funds"
     }
   }

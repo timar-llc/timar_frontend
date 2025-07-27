@@ -54,14 +54,16 @@
         variant="solid"
         color="success"
         class="w-full flex justify-center items-center"
+        @click="openAddFundsModal"
       >
-        {{ $t("wallet.history.add_funds") }}
+        {{ $t("wallet.history.add_funds.title") }}
       </UButton>
       <UButton
         icon="i-lucide-arrow-down"
         variant="outline"
         color="error"
         class="w-full flex justify-center items-center"
+        @click="openWithdrawModal"
       >
         {{ $t("wallet.history.withdraw_funds") }}
       </UButton>
@@ -88,11 +90,25 @@
         />
       </div>
     </div>
+
+    <!-- Модалки -->
+    <AddFundsModal
+      v-if="isAddFundsModalOpen"
+      v-model="isAddFundsModalOpen"
+      @submit="handleAddFunds"
+    />
+    <WithdrawFundsModal
+      v-if="isWithdrawModalOpen"
+      v-model="isWithdrawModalOpen"
+      @submit="handleWithdraw"
+    />
   </div>
 </template>
 <script setup lang="ts">
 import type { ITransaction } from "@/types/transaction.interface";
 import { useI18n } from "vue-i18n";
+import AddFundsModal from "@/components/wallet/add-funds-modal.vue";
+import WithdrawFundsModal from "@/components/wallet/withdraw-funds-modal.vue";
 
 const { t } = useI18n();
 
@@ -144,4 +160,30 @@ const tabs = [
     value: "withdraw",
   },
 ];
+
+// Состояние модалок
+const isAddFundsModalOpen = ref(false);
+const isWithdrawModalOpen = ref(false);
+
+// Обработчики
+const handleAddFunds = (amount: number, method: string) => {
+  console.log("Пополнение:", amount, method);
+  // Логика пополнения
+};
+
+const handleWithdraw = (amount: number, method: string) => {
+  console.log("Вывод:", amount, method);
+  // Логика вывода
+};
+
+// Добавим логирование для отладки
+const openAddFundsModal = () => {
+  console.log("Открываем модалку пополнения");
+  isAddFundsModalOpen.value = true;
+};
+
+const openWithdrawModal = () => {
+  console.log("Открываем модалку вывода");
+  isWithdrawModalOpen.value = true;
+};
 </script>
