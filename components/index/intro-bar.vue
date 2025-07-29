@@ -1,7 +1,13 @@
 <template>
-  <div class="flex flex-col items-center justify-center">
-    <h1 class="text-[52px] font-bold">{{ t("intro_bar_title") }}</h1>
-    <p class="text-sm">
+  <div class="flex flex-col items-center justify-center mobile:gap-4">
+    <h1
+      class="text-[52px] font-bold mobile:text-2xl mobile:font-bold mobile:mx-auto mobile:text-center"
+    >
+      {{ t("intro_bar_title") }}
+    </h1>
+    <p
+      class="text-sm mobile:text-sm mobile:font-medium mobile:mx-auto mobile:text-center"
+    >
       {{ t("intro_bar_description") }}
     </p>
     <UButton

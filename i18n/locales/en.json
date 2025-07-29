@@ -1,5 +1,38 @@
 {
   "brand": "TimarLance",
+  "index": {
+    "title": "Explore TimarLance",
+    "search_title_freelancer": "Find the perfect order",
+    "search_title_customer": "Find the perfect freelancer",
+    "description": "Work with the best clients and develop your career at your own pace",
+    "order_stats": "Completed orders",
+    "freelancers_stats": "Active freelancers",
+    "money_stats": "Total turnover",
+    "support": "Support",
+    "news": "News",
+    "faq": {
+      "title": "Common questions",
+      "description": "Answers to the most popular questions about the platform",
+      "questions": {
+        "q1": "How to start working on TimarLance?",
+        "a1": "Register, fill out your profile, add a portfolio and start applying for orders. Our system will help you find suitable projects.",
+        "q2": "How is transaction security ensured?",
+        "a2": "We use a secure escrow payment system. Money is transferred to the contractor only after the client approves the work.",
+        "q3": "What commission does the platform take?",
+        "a3": "The commission is 10% of the order amount. For premium freelancers, the commission is reduced to 5%.",
+        "q4": "How does the rating system work?",
+        "a4": "The rating is based on client reviews, work quality and meeting deadlines. The higher the rating, the more orders.",
+        "q5": "What to do in case of conflict with a client?",
+        "a5": "Our support service will help resolve the dispute. We will review all materials and make a fair decision within 24 hours.",
+        "q6": "Can I work with foreign clients?",
+        "a6": "Yes, the platform supports international transactions. We work with various currencies and ensure secure transfers.",
+        "q7": "How to get premium freelancer status?",
+        "a7": "Status is awarded with a high rating (4.8+), completion of 50+ orders and positive reviews from 95% of clients.",
+        "q8": "Is there a mobile app?",
+        "a8": "Yes, our mobile app is available for iOS and Android. You can manage orders, communicate with clients and receive notifications."
+      }
+    }
+  },
   "header_home": "Home",
   "header_login": "Log in",
   "header_signup": "Sign Up",
@@ -210,5 +243,190 @@
         }
       }
     }
+  },
+  "categories": {
+    "development_and_it": {
+      "title": "Development & IT",
+      "subcategories": {
+        "web_development": "Web Development (Frontend / Backend / Fullstack)",
+        "mobile_development": "Mobile Development (iOS / Android / Flutter)",
+        "game_development": "Game Development",
+        "devops_infrastructure": "DevOps & Infrastructure",
+        "testing_qa": "Testing & QA",
+        "website_builders": "Website Builders (Tilda, Wix, Webflow)",
+        "cms": "CMS (WordPress, Joomla, Drupal, etc.)",
+        "scripts_automation": "Scripts / Automation",
+        "bots_parsers": "Bots & Parsers",
+        "social_bots": "Telegram/VK/Discord Bots",
+        "ai_ml_projects": "AI/ML Projects",
+        "api_work": "API Work"
+      }
+    },
+    "design_and_creative": {
+      "title": "Design & Creative",
+      "subcategories": {
+        "web_design": "Web Design",
+        "ui_ux_design": "UI/UX Design",
+        "mobile_app_design": "Mobile App Design",
+        "graphic_design": "Graphic Design",
+        "logos_branding": "Logos & Branding",
+        "illustrations": "Illustrations",
+        "3d_design": "3D Design & Modeling",
+        "presentations": "Presentations",
+        "motion_design": "Motion Design / Animation",
+        "figma_design": "Figma Design"
+      }
+    },
+    "texts_and_content": {
+      "title": "Texts & Content",
+      "subcategories": {
+        "copywriting": "Copywriting",
+        "rewriting": "Rewriting",
+        "seo_texts": "SEO Texts",
+        "technical_documentation": "Technical Documentation",
+        "translations": "Translations",
+        "article_writing": "Article/Post Writing",
+        "editing_proofreading": "Editing & Proofreading"
+      }
+    },
+    "marketing_and_advertising": {
+      "title": "Marketing & Advertising",
+      "subcategories": {
+        "seo_aso": "SEO & ASO",
+        "context_advertising": "Context Advertising (Google Ads, Yandex.Direct)",
+        "smm": "SMM (Instagram, TikTok, Telegram, etc.)",
+        "email_marketing": "Email Marketing",
+        "influencer_marketing": "Influencer Marketing",
+        "analytics_optimization": "Analytics & Funnel Optimization",
+        "landing_creatives": "Landing Pages & Creatives",
+        "pr_branding": "PR & Branding"
+      }
+    },
+    "audio_video_photo": {
+      "title": "Audio / Video / Photo",
+      "subcategories": {
+        "video_editing": "Video Editing",
+        "color_correction": "Color Correction",
+        "voice_over": "Voice Over / Voice Actors",
+        "music_sound_design": "Music / Sound Design",
+        "podcasts": "Podcasts",
+        "photo_editing": "Photo Editing / Retouching"
+      }
+    },
+    "ecommerce": {
+      "title": "E-commerce",
+      "subcategories": {
+        "online_stores": "Online Store Creation",
+        "payment_integration": "Payment System Integration",
+        "ecommerce_platforms": "Shopify / WooCommerce / Opencart / Magento",
+        "marketplace_management": "Marketplace Management (Ozon, Wildberries, etc.)",
+        "ecommerce_advertising": "E-commerce Advertising Setup"
+      }
+    },
+    "business_and_management": {
+      "title": "Business & Management",
+      "subcategories": {
+        "financial_consulting": "Financial Consulting",
+        "business_analysis": "Business Analysis",
+        "crm_systems": "CRM Systems",
+        "process_automation": "Process Automation",
+        "market_research": "Market Research",
+        "virtual_assistant": "Virtual Assistant",
+        "project_management": "Project Management",
+        "reports_dashboards": "Reports, Tables, Dashboards"
+      }
+    },
+    "technical_support_and_administration": {
+      "title": "Technical Support / Administration",
+      "subcategories": {
+        "server_administration": "Server Administration",
+        "hosting_domains": "Hosting / Domain Setup",
+        "site_migration": "Site Migration",
+        "user_support": "User Support",
+        "crm_implementation": "CRM Implementation"
+      }
+    },
+    "education_and_consulting": {
+      "title": "Education & Consulting",
+      "subcategories": {
+        "tutoring": "Tutoring (Languages, Programming, etc.)",
+        "training_courses": "Training Courses",
+        "coaching_mentoring": "Coaching / Mentoring",
+        "technical_consulting": "Technical Consulting"
+      }
+    },
+    "legal_and_financial": {
+      "title": "Legal & Financial Services",
+      "subcategories": {
+        "contract_preparation": "Contract Preparation",
+        "legal_support": "Legal Support",
+        "accounting": "Accounting",
+        "business_registration": "Business Registration (LLC, etc.)",
+        "financial_models": "Financial Models"
+      }
+    },
+    "health_and_fitness": {
+      "title": "Health & Fitness",
+      "subcategories": {
+        "personal_training": "Personal Training",
+        "nutrition_consulting": "Nutrition Consulting",
+        "wellness_coaching": "Wellness Coaching"
+      }
+    },
+    "data_analysis": {
+      "title": "Data Analysis",
+      "subcategories": {
+        "data_processing": "Data Processing",
+        "business_intelligence": "Business Intelligence",
+        "data_visualization": "Data Visualization",
+        "predictive_analytics": "Predictive Analytics"
+      }
+    },
+    "other": {
+      "title": "Other"
+    }
+  },
+  "footer": {
+    "description": "TimarLance - the leading platform for freelancers and clients. Connecting talents with opportunities.",
+    "company": {
+      "title": "Company",
+      "about": "About",
+      "careers": "Careers",
+      "press": "Press",
+      "contact": "Contact"
+    },
+    "platform": {
+      "title": "Platform",
+      "how_it_works": "How it works",
+      "categories": "Categories",
+      "pricing": "Pricing",
+      "api": "API"
+    },
+    "support": {
+      "title": "Support",
+      "help_center": "Help Center",
+      "contact_support": "Contact Support",
+      "community": "Community",
+      "status": "Service Status"
+    },
+    "legal": {
+      "title": "Legal",
+      "terms": "Terms of Service",
+      "privacy": "Privacy Policy",
+      "cookies": "Cookies",
+      "security": "Security"
+    },
+    "social": {
+      "title": "Follow us",
+      "follow_us": "Follow us on social media"
+    },
+    "newsletter": {
+      "title": "Newsletter",
+      "description": "Get the latest news and updates",
+      "placeholder": "Your email",
+      "subscribe": "Subscribe"
+    },
+    "copyright": "© 2024 TimarLance. All rights reserved.",
+    "made_with": "Made with ❤️ in Russia"
   }
 }

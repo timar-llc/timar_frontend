@@ -2,6 +2,39 @@
   "brand": "TimarLance",
   "header_home": "Главная",
   "header_login": "Войти",
+  "index": {
+    "title": "Откройте для себя TimarLance",
+    "search_title_freelancer": "Найдите идеальный заказ",
+    "search_title_customer": "Найдите идеального исполнителя",
+    "description": "Работайте с лучшими клиентами и развивайте свою карьеру в удобном темпе",
+    "order_stats": "Завершенных заказов",
+    "freelancers_stats": "Активных фрилансеров",
+    "money_stats": "Общий оборот",
+    "support": "Поддержка",
+    "news": "Новости",
+    "faq": {
+      "title": "Часто задаваемые вопросы",
+      "description": "Ответы на самые популярные вопросы о платформе",
+      "questions": {
+        "q1": "Как начать работать на TimarLance?",
+        "a1": "Зарегистрируйтесь, заполните профиль, добавьте портфолио и начните подавать заявки на заказы. Наша система поможет вам найти подходящие проекты.",
+        "q2": "Как обеспечивается безопасность сделок?",
+        "a2": "Мы используем систему безопасных платежей с эскроу. Деньги переводятся исполнителю только после одобрения работы заказчиком.",
+        "q3": "Какие комиссии берет платформа?",
+        "a3": "Комиссия составляет 10% от суммы заказа. Для премиум-фрилансеров комиссия снижается до 5%.",
+        "q4": "Как работает система рейтингов?",
+        "a4": "Рейтинг формируется на основе отзывов клиентов, качества работы и соблюдения сроков. Чем выше рейтинг, тем больше заказов.",
+        "q5": "Что делать при конфликте с заказчиком?",
+        "a5": "Наша служба поддержки поможет разрешить спор. Мы изучим все материалы и примем справедливое решение в течение 24 часов.",
+        "q6": "Можно ли работать с зарубежными клиентами?",
+        "a6": "Да, платформа поддерживает международные сделки. Мы работаем с различными валютами и обеспечиваем безопасные переводы.",
+        "q7": "Как получить статус премиум-фрилансера?",
+        "a7": "Статус присваивается при высоком рейтинге (4.8+), выполнении 50+ заказов и положительных отзывах от 95% клиентов.",
+        "q8": "Есть ли мобильное приложение?",
+        "a8": "Да, наше мобильное приложение доступно для iOS и Android. Вы можете управлять заказами, общаться с клиентами и получать уведомления."
+      }
+    }
+  },
   "header_signup": "Регистрация",
   "intro_bar_title": "Откройте для себя возможности",
   "intro_bar_description": "Выберите персональную модель AI фрилансера и мгновенно генерируйте работу в их уникальном стиле.",
@@ -209,5 +242,190 @@
         }
       }
     }
+  },
+  "categories": {
+    "development_and_it": {
+      "title": "Разработка и IT",
+      "subcategories": {
+        "web_development": "Веб-разработка (Frontend / Backend / Fullstack)",
+        "mobile_development": "Мобильная разработка (iOS / Android / Flutter)",
+        "game_development": "Разработка игр",
+        "devops_infrastructure": "DevOps и инфраструктура",
+        "testing_qa": "Тестирование и QA",
+        "website_builders": "Сайты на конструкторах (Tilda, Wix, Webflow)",
+        "cms": "CMS (WordPress, Joomla, Drupal и др.)",
+        "scripts_automation": "Скрипты / автоматизация",
+        "bots_parsers": "Боты и парсеры",
+        "social_bots": "Telegram/VK/Discord боты",
+        "ai_ml_projects": "AI/ML проекты",
+        "api_work": "Работа с API"
+      }
+    },
+    "design_and_creative": {
+      "title": "Дизайн и креатив",
+      "subcategories": {
+        "web_design": "Веб-дизайн",
+        "ui_ux_design": "UI/UX-дизайн",
+        "mobile_app_design": "Дизайн мобильных приложений",
+        "graphic_design": "Графический дизайн",
+        "logos_branding": "Логотипы и брендинг",
+        "illustrations": "Иллюстрации",
+        "3d_design": "3D-дизайн и моделирование",
+        "presentations": "Презентации",
+        "motion_design": "Motion-дизайн / Анимация",
+        "figma_design": "Figma-дизайн"
+      }
+    },
+    "texts_and_content": {
+      "title": "Тексты и контент",
+      "subcategories": {
+        "copywriting": "Копирайтинг",
+        "rewriting": "Рерайтинг",
+        "seo_texts": "SEO-тексты",
+        "technical_documentation": "Техническая документация",
+        "translations": "Переводы",
+        "article_writing": "Написание статей/постов",
+        "editing_proofreading": "Редактирование и корректура"
+      }
+    },
+    "marketing_and_advertising": {
+      "title": "Маркетинг и реклама",
+      "subcategories": {
+        "seo_aso": "SEO и ASO",
+        "context_advertising": "Контекстная реклама (Google Ads, Яндекс.Директ)",
+        "smm": "SMM (Instagram, TikTok, Telegram и др.)",
+        "email_marketing": "Email-маркетинг",
+        "influencer_marketing": "Influencer маркетинг",
+        "analytics_optimization": "Аналитика и оптимизация воронок",
+        "landing_creatives": "Создание лендингов и креативов",
+        "pr_branding": "PR и брендинг"
+      }
+    },
+    "audio_video_photo": {
+      "title": "Аудио / Видео / Фото",
+      "subcategories": {
+        "video_editing": "Монтаж видео",
+        "color_correction": "Цветокоррекция",
+        "voice_over": "Озвучка / Дикторы",
+        "music_sound_design": "Музыка / Саунд-дизайн",
+        "podcasts": "Подкасты",
+        "photo_editing": "Фотообработка / Ретушь"
+      }
+    },
+    "ecommerce": {
+      "title": "E-commerce",
+      "subcategories": {
+        "online_stores": "Создание интернет-магазинов",
+        "payment_integration": "Интеграция с платёжными системами",
+        "ecommerce_platforms": "Shopify / WooCommerce / Opencart / Magento",
+        "marketplace_management": "Управление маркетплейсами (Ozon, Wildberries и др.)",
+        "ecommerce_advertising": "Настройка рекламы для e-commerce"
+      }
+    },
+    "business_and_management": {
+      "title": "Бизнес и управление",
+      "subcategories": {
+        "financial_consulting": "Финансовый консалтинг",
+        "business_analysis": "Бизнес-анализ",
+        "crm_systems": "CRM-системы",
+        "process_automation": "Автоматизация процессов",
+        "market_research": "Исследования рынка",
+        "virtual_assistant": "Виртуальный помощник",
+        "project_management": "Менеджмент проектов",
+        "reports_dashboards": "Составление отчетов, таблиц, дашбордов"
+      }
+    },
+    "technical_support_and_administration": {
+      "title": "Техподдержка / Администрирование",
+      "subcategories": {
+        "server_administration": "Администрирование серверов",
+        "hosting_domains": "Настройка хостинга / доменов",
+        "site_migration": "Миграция сайтов",
+        "user_support": "Поддержка пользователей",
+        "crm_implementation": "Внедрение CRM"
+      }
+    },
+    "education_and_consulting": {
+      "title": "Обучение и консалтинг",
+      "subcategories": {
+        "tutoring": "Репетиторство (языки, программирование и т.д.)",
+        "training_courses": "Обучающие курсы",
+        "coaching_mentoring": "Коучинг / Наставничество",
+        "technical_consulting": "Технические консультации"
+      }
+    },
+    "legal_and_financial": {
+      "title": "Юридические и финансовые услуги",
+      "subcategories": {
+        "contract_preparation": "Подготовка договоров",
+        "legal_support": "Юридическое сопровождение",
+        "accounting": "Бухгалтерия",
+        "business_registration": "Регистрация ИП/ООО",
+        "financial_models": "Финансовые модели"
+      }
+    },
+    "health_and_fitness": {
+      "title": "Здоровье и фитнес",
+      "subcategories": {
+        "personal_training": "Персональные тренировки",
+        "nutrition_consulting": "Консультации по питанию",
+        "wellness_coaching": "Велнес-коучинг"
+      }
+    },
+    "data_analysis": {
+      "title": "Анализ данных",
+      "subcategories": {
+        "data_processing": "Обработка данных",
+        "business_intelligence": "Business Intelligence",
+        "data_visualization": "Визуализация данных",
+        "predictive_analytics": "Предиктивная аналитика"
+      }
+    },
+    "other": {
+      "title": "Другое"
+    }
+  },
+  "footer": {
+    "description": "TimarLance - ведущая платформа для фрилансеров и клиентов. Соединяем таланты с возможностями.",
+    "company": {
+      "title": "Компания",
+      "about": "О нас",
+      "careers": "Карьера",
+      "press": "Пресса",
+      "contact": "Контакты"
+    },
+    "platform": {
+      "title": "Платформа",
+      "how_it_works": "Как это работает",
+      "categories": "Категории",
+      "pricing": "Тарифы",
+      "api": "API"
+    },
+    "support": {
+      "title": "Поддержка",
+      "help_center": "Центр помощи",
+      "contact_support": "Связаться с поддержкой",
+      "community": "Сообщество",
+      "status": "Статус сервиса"
+    },
+    "legal": {
+      "title": "Правовая информация",
+      "terms": "Условия использования",
+      "privacy": "Политика конфиденциальности",
+      "cookies": "Файлы cookie",
+      "security": "Безопасность"
+    },
+    "social": {
+      "title": "Мы в соцсетях",
+      "follow_us": "Подписывайтесь на нас"
+    },
+    "newsletter": {
+      "title": "Подписка на новости",
+      "description": "Получайте последние новости и обновления",
+      "placeholder": "Ваш email",
+      "subscribe": "Подписаться"
+    },
+    "copyright": "© 2024 TimarLance. Все права защищены.",
+    "made_with": "Сделано с ❤️ в России"
   }
 }
