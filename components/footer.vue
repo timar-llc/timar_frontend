@@ -223,7 +223,7 @@
               :placeholder="$t('footer.newsletter.placeholder')"
               class="flex-1"
             />
-            <UButton color="primary" @click="subscribeNewsletter">
+            <UButton color="success" @click="subscribeNewsletter">
               {{ $t("footer.newsletter.subscribe") }}
             </UButton>
           </div>
@@ -247,7 +247,7 @@
             <UButton
               v-for="loc in availableLocales"
               :key="loc.code"
-              :color="locale === loc.code ? 'primary' : 'neutral'"
+              :color="locale === loc.code ? 'success' : 'neutral'"
               variant="ghost"
               size="sm"
               @click="changeLocale(loc.code)"

@@ -427,5 +427,50 @@
     },
     "copyright": "© 2024 TimarLance. Все права защищены.",
     "made_with": "Сделано с ❤️ в России"
+  },
+  "project": {
+    "tabs": {
+      "overview": "Обзор",
+      "reviews": "Отзывы"
+    },
+    "description": "Описание проекта",
+    "technologies": "Технологии",
+    "reviews": {
+      "title": "Отзывы о проекте",
+      "review_count": "отзывов",
+      "add_review": "Добавить отзыв",
+      "reply": "Ответить",
+      "report": "Пожаловаться"
+    }
+  },
+  "feed": {
+    "search_placeholder": "Поиск заказов...",
+    "filters": "Фильтры",
+    "type": {
+      "title": "Тип",
+      "vacancies": "Вакансии",
+      "tasks": "Заказы"
+    },
+    "sort": {
+      "title": "Сортировка",
+      "newest": "Сначала новые",
+      "oldest": "Сначала старые",
+      "price_low": "Сначала дешевые",
+      "price_high": "Сначала дорогие"
+    },
+    "complexity": {
+      "title": "Сложность",
+      "easy": "Легко",
+      "medium": "Средне",
+      "hard": "Сложно"
+    },
+    "categories": {
+      "title": "Категории"
+    },
+    "price_high": {
+      "title": "Цена",
+      "low": "От",
+      "high": "До"
+    }
   }
 }

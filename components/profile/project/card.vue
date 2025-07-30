@@ -8,17 +8,22 @@
       class="w-full max-w-xs mx-auto"
       :autoplay="true"
     >
-      <img :src="item" width="320" height="320" class="rounded-lg" />
+      <NuxtLink :to="localePath(`/project/${props.project.id}`)">
+        <img :src="item" width="320" height="320" class="rounded-lg" />
+      </NuxtLink>
     </UCarousel>
     <div class="flex flex-col gap-2">
-      <h3 class="text-xl font-bold text-default">E-commerce Platform</h3>
-      <h4 class="text-sm text-muted">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis
-        dolores animi enim sed harum suscipit consequuntur delectus voluptate
-        dolor ad aliquid laudantium quaerat, nesciunt autem eum dolorum quo quae
-        asperiores vitae itaque molestias cum error mollitia. Quam debitis
-        consequuntur ut.
-      </h4>
+      <NuxtLink
+        :to="localePath(`/project/${props.project.id}`)"
+        class="hover:opacity-75 hover:text-success"
+      >
+        <h3 class="text-xl font-bold text-default">
+          {{ props.project.title }}
+        </h3>
+        <h4 class="text-sm text-muted">
+          {{ props.project.description }}
+        </h4>
+      </NuxtLink>
       <div class="flex gap-2">
         <UBadge
           color="success"
@@ -62,7 +67,9 @@
           trailing-icon="i-lucide-arrow-right"
           class="hover:opacity-80 cursor-pointer"
         >
-          <span class="text-sm">Подробнее</span>
+          <NuxtLink :to="localePath(`/project/${props.project.id}`)">
+            <span class="text-sm">Подробнее</span>
+          </NuxtLink>
         </UButton>
         <UButton
           color="error"
@@ -78,6 +85,13 @@
 </template>
 
 <script setup lang="ts">
+import type { IProject } from "@/types/project.interface";
+
+const props = defineProps<{
+  project: IProject;
+}>();
+
+const localePath = useLocalePath();
 const colorMode = useColorMode();
 const isDark = computed({
   get() {
@@ -90,11 +104,10 @@ const isDark = computed({
 const items = [
   "/project.jpeg",
   "https://images.unsplash.com/photo-1511884642898-4c92249e20b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-      "https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-      "https://images.unsplash.com/photo-1434725039720-aaad6dd32dfe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1642&q=80",
-      "https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-      "https://images.unsplash.com/34/BA1yLjNnQCI1yisIZGEi_2013-07-16_1922_IMG_9873.jpg?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80",
-      "https://images.unsplash.com/photo-1534447677768-be436bb09401?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1194&q=80",
-
+  "https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+  "https://images.unsplash.com/photo-1434725039720-aaad6dd32dfe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1642&q=80",
+  "https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+  "https://images.unsplash.com/34/BA1yLjNnQCI1yisIZGEi_2013-07-16_1922_IMG_9873.jpg?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80",
+  "https://images.unsplash.com/photo-1534447677768-be436bb09401?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1194&q=80",
 ];
 </script>

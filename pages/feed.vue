@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="flex flex-col items-center h-full mt-8 max-w-[1200px] w-full mx-auto"
-  >
+  <div class="flex flex-col items-center h-full mt-8 max-w-7xl w-full mx-auto">
     <h1 class="text-[40px] font-bold">{{ t("feed_title") }}</h1>
     <p class="text-sm">
       {{ t("feed_description") }}
@@ -15,19 +13,20 @@
       v-model="search"
       placeholder="Search..."
     />
-    <div class="flex w-full mt-8 gap-5">
+    <div class="flex w-full mt-8 gap-5 mobile:flex-col">
       <OrderFeedSidebar
         v-model:type="typeFilter"
         v-model:complexity="complexityFilter"
+        :categories="categories"
       />
       <div class="flex flex-col gap-8 w-full">
-        <div class="flex justify-between items-center">
+        <div
+          class="flex justify-between items-center mobile:flex-col mobile:gap-3"
+        >
           <h3 class="font-bold text-3xl pl-3">
             {{ filteredOrders.length }}
             {{
-              typeFilter === "vacancies"
-                ? t("vacancies_title")
-                : t("tasks_title")
+              typeFilter === "tasks" ? t("vacancies_title") : t("tasks_title")
             }}
           </h3>
           <USelect
@@ -48,6 +47,7 @@
 </template>
 
 <script setup lang="ts">
+import { getCategories } from "@/utils/category/getCategories";
 const { t } = useI18n();
 const items = ref([t("sort_by_low"), t("sort_by_high")]);
 const value = ref(t("sort_by_low"));
@@ -65,12 +65,13 @@ const orders = ref<
   { id: 9, complexity: "hard" },
   { id: 10, complexity: "easy" },
 ]);
-const typeFilter = ref<"vacancies" | "tasks">("vacancies");
+const typeFilter = ref<"vacancies" | "tasks">("tasks");
 const complexityFilter = ref<("easy" | "medium" | "hard")[]>([
   "easy",
   "medium",
   "hard",
 ]);
+const categories = ref(getCategories());
 const search = ref("");
 const filteredOrders = computed(() => {
   return orders.value.filter((order) => {

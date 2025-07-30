@@ -5,7 +5,7 @@
     >
       <div class="flex gap-4 items-center w-full">
         <NuxtImg
-        src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+          src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
           width="100"
           height="100"
           class="rounded-full"
@@ -62,8 +62,7 @@
   </div>
 
   <div class="flex flex-col w-full gap-6 mt-4">
-    <ProfileProjectCard />
-    <ProfileProjectCard />
+    <ProfileProjectCard v-for="project in projects" :key="project.id" :project="project" />
   </div>
   <NuxtLink :to="localePath('/add-project/main')">
     <UButton
@@ -88,9 +87,30 @@
 
 <script setup lang="ts">
 import type { TabsItem } from "@nuxt/ui";
+import type { IProject } from "@/types/project.interface";
 
 const localePath = useLocalePath();
 
+const projects = ref<IProject[]>([
+  {
+    id: "1",
+    title: "E-commerce Platform",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis dolores animi enim sed harum suscipit consequuntur delectus voluptate dolor ad aliquid laudantium quaerat, nesciunt autem eum dolorum quo quae asperiores vitae itaque molestias cum error mollitia. Quam debitis consequuntur ut.",
+  },
+  {
+    id: "2",
+    title: "E-commerce Platform",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis dolores animi enim sed harum suscipit consequuntur delectus voluptate dolor ad aliquid laudantium quaerat, nesciunt autem eum dolorum quo quae asperiores vitae itaque molestias cum error mollitia. Quam debitis consequuntur ut.",
+  },
+  {
+    id: "3",
+    title: "E-commerce Platform",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis dolores animi enim sed harum suscipit consequuntur delectus voluptate dolor ad aliquid laudantium quaerat, nesciunt autem eum dolorum quo quae asperiores vitae itaque molestias cum error mollitia. Quam debitis consequuntur ut.",
+  },
+]);
 const items = ref<TabsItem[]>([
   {
     label: "Все",

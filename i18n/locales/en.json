@@ -428,5 +428,50 @@
     },
     "copyright": "© 2024 TimarLance. All rights reserved.",
     "made_with": "Made with ❤️ in Russia"
+  },
+  "project": {
+    "tabs": {
+      "overview": "Overview",
+      "reviews": "Reviews"
+    },
+    "description": "Project description",
+    "technologies": "Technologies",
+    "reviews": {
+      "title": "Reviews about the project",
+      "review_count": "reviews",
+      "add_review": "Add review",
+      "reply": "Reply",
+      "report": "Report"
+    }
+  },
+  "feed": {
+    "search_placeholder": "Search orders...",
+    "filters": "Filters",
+    "type": {
+      "title": "Type",
+      "vacancies": "Vacancies",
+      "tasks": "Tasks"
+    },
+    "sort": {
+      "title": "Sort",
+      "newest": "Newest first",
+      "oldest": "Oldest first",
+      "price_low": "Price low",
+      "price_high": "Price high"
+    },
+    "complexity": {
+      "title": "Complexity",
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    },
+    "categories": {
+      "title": "Categories"
+    },
+    "price_high": {
+      "title": "Price",
+      "low": "From",
+      "high": "To"
+    }
   }
 }
