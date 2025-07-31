@@ -473,5 +473,9 @@
       "low": "From",
       "high": "To"
     }
+  },
+  "chat": {
+    "title": "Chats",
+    "placeholder": "Chat will be here..."
   }
 }

@@ -79,7 +79,9 @@
       </div>
     </div>
     <IndexFaq />
-    <h2 class="text-4xl mobile:text-2xl mobile:mx-auto mobile:text-center mt-16">
+    <h2
+      class="text-4xl mobile:text-2xl mobile:mx-auto mobile:text-center mt-16"
+    >
       {{ t("index.news") }}
     </h2>
     <div

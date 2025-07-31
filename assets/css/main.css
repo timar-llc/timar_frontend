@@ -30,6 +30,19 @@
 button {
   @apply cursor-pointer;
 }
+input,
+textarea {
+  @apply bg-card-bg;
+}
+
+input:focus,
+textarea:focus {
+  @apply outline-none;
+}
+
+select {
+  @apply bg-card-bg;
+}
 
 @layer components {
   .flex-between {

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex max-w-[300px] w-full h-full rounded-4xl flex-col dark:text-white text-black p-4 light:border-1 light:border-gray-200 dark:bg-default"
+    class="flex max-w-[300px] w-full h-full rounded-4xl flex-col dark:text-white text-black p-4 light:border-1 light:border-gray-200 bg-card-bg"
   >
     <div class="flex flex-col gap-6">
       <!-- Тип -->
@@ -24,7 +24,10 @@
         <UCheckboxGroup
           v-model="complexityValue"
           :items="complexityItems"
-          color="neutral"
+          :ui="{
+            indicator: 'bg-success',
+          }"
+          color="success"
           @update:model-value="onChangeComplexity"
         />
       </div>
