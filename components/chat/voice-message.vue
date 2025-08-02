@@ -21,16 +21,16 @@
     </button>
 
     <!-- Волновая линия с возможностью перемотки -->
-    <div class="flex-1 relative">
+    <div class="flex-1 relative min-w-0">
       <div
-        class="flex items-center gap-1 h-4 cursor-pointer"
+        class="flex items-center gap-1 h-4 cursor-pointer overflow-hidden"
         @click="seekToPosition"
         ref="progressBar"
       >
         <div
           v-for="(bar, index) in waveformBars"
           :key="index"
-          class="bg-black/20 rounded-full transition-all duration-200"
+          class="bg-black/20 rounded-full transition-all duration-200 flex-shrink-0"
           :class="{
             'bg-black/40': index < currentBar,
           }"
@@ -77,8 +77,9 @@ const progressPercentage = computed(() => {
 // Генерируем случайные высоты для волновой линии
 const waveformBars = computed(() => {
   const bars = [];
-  for (let i = 0; i < 50; i++) {
-    bars.push(Math.random() * 12 + 4); // Высота от 4 до 16px
+  for (let i = 0; i < 30; i++) {
+    // Уменьшили количество баров
+    bars.push(Math.random() * 10 + 3); // Высота от 3 до 13px
   }
   return bars;
 });

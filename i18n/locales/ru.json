@@ -476,5 +476,29 @@
   "chat": {
     "title": "Чаты",
     "placeholder": "Здесь будет чат..."
+  },
+  "add_task": {
+    "title": "Добавить задачу",
+    "step": "Шаг",
+    "of": "из",
+    "save_draft": "Сохранить черновик",
+    "next_step": "Следующий шаг",
+    "basic_info": {
+      "title": "Основная информация",
+      "task_name": "Название задачи",
+      "task_category": "Категория",
+      "task_subcategory": "Подкатегория",
+      "task_budget": "Бюджет",
+      "task_deadline": "Срок выполнения",
+      "task_description": "Описание задачи"
+    },
+    "requirements": {
+      "title": "Требования и детали",
+      "task_requirements": "Требования к задаче",
+      "additional_info": "Дополнительная информация",
+      "contact_preference": "Предпочтительный способ связи",
+      "urgency_level": "Уровень срочности",
+      "attachments": "Прикрепленные файлы"
+    }
   }
 }

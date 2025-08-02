@@ -17,15 +17,13 @@
       ref="modalRef"
       @mousedown="onHeaderMouseDown"
     >
-      <h3 class="text-md font-medium">
-        {{ $t("chat.title") }}
-      </h3>
+      <div class="flex"></div>
       <div class="flex items-center gap-2">
         <!-- Переключатель для маленьких экранов -->
         <button
           v-if="isSmallWidth"
           @click="toggleView"
-          class="p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
+          class="p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center justify-center"
           :title="
             currentView === 'chats' ? 'Показать чат' : 'Показать список чатов'
           "

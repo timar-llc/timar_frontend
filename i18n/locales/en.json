@@ -477,5 +477,29 @@
   "chat": {
     "title": "Chats",
     "placeholder": "Chat will be here..."
+  },
+  "add_task": {
+    "title": "Add Task",
+    "step": "Step",
+    "of": "of",
+    "save_draft": "Save Draft",
+    "next_step": "Next Step",
+    "basic_info": {
+      "title": "Basic Information",
+      "task_name": "Task Name",
+      "task_category": "Category",
+      "task_subcategory": "Subcategory",
+      "task_budget": "Budget",
+      "task_deadline": "Deadline",
+      "task_description": "Task Description"
+    },
+    "requirements": {
+      "title": "Requirements and Details",
+      "task_requirements": "Task Requirements",
+      "additional_info": "Additional Information",
+      "contact_preference": "Preferred Contact Method",
+      "urgency_level": "Urgency Level",
+      "attachments": "Attachments"
+    }
   }
 }
