@@ -115,7 +115,7 @@ const chats = ref<Chat[]>([
       },
       {
         id: 2,
-        text: "Ну и пошел ты нахуй!",
+        text: "Ну и пошел ты сергей!",
         time: "14:32",
         isOwn: true,
       },
@@ -130,18 +130,18 @@ const chats = ref<Chat[]>([
   {
     id: 2,
     name: "Миша Антипов",
-    lastMessage: "Миш, мне похуй",
+    lastMessage: "Ок",
     time: "12:15",
     messages: [
       {
         id: 2,
-        text: "Я вытирал газелисту ногой седушку",
+        text: "Я не приду сегодня",
         time: "12:16",
         isOwn: false,
       },
       {
         id: 2,
-        text: "Миш, мне похуй",
+        text: "Ок",
         time: "12:16",
         isOwn: true,
       },

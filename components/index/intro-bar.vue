@@ -10,19 +10,22 @@
     >
       {{ t("intro_bar_description") }}
     </p>
-    <UButton
-      :label="t('intro_bar_button')"
-      icon="material-symbols-light:adjust-outline"
-      class="glow-button mt-[40px] text-[20px] text-black animate-bounce rotate-[-6deg]"
-      size="xl"
-      color="neutral"
-      variant="solid"
-    />
+    <NuxtLink :to="localePath('/feed')">
+      <UButton
+        :label="t('intro_bar_button')"
+        icon="material-symbols-light:adjust-outline"
+        class="glow-button mt-[40px] text-[20px] text-black animate-bounce rotate-[-6deg]"
+        size="xl"
+        color="neutral"
+        variant="solid"
+      />
+    </NuxtLink>
   </div>
 </template>
 
 <script setup lang="ts">
 const { t } = useI18n();
+const localePath = useLocalePath();
 </script>
 
 <style>
