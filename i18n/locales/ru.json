@@ -1,12 +1,378 @@
 {
   "brand": "TimarLance",
+  "soon": "Скоро",
+  "pluralization": {
+    "days": {
+      "one": "день",
+      "few": "дня",
+      "many": "дней",
+      "other": "дней"
+    },
+    "hours": {
+      "one": "час",
+      "few": "часа",
+      "many": "часов",
+      "other": "часов"
+    },
+    "minutes": {
+      "one": "минута",
+      "few": "минуты",
+      "many": "минут",
+      "other": "минут"
+    },
+    "weeks": {
+      "one": "неделя",
+      "few": "недели",
+      "many": "недель",
+      "other": "недель"
+    },
+    "months": {
+      "one": "месяц",
+      "few": "месяца",
+      "many": "месяцев",
+      "other": "месяцев"
+    },
+    "years": {
+      "one": "год",
+      "few": "года",
+      "many": "лет",
+      "other": "лет"
+    },
+    "views": {
+      "one": "просмотр",
+      "few": "просмотра",
+      "many": "просмотров",
+      "other": "просмотров"
+    },
+    "respondes": {
+      "one": "отклик",
+      "few": "отклика",
+      "many": "откликов",
+      "other": "откликов"
+    },
+    "tasks": {
+      "one": "задача",
+      "few": "задачи",
+      "many": "задач",
+      "other": "задач"
+    }
+  },
+  "common": {
+    "back": "Назад",
+    "project_statuses": {
+      "pending": "На рассмотрении",
+      "approved": "Одобрен",
+      "rejected": "Отклонен"
+    },
+    "task_statuses": {
+      "title": "Статус",
+      "all": "Все",
+      "pending": "На рассмотрении",
+      "approved": "Одобрена",
+      "rejected": "Отклонена"
+    },
+    "complexity": {
+      "title": "Сложность",
+      "all": "Все",
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    },
+    "duration": {
+      "title": "Срок выполнения",
+      "day": "день",
+      "days_2_4": "дня",
+      "days_5_plus": "дней"
+    },
+    "cancel": "Отмена",
+    "refresh": "Обновить",
+    "clear_filters": "Очистить фильтры",
+    "search": "Поиск",
+    "show_more": "Показать больше",
+    "show_less": "Показать меньше",
+    "more_files": "еще файлов",
+    "header": {
+      "sign_in": "Вход",
+      "sign_up": "Регистрация",
+      "home": "Главная",
+      "feed": "Лента",
+      "messages": "Сообщения",
+      "statistics": "Статистика",
+      "wallet": "Кошелек",
+      "orders": "Заказы",
+      "tasks": "Задачи",
+      "chats": "Чаты",
+      "profile": "Профиль",
+      "security": "Безопасность",
+      "settings": "Настройки",
+      "logout": "Выйти",
+      "achievements": "Достижения",
+      "langs": {
+        "ru": "Русский",
+        "en": "Английский"
+      },
+      "notifications": "Уведомления",
+      "show_all_notifications": "Показать все уведомления",
+      "no_new_notifications": "Нет новых уведомлений"
+    },
+    "months": {
+      "january": "января",
+      "february": "февраля",
+      "march": "марта",
+      "april": "апреля",
+      "may": "мая",
+      "june": "июня",
+      "july": "июля",
+      "august": "августа",
+      "september": "сентября",
+      "october": "октября",
+      "november": "ноября",
+      "december": "декабря"
+    },
+    "days": {
+      "today": "Сегодня",
+      "yesterday": "Вчера"
+    }
+  },
   "header_home": "Главная",
   "header_login": "Войти",
+  "auth": {
+    "login": {
+      "title": "Вход",
+      "button": "Войти",
+      "reset_button": "Забыли пароль?",
+      "errors": {
+        "email": "Неверный email",
+        "password": "Неверный пароль",
+        "email_required": "Email обязателен",
+        "password_required": "Пароль обязателен",
+        "phone_required": "Телефон обязателен"
+      }
+    },
+
+    "confirm": {
+      "title": "Введите код",
+      "resend_code": "Отправить код еще раз",
+      "resend_code_timer": "Отправить код повторно через {time} секунд",
+      "errors": {
+        "code": "Неверный код",
+        "code_required": "Код обязателен"
+      }
+    },
+    "reset_password": {
+      "title": "Сброс пароля",
+      "button": "Сбросить пароль",
+      "errors": {
+        "email": "Неверный email",
+        "phone": "Неверный телефон",
+        "email_required": "Email обязателен",
+        "phone_required": "Телефон обязателен"
+      }
+    },
+    "set_new_password": {
+      "title": "Установка нового пароля",
+      "button": "Установить новый пароль",
+      "password_label": "Новый пароль",
+      "password_label_again": "Повторите новый пароль",
+      "errors": {
+        "password": "Неверный пароль",
+        "password_required": "Пароль обязателен"
+      }
+    }
+  },
+  "add_task": {
+    "title": "Добавить задачу",
+    "step": "Шаг",
+    "of": "из",
+    "save_draft": "Сохранить черновик",
+    "next_step": "Следующий шаг",
+    "errors": {
+      "task_name_required": "Название задачи обязательно",
+      "task_category_required": "Категория обязательна",
+      "task_subcategory_required": "Подкатегория обязательна",
+      "task_budget_required": "Стоимость обязательна",
+      "task_deadline_required": "Срок выполнения обязательно",
+      "task_description_required": "Описание задачи обязательно"
+    },
+    "basic_info": {
+      "title": "Основная информация",
+      "task_name": "Название задачи",
+      "task_category": "Категория",
+      "task_subcategory": "Подкатегория",
+      "task_budget": "Стоимость",
+      "task_deadline": "Срок выполнения",
+      "task_description": "Описание задачи",
+      "task_description_placeholder": "Опишите детали задачи, требования, сроки и другую важную информацию...",
+      "submit": "Создать задачу",
+      "draft": "Сохранить черновик"
+    },
+    "category_help": "Выберите категорию",
+    "attachments_help": "Перетащите файлы сюда или нажмите для выбора",
+    "attachments_select": "Выберите файлы",
+    "loaded_files": "Загруженные файлы",
+    "requirements": {
+      "title": "Требования и детали",
+      "task_requirements": "Требования к задаче",
+      "additional_info": "Дополнительная информация",
+      "contact_preference": "Предпочитаемый способ связи",
+      "urgency_level": "Срочность",
+      "attachments": "Вложения",
+      "submit": "Создать задачу"
+    }
+  },
+  "add_respond": {
+    "title": "Добавить отклик",
+    "basic_info": {
+      "title": "Оставить отклик",
+      "price": "Цена",
+      "duration": "Срок выполнения",
+      "cover_letter": "Сопроводительное письмо",
+      "description": "Описание",
+      "submit": "Откликнуться на задачу"
+    },
+    "errors": {
+      "price_required": "Цена обязательна",
+      "duration_required": "Срок выполнения обязательно",
+      "cover_letter_required": "Сопроводительное письмо обязательно"
+    }
+  },
+  "profile": {
+    "edit_profile": "Редактировать профиль",
+    "default_specialization": "Пользователь пока не добавил специализацию.",
+    "statistics": {
+      "total_projects": "Всего проектов ",
+      "completed_projects": "Завершено",
+      "satisfied_clients": "Довольных клиентов",
+      "total_income": "Общий доход"
+    },
+    "portfolio_projects": {
+      "title": "Портфолио",
+      "add_project": "Добавить проект",
+      "delete_project": "Удалить проект"
+    },
+    "project_card": {
+      "more": "Подробнее",
+      "delete": "Удалить проект",
+      "delete_confirm_title": "Удалить проект",
+      "delete_confirm_message": "Вы уверены, что хотите удалить этот проект? Это действие не может быть отменено.",
+      "delete_success_title": "Проект удален",
+      "delete_success_message": "Проект успешно удален из портфолио",
+      "delete_error_title": "Ошибка удаления",
+      "delete_error_message": "Не удалось удалить проект. Пожалуйста, попробуйте еще раз."
+    },
+    "all": "Все",
+    "reviews": {
+      "title": "Отзывы клиентов",
+      "add_review": "Добавить отзыв",
+      "delete_review": "Удалить отзыв"
+    }
+  },
+  "tasks": {
+    "title": "Мои задачи",
+    "subtitle": "Управляйте своими задачами и отслеживайте отклики",
+    "create_task": "Создать задачу",
+    "statistics": {
+      "total": "Всего задач",
+      "approved": "Одобренные",
+      "pending": "На рассмотрении",
+      "respondes": "Отклики"
+    }
+  },
+  "task": {
+    "loading": "Загрузка...",
+    "back_to_tasks": "К задачам",
+    "task_details": "Детали задачи",
+    "edit": "Редактировать",
+    "delete": "Удалить",
+    "project_type": "Тип",
+    "type_one_time": "Разовый",
+    "verified_customer": "Проверенный заказчик",
+    "published": "Опубликовано",
+    "project_complexity": "Уровень",
+    "project_duration": "Срок",
+    "write_message": "Написать",
+    "make_offer": "Предложить заказ",
+    "about_customer": "О заказчике",
+    "rating": "Рейтинг",
+    "registered_at": "Регистрация",
+    "not_found": "Задача не найдена",
+    "not_found_description": "Запрашиваемая задача не существует или была удалена",
+    "view_details": "Подробнее",
+    "description": "Описание",
+    "files": "Файлы",
+    "download": "Скачать",
+    "filters": {
+      "sort_by_new": "Сначала новые",
+      "sort_by_old": "Сначала старые"
+    },
+    "budget": "Бюджет",
+    "price": "Цена",
+    "duration": "Срок выполнения",
+    "statistics": "Статистика",
+    "views": "Просмотры",
+    "respondes": {
+      "total": "откликов",
+      "pending": "на рассмотрении",
+      "favorites": "в избранном"
+    },
+    "dates": "Даты",
+    "created": "Создана",
+    "ends": "Заканчивается",
+    "delete_success_title": "Задача удалена",
+    "delete_success_message": "Задача успешно удалена",
+    "delete_error_title": "Ошибка удаления",
+    "delete_error_message": "Не удалось удалить задачу. Попробуйте еще раз"
+  },
+  "feed": {
+    "title": "Найдите идеальный заказ",
+    "description": "Работайте с лучшими клиентами и развивайте свою карьеру в удобном темпе",
+    "loading": "Загрузка...",
+    "search_placeholder": "Поиск...",
+    "filters_title": "Фильтры",
+    "tasks_title": "Задачи",
+    "try_different_filters": "Попробуйте другие фильтры",
+    "no_tasks_found": "Задачи не найдены",
+
+    "sidebar": {
+      "type": {
+        "title": "Тип",
+        "vacancies": "Вакансии",
+        "tasks": "Задачи"
+      },
+      "soon": "Скоро",
+      "complexity": {
+        "title": "Сложность",
+        "easy": "Easy",
+        "medium": "Medium",
+        "hard": "Hard"
+      },
+      "categories": {
+        "title": "Категории"
+      },
+      "price_high": {
+        "title": "Цена",
+        "low": "От",
+        "high": "До"
+      }
+    },
+    "filters": {
+      "sort_by_low": "Сначала самые дешевые",
+      "sort_by_high": "Сначала самые дорогие",
+      "sort_by_new": "Сначала новые",
+      "sort_by_old": "Сначала старые"
+    }
+  },
   "index": {
     "title": "Откройте для себя TimarLance",
-    "search_title_freelancer": "Найдите идеальный заказ",
-    "search_title_customer": "Найдите идеального исполнителя",
     "description": "Работайте с лучшими клиентами и развивайте свою карьеру в удобном темпе",
+    "seo": {
+      "title": "Откройте для себя TimarLance",
+      "description": "Работайте с лучшими клиентами и развивайте свою карьеру в удобном темпе",
+      "keywords": "TimarLance, фрилансер, работа, карьера, возможности, платформа, задачи, заказы, клиенты"
+    },
+    "search_title_freelancer": "Найдите идеальный заказ",
+
+    "search_title_customer": "Найдите идеального исполнителя",
     "order_stats": "Завершенных заказов",
     "freelancers_stats": "Активных фрилансеров",
     "money_stats": "Общий оборот",
@@ -443,62 +809,39 @@
       "report": "Пожаловаться"
     }
   },
-  "feed": {
-    "search_placeholder": "Поиск заказов...",
-    "filters": "Фильтры",
-    "type": {
-      "title": "Тип",
-      "vacancies": "Вакансии",
-      "tasks": "Заказы"
-    },
-    "sort": {
-      "title": "Сортировка",
-      "newest": "Сначала новые",
-      "oldest": "Сначала старые",
-      "price_low": "Сначала дешевые",
-      "price_high": "Сначала дорогие"
-    },
-    "complexity": {
-      "title": "Сложность",
-      "easy": "Легко",
-      "medium": "Средне",
-      "hard": "Сложно"
-    },
-    "categories": {
-      "title": "Категории"
-    },
-    "price_high": {
-      "title": "Цена",
-      "low": "От",
-      "high": "До"
-    }
-  },
+
   "chat": {
     "title": "Чаты",
-    "placeholder": "Здесь будет чат..."
-  },
-  "add_task": {
-    "title": "Добавить задачу",
-    "step": "Шаг",
-    "of": "из",
-    "save_draft": "Сохранить черновик",
-    "next_step": "Следующий шаг",
-    "basic_info": {
-      "title": "Основная информация",
-      "task_name": "Название задачи",
-      "task_category": "Категория",
-      "task_subcategory": "Подкатегория",
-      "task_budget": "Бюджет",
-      "task_deadline": "Срок выполнения",
-      "task_description": "Описание задачи"
+    "placeholder": "Здесь будет чат...",
+    "search_placeholder": "Поиск чатов...",
+    "online": "Онлайн",
+    "select_chat": "Выберите чат для начала общения",
+    "go_to_chat": "Перейти",
+    "offer": "Предложение",
+    "budget": "Бюджет",
+    "term": "Срок",
+    "payment": "Оплата",
+    "accept_offer": "Принять предложение",
+    "discuss_terms": "Обсудить условия",
+    "status": {
+      "online": "В сети",
+      "offline": "Не в сети",
+      "typing": "печатает",
+      "just_now": "был(а) только что",
+      "minutes_ago": "был(а) {count} мин назад",
+      "hours_ago": "был(а) {count} ч назад",
+      "was": "был(а)"
     },
-    "requirements": {
-      "title": "Требования и детали",
-      "task_requirements": "Требования к задаче",
-      "additional_info": "Дополнительная информация",
-      "contact_preference": "Предпочтительный способ связи",
-      "urgency_level": "Уровень срочности",
-      "attachments": "Прикрепленные файлы"
+    "typing": {
+      "single": "{name} печатает...",
+      "two": "{name1} и {name2} печатают...",
+      "multiple": "{count} пользователя печатают..."
+    },
+    "lastSeen": {
+      "justNow": "был(а) только что",
+      "minutesAgo": "был(а) {count} минут назад",
+      "hoursAgo": "был(а) {count} часов назад",
+      "date": "был(а) {date}"
     }
   }
 }

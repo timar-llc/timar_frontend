@@ -10,7 +10,7 @@
     <!-- Контент -->
     <div class="flex items-center gap-3 relative z-10">
       <!-- Название категории -->
-      <h3 class="text-lg font-medium text-white">{{ props.category.name }}</h3>
+      <h3 class="text-lg font-medium text-white">{{ props.category.title }}</h3>
     </div>
 
     <!-- Стрелка -->

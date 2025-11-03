@@ -14,10 +14,11 @@
   --ui-bg-inverted: #9eff00;
   --ui-bg-elevated: #f3f4f6;
   --ui-text-muted: #1c1f24;
+  --ui-primary: #9eff00;
   --ui-text-inverted: #1c1f24;
   --ui-bg: #f3f4f6;
   --ui-success: #9eff00;
-  --color-card-bg: #f3f4f6;
+  --color-card-bg: #ffffff;
 }
 
 /* Переопределяем --ui-bg-elevated для тёмного режима */
@@ -25,7 +26,7 @@
   --ui-bg-elevated: #1c1f24;
   --ui-text-muted: #ffffff;
   --ui-bg: #1c1f24;
-  --color-card-bg: #1a1a1a;
+  --color-card-bg: #101828;
 }
 button {
   @apply cursor-pointer;
@@ -48,4 +49,55 @@ select {
   .flex-between {
     @apply flex justify-between items-center;
   }
+
+  /* Gradient backgrounds */
+  .bg-gradient-nav {
+    @apply bg-gradient-to-r from-green-400/10 to-blue-500/10 dark:from-green-500/5 dark:to-blue-600/5;
+  }
+
+  .bg-gradient-content {
+    @apply bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950;
+  }
+
+
+}
+
+/* Анимации для confirm страницы */
+@keyframes shake {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: rotate(-5deg);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out;
 }

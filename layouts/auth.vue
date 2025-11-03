@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col relative h-full">
+  <div class="flex flex-col relative h-[calc(100vh-50px)]">
     <img
       src="/png/earth.png"
       class="absolute top-20 left-3 object-cover dark:invert mobile:hidden"

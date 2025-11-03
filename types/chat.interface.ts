@@ -1,16 +1,11 @@
-export interface Message {
-  id: number;
-  text: string;
-  time: string;
-  isOwn: boolean;
-  audioBlob?: Blob;
-  duration?: number; // Длительность голосового сообщения в секундах
-}
+import type { IUser } from "./user.interface";
+import type { IMessage } from "./message.interface";
 
-export interface Chat {
-  id: number;
-  name: string;
-  lastMessage: string;
-  time: string;
-  messages: Message[];
+export interface IChat {
+  uuid: string;
+  user1: IUser;
+  user2: IUser;
+  updatedAt: Date;
+  createdAt: Date;
+  messages: IMessage[];
 }

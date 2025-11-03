@@ -1,8 +1,27 @@
+import type { ICategory } from "./category.interface";
+
 export interface IProject {
-  id: string;
-  title: string;
-  description: string;
-  price?: number;
-  duration?: number;
-  image?: string;
+  uuid: string;
+  title: string | null;
+  description: string | null;
+  price: number | null;
+  duration: number | null;
+  isDraft: boolean;
+  isActive: boolean;
+  currency: string;
+  category: ICategory;
+  media: IProjectMedia[];
+  technologies: string;
+  status: "pending" | "approved" | "rejected";
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface IProjectMedia {
+  uuid: string;
+  url: string;
+  project?: IProject;
+  type: "image" | "video" | "audio";
+  createdAt: Date;
+  updatedAt: Date;
 }

@@ -1,83 +1,137 @@
 <template>
   <div
-    class="flex gap-4 justify-start bg-card-bg w-full rounded-[8px] border border-muted p-6 mobile:flex-col tablet:flex-col"
+    class="group relative bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 w-full rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden shadow-lg hover:shadow-xl hover:shadow-gray-200/50 dark:hover:shadow-gray-900/50 transition-all duration-300 hover:-translate-y-1"
   >
-    <UCarousel
-      v-slot="{ item }"
-      :items="items"
-      class="w-full max-w-xs mx-auto"
-      :autoplay="true"
+    <!-- Status Badge -->
+    <div
+      class="absolute top-4 right-4 z-10"
+      v-if="
+        props.project.status === 'pending' ||
+        props.project.status === 'rejected'
+      "
     >
-      <NuxtLink :to="localePath(`/project/${props.project.id}`)">
-        <img :src="item" width="320" height="320" class="rounded-lg" />
-      </NuxtLink>
-    </UCarousel>
-    <div class="flex flex-col gap-2">
-      <NuxtLink
-        :to="localePath(`/project/${props.project.id}`)"
-        class="hover:opacity-75 hover:text-success"
+      <UBadge
+        :color="statusBadgeColor"
+        :variant="!isDark ? 'solid' : 'soft'"
+        size="sm"
+        class="font-medium shadow-sm"
       >
-        <h3 class="text-xl font-bold text-default">
-          {{ props.project.title }}
-        </h3>
-        <h4 class="text-sm text-muted">
-          {{ props.project.description }}
-        </h4>
-      </NuxtLink>
-      <div class="flex gap-2">
-        <UBadge
-          color="success"
-          :variant="isDark ? 'outline' : 'solid'"
-          class="text-sm"
-        >
-          Vue.js
-        </UBadge>
-        <UBadge
-          color="success"
-          :variant="isDark ? 'outline' : 'solid'"
-          class="text-sm"
-        >
-          Nuxt.js
-        </UBadge>
-        <UBadge
-          color="success"
-          :variant="isDark ? 'outline' : 'solid'"
-          class="text-sm"
-        >
-          Tailwind CSS
-        </UBadge>
-        <UBadge
-          color="success"
-          :variant="isDark ? 'outline' : 'solid'"
-          class="text-sm"
-        >
-          TypeScript
-        </UBadge>
-      </div>
+        {{ statusLabel }}
+      </UBadge>
     </div>
-    <div class="flex flex-col gap-2 justify-between">
-      <div class="flex flex-col">
-        <h2 class="text-2xl font-bold text-green-lead">5,000$</h2>
-        <p class="text-sm text-muted">3 month</p>
+
+    <!-- Project Image -->
+    <div class="relative h-48 sm:h-56 overflow-hidden">
+      <UCarousel
+        v-if="props.project.media && props.project.media.length > 0"
+        v-slot="{ item }"
+        :items="props.project.media.map((media) => media.url)"
+        class="w-full h-full"
+        :autoplay="true"
+      >
+        <NuxtLink :to="localePath(`/project/${props.project.uuid}`)">
+          <img
+            :src="item"
+            :alt="props.project.title || 'Project image'"
+            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        </NuxtLink>
+      </UCarousel>
+      <div
+        v-else
+        class="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center"
+      >
+        <UIcon
+          name="i-lucide-image"
+          class="w-12 h-12 text-gray-400 dark:text-gray-500"
+        />
       </div>
-      <div class="flex flex-col gap-3">
-        <UButton
-          color="neutral"
-          variant="solid"
-          trailing-icon="i-lucide-arrow-right"
-          class="hover:opacity-80 cursor-pointer"
+
+      <!-- Overlay gradient -->
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"
+      ></div>
+    </div>
+
+    <!-- Project Content -->
+    <div class="p-6">
+      <!-- Title and Description -->
+      <div class="mb-4">
+        <NuxtLink
+          :to="localePath(`/project/${props.project.uuid}`)"
+          class="block group/link"
         >
-          <NuxtLink :to="localePath(`/project/${props.project.id}`)">
-            <span class="text-sm">Подробнее</span>
-          </NuxtLink>
+          <h3
+            class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover/link:text-black/40 dark:group-hover/link:text-success transition-colors duration-200 line-clamp-1"
+          >
+            {{ props.project.title }}
+          </h3>
+          <p
+            class="text-sm text-gray-600 dark:text-gray-300 line-clamp-2 leading-relaxed"
+          >
+            {{ props.project.description }}
+          </p>
+        </NuxtLink>
+      </div>
+
+      <!-- Technologies -->
+      <div class="mb-4">
+        <div class="flex flex-wrap gap-2">
+          <UBadge
+            v-for="tech in techArray"
+            :key="tech"
+            color="success"
+            :variant="!isDark ? 'solid' : 'soft'"
+            size="sm"
+            class="text-xs font-medium"
+          >
+            {{ tech }}
+          </UBadge>
+          <UBadge
+            v-if="techArray.length > 4"
+            color="neutral"
+            :variant="!isDark ? 'solid' : 'soft'"
+            size="sm"
+            class="text-xs font-medium"
+          >
+            +{{ props.project.technologies.length - 4 }}
+          </UBadge>
+        </div>
+      </div>
+
+      <!-- Price and Duration -->
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex flex-col">
+          <span class="text-2xl font-bold dark:text-success">
+            {{ formatPrice(props.project.price || 0) }}
+          </span>
+          <span class="text-xs text-gray-500 dark:text-gray-400">
+            {{ formatDuration(props.project.duration || 0) }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex gap-3">
+        <UButton
+          :to="localePath(`/project/${props.project.uuid}`)"
+          color="success"
+          variant="solid"
+          size="sm"
+          trailing-icon="i-lucide-arrow-right"
+          class="flex-1 justify-center font-medium"
+        >
+          {{ t("profile.project_card.more") }}
         </UButton>
         <UButton
           color="error"
           variant="outline"
-          trailing-icon="i-lucide-trash"
-          class="hover:opacity-80 cursor-pointer w-full justify-center"
+          size="sm"
+          icon="i-lucide-trash-2"
+          class="px-3"
+          @click="confirmDelete"
         >
-          Удалить
+          <span class="sr-only">{{ t("profile.project_card.delete") }}</span>
         </UButton>
       </div>
     </div>
@@ -85,13 +139,25 @@
 </template>
 
 <script setup lang="ts">
+import { computed, ref } from "vue";
 import type { IProject } from "@/types/project.interface";
-
+import { useProjectApi } from "@/composables/api/useProjectApi";
+const { t } = useI18n();
 const props = defineProps<{
   project: IProject;
 }>();
 
+const emit = defineEmits<{
+  delete: [projectId: string];
+}>();
+
+const { add } = useToast();
 const localePath = useLocalePath();
+const { formatPlural, formatTimeAgo } = usePluralization();
+
+// Delete state
+const isDeleting = ref(false);
+
 const colorMode = useColorMode();
 const isDark = computed({
   get() {
@@ -101,13 +167,77 @@ const isDark = computed({
     colorMode.preference = _isDark ? "dark" : "light";
   },
 });
-const items = [
-  "/project.jpeg",
-  "https://images.unsplash.com/photo-1511884642898-4c92249e20b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-  "https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-  "https://images.unsplash.com/photo-1434725039720-aaad6dd32dfe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1642&q=80",
-  "https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-  "https://images.unsplash.com/34/BA1yLjNnQCI1yisIZGEi_2013-07-16_1922_IMG_9873.jpg?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80",
-  "https://images.unsplash.com/photo-1534447677768-be436bb09401?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1194&q=80",
-];
+const { deleteProject } = useProjectApi();
+// Format price with spaces
+const formatPrice = (price: number) => {
+  return new Intl.NumberFormat("ru-RU").format(price);
+};
+
+// Format duration
+const formatDuration = (days: number) => {
+  return formatPlural(days, "days");
+};
+const techArray = computed(() => {
+  return props.project.technologies.split(",");
+});
+
+// Status badge color
+const statusBadgeColor = computed(() => {
+  switch (props.project.status) {
+    case "pending":
+      return "warning";
+    case "approved":
+      return "success";
+    case "rejected":
+      return "error";
+    default:
+      return "neutral";
+  }
+});
+
+// Status label
+const statusLabel = computed(() => {
+  switch (props.project.status) {
+    case "pending":
+      return t("common.project_statuses.pending");
+    case "approved":
+      return t("common.project_statuses.approved");
+    case "rejected":
+      return t("common.project_statuses.rejected");
+    default:
+      return t("common.project_statuses.pending");
+  }
+});
+
+// Handle delete confirmation
+const confirmDelete = async () => {
+  isDeleting.value = true;
+
+  try {
+    await deleteProject(props.project.uuid);
+
+    // Emit delete event to parent to remove from list
+    emit("delete", props.project.uuid);
+
+    // Close modal
+
+    // Show success message
+    add({
+      title: t("profile.project_card.delete_success_title"),
+      description: t("profile.project_card.delete_success_message"),
+      color: "success",
+    });
+  } catch (error) {
+    console.error("Error deleting project:", error);
+
+    // Show error message
+    add({
+      title: t("profile.project_card.delete_error_title"),
+      description: t("profile.project_card.delete_error_message"),
+      color: "error",
+    });
+  } finally {
+    isDeleting.value = false;
+  }
+};
 </script>

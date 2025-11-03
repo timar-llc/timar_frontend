@@ -1,6 +1,9 @@
 <template>
+  <Head>
+    <Title>{{ t("sign_in") }} - Timarlance</Title>
+  </Head>
   <NuxtLayout name="auth">
-    <div class="flex flex-col items-center justify-center h-screen">
+    <div class="flex flex-col items-center justify-center h-full">
       <h1 class="text-2xl font-bold">{{ t("sign_in") }}</h1>
 
       <UForm
@@ -8,8 +11,9 @@
         :state="state"
         class="space-y-4 w-full items-center justify-around flex flex-col max-w-[300px]"
         @submit="onSubmit"
+        :validate-on="[]"
       >
-        <UTabs :items="items" class="w-full  mt-4" color="neutral">
+        <UTabs  :items="items" class="w-full  mt-4" color="neutral" v-model="active" >
           <template #email>
             <UFormField label="Email" name="email" class="w-full max-w-[300px]">
               <UInput v-model="state.email" color="neutral" class="w-full" placeholder="user@example.com"/>
@@ -23,6 +27,7 @@
                 v-model="state.password"
                 placeholder="***"
                 class="w-full"
+                color="neutral"
                 :type="show ? 'text' : 'password'"
                 :ui="{ trailing: 'pe-1' }"
               >
@@ -63,8 +68,8 @@
           </template>
         </UTabs>
         <div class="flex items-center">
-          <NuxtLink to="/forgot-password" class="text-green-lead text-sm opacity-50 hover:opacity-100 transition-all duration-300">
-            {{ t("forgot_password_button") }}
+          <NuxtLink :to="localePath('/reset-password')" class="text-green-lead text-sm opacity-50 hover:opacity-100 transition-all duration-300">
+            {{ t("auth.login.reset_button") }}
           </NuxtLink>
         </div>
 
@@ -72,74 +77,110 @@
           type="submit"
           class="max-w-[300px] w-full flex justify-center transition-all hover:scale-95 duration-300 cursor-pointer"
           color="neutral"
-          >{{ t("sign_in") }}</UButton
+          >{{ t("auth.login.button") }}</UButton
         >
       </UForm>
-      <div class="flex flex-col items-center justify-center w-full max-w-[280px] mt-4">
-      <UButton
-        color="neutral"
-        variant="outline"
-        icon="mdi:google"
-        
-        class="mt-4 w-full justify-center flex transition-all hover:scale-95 duration-300 cursor-pointer"
-      >{{ t("sign_with_google") }}</UButton>
-      <UButton
-        color="neutral"
-        variant="outline"
-        icon="mdi:github"
-        class="mt-4 w-full justify-center flex transition-all hover:scale-95 duration-300 cursor-pointer"
-      >{{ t("sign_with_github") }}</UButton>
-      <UButton
-        color="neutral"
-        variant="outline"
-        icon="mdi:telegram"
-          class="mt-4 w-full justify-center flex transition-all hover:scale-95 duration-300 cursor-pointer"
-        >{{ t("sign_with_telegram") }}</UButton>
-      </div>
+      <AuthSocialBlock />
     </div>
   </NuxtLayout>
 </template>
 <script setup lang="ts">
 import * as z from "zod";
 import type { FormSubmitEvent, TabsItem } from "@nuxt/ui";
-
+import { useAuthApi } from "@/composables/api/useAuthApi";
+import { redirectToConfirm } from "@/utils/auth/confirmRedirect";
+import AuthSocialBlock from "@/components/auth/social-block.vue";
 const { t } = useI18n();
+const localePath = useLocalePath();
 
 const number_codes = ["+7", "+1", "+44"];
 const number_code = ref(number_codes[0]);
-const items = [
+const items: TabsItem[] = [
   {
+    key: "email",
     label: t("sign_in_email"),
     icon: "i-lucide-mail",
     slot: "email" as const,
+    value: "email",
   },
   {
+    key: "phone",
     label: t("sign_in_phone"),
     icon: "i-lucide-phone",
     slot: "phone" as const,
+    value: "phone",
   },
-] satisfies TabsItem[];
-const schema = z.object({
-  email: z.string().email(t("no_valid_email")),
-  phone: z.string().min(10, t("no_valid_phone")),
-  password: z.string().min(8, t("password_min_length") as string),
+];
+
+const selectedTab = ref("email");
+onMounted(() => {
+  console.log(selectedTab.value, "selectedTab.value");
 });
-type Schema = z.output<typeof schema>;
+
+const active = computed({
+  get() {
+    return selectedTab.value;
+  },
+  set(value) {
+    selectedTab.value = value;
+  }
+})
+
+
+
+const emailSchema = z.object({
+  email: z.string().email(t("auth.login.errors.email")),
+  password: z.string().min(8, t("auth.login.errors.password_required")),
+});
+
+const phoneSchema = z.object({
+  phone: z.string().min(10, t("auth.login.errors.phone_required")),
+});
+
+const schema = computed(() => {
+  return selectedTab.value === "email" ? emailSchema : phoneSchema;
+});
+
 
 const show = ref(false);
 
-const state = reactive<Partial<Schema>>({
-  email: undefined,
-  phone: undefined,
-  password: undefined,
+const state = reactive({
+  email: "",
+  phone: "",
+  password: "",
 });
-const toast = useToast();
-async function onSubmit(event: FormSubmitEvent<Schema>) {
-  toast.add({
-    title: "Success",
-    description: "The form has been submitted.",
-    color: "success",
-  });
-  console.log(event.data);
+async function onSubmit(event: FormSubmitEvent<any>) {
+  
+  if (selectedTab.value === "email" && 'email' in event.data && event.data.email) {
+    console.log('Processing email login');
+    const { data, error } = await useAuthApi().login({ email: event.data.email, password: event.data.password });
+    if (data.value && !error.value) {
+      useCookie("access_token").value = data.value.accessToken;
+      useCookie("refresh_token").value = data.value.refreshToken;
+      await useUser().fetchUser();
+      navigateTo(localePath("/"));
+    } else {
+      console.error(error.value);
+    }
+
+    
+  } else if (selectedTab.value === "phone" && 'phone' in event.data && event.data.phone) {
+    console.log('Processing phone login');
+    const fullPhoneNumber = `${number_code.value}${event.data.phone}`;
+    const { data, error } = await useAuthApi().loginByPhone({ phoneNumber: fullPhoneNumber });
+    if (data.value && !error.value) {
+      // Редиректим на страницу подтверждения
+      sessionStorage.setItem("confirmType", "loginByPhone");
+      sessionStorage.setItem("phoneNumber", fullPhoneNumber);
+      sessionStorage.setItem("email", event.data.email || "");
+      sessionStorage.setItem("password", event.data.password || "");
+      navigateTo(localePath("/confirm"));
+    } else {
+      console.error(error.value);
+    }
+
+  } else {
+    console.log('No valid data found for submission');
+  }
 }
 </script>

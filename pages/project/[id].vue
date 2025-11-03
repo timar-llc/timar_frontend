@@ -1,7 +1,7 @@
 <template>
   <div class="transition-all duration-500">
     <!-- Хлебные крошки -->
-    <UBreadcrumb :items="items" class="mb-6" />
+    <!-- <UBreadcrumb :items="items" class="mb-6" /> -->
 
     <!-- Медиа секция -->
     <div class="relative mb-8 transition-all duration-300">
@@ -125,14 +125,20 @@
 </template>
 
 <script setup lang="ts">
-import { getCategories } from "@/utils/category/getCategories";
-import type { BreadcrumbItem } from "@nuxt/ui";
+import { useProjectApi } from "@/composables/api/useProjectApi";
+import type { IProject } from "@/types/project.interface";
 
 const isDark = computed(() => useColorMode().value === "dark");
-
+const { data, error: getProjectError } = await useAsyncData("project", async () => {
+  return await useProjectApi().getProjectById(id as string);
+});
+if (getProjectError.value) {
+  console.error("Error loading project:", getProjectError.value);
+  navigateTo("/404");
+}
+const project = computed(() => data.value?.data.value as IProject);
 const route = useRoute();
 const id = route.params.id;
-const localePath = useLocalePath();
 
 const activeTab = ref("overview");
 const { t } = useI18n();
@@ -150,21 +156,4 @@ const images = [
   "https://images.unsplash.com/34/BA1yLjNnQCI1yisIZGEi_2013-07-16_1922_IMG_9873.jpg?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80",
   "https://images.unsplash.com/photo-1534447677768-be436bb09401?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1194&q=80",
 ];
-
-const items = ref<BreadcrumbItem[]>([
-  {
-    label: getCategories()[0].name,
-    to: localePath("/"),
-    icon: "i-lucide-box",
-  },
-  {
-    label: getCategories()[0].subcategories?.[0]?.name,
-    to: localePath("/"),
-    icon: "i-lucide-box",
-  },
-  {
-    label: `Project ${id}`,
-    to: localePath(`/project/${id}`),
-  },
-]);
 </script>

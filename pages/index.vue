@@ -1,14 +1,36 @@
 <template>
+  <Head>
+    <title>{{ t("index.seo.title") }}</title>
+    <meta name="description" :content="t('index.seo.description')" />
+    <meta name="keywords" :content="t('index.seo.keywords')" />
+
+    <meta property="og:title" :content="t('index.seo.title')" />
+    <meta property="og:description" :content="t('index.seo.description')" />
+    <meta property="og:image" :content="t('index.seo.image')" />
+    <meta property="og:url" content="https://timarlance.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="TimarLance" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" :content="t('index.seo.title')" />
+    <meta name="twitter:description" :content="t('index.seo.description')" />
+    <meta name="twitter:image" :content="t('index.seo.image')" />
+    <meta name="twitter:url" content="https://timarlance.com" />
+    <meta name="twitter:site" content="TimarLance" />
+    <meta name="twitter:creator" content="TimarLance" />
+
+    <link rel="canonical" href="https://timarlance.com" />
+  </Head>
   <div class="flex flex-col">
     <IndexIntroBar class="mt-[40px]" />
     <div
-      class="grid grid-cols-4 gap-4 mt-16 self-center mobile:grid-cols-1 tablet:grid-cols-2"
+      class="grid grid-cols-3 gap-4 mt-16 self-center mobile:grid-cols-1 tablet:grid-cols-2"
     >
       <IndexCategoryCard
         v-for="category in categories"
         :key="category.id"
         :category="category"
-        class="last:col-span-4 last:text-center mobile:last:col-span-1 tablet:last:col-span-2"
+        class="last:col-span-3 last:text-center mobile:last:col-span-1 tablet:last:col-span-2"
       />
     </div>
     <div
@@ -93,10 +115,12 @@
 </template>
 
 <script setup lang="ts">
-import { getCategories } from "@/utils/category/getCategories";
+import { useCategoriesApi } from "@/composables/api/useCategoryApi";
+const { getCategories } = useCategoriesApi();
 import { useI18n } from "vue-i18n";
 import { ref } from "vue";
 import type { INews } from "@/types/news.entity";
+import type { ICategory } from "@/types/category.interface";
 
 const search = ref("");
 const news = ref<INews[]>([
@@ -129,6 +153,16 @@ const news = ref<INews[]>([
     updatedAt: new Date(),
   },
 ]);
-const categories = getCategories();
+const categories = ref<ICategory[]>([]);
+try {
+  const { data } = await getCategories();
+  if (data.value) {
+    categories.value = data.value.filter(
+      (category) => category.subcategories && category.subcategories.length > 0
+    ) as ICategory[];
+  }
+} catch (err) {
+  console.error("Error fetching categories:", err);
+}
 const { t } = useI18n();
 </script>

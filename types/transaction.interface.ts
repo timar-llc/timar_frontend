@@ -1,8 +1,8 @@
 export interface ITransaction {
-  id: string;
+  uuid: string;
   amount: number;
   type: "income" | "withdraw";
   status: "pending" | "completed" | "failed";
-  createdAt: string;
+  createdAt: Date;
   method: "bank_card" | "crypto" | "bank_transfer";
 }
