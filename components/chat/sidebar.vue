@@ -39,8 +39,9 @@
         <div class="relative">
           <img
             :src="
-              getOutUser(chat).avatarUrl ??
-              'https://i.pravatar.cc/150?u=' + getOutUser(chat).uuid
+              getOutUser(chat)?.avatarUrl ??
+              'https://i.pravatar.cc/150?u=' +
+                (getOutUser(chat)?.uuid || chat.uuid)
             "
             alt="avatar"
             class="w-11 h-11 rounded-full object-cover"
@@ -53,24 +54,36 @@
         <div class="min-w-0 flex-1">
           <div class="flex items-center justify-between gap-2">
             <p class="truncate font-medium text-gray-900 dark:text-gray-100">
-              {{ getOutUser(chat).firstName || getOutUser(chat).lastName }}
+              {{
+                getOutUser(chat)?.firstName || getOutUser(chat)?.lastName || "—"
+              }}
             </p>
-            <span class="text-xs text-gray-500">{{
-              formatChatListTime(
-                chat.messages[chat.messages.length - 1].createdAt,
-                t
-              )
-            }}</span>
+            <span class="text-xs text-gray-500">
+              {{
+                chat.messages?.length
+                  ? formatChatListTime(
+                      chat.messages[chat.messages.length - 1].createdAt,
+                      t
+                    )
+                  : ""
+              }}
+            </span>
           </div>
           <div class="flex items-center justify-between gap-2 mt-0.5">
             <p class="truncate text-xs text-gray-800 dark:text-gray-300">
-              {{ chat.messages[chat.messages.length - 1].content }}
+              {{
+                chat.messages?.length
+                  ? chat.messages[chat.messages.length - 1].content
+                  : ""
+              }}
             </p>
             <span
-              v-if="chat.messages.filter((m: IMessage) => !m.readedAt).length > 0"
+              v-if="getUnreadMessagesCount(chat) > 0"
               class="ml-2 shrink-0 inline-flex items-center justify-center w-5 h-5 rounded-full bg-success text-black text-[13px]"
             >
-              {{ chat.messages.filter((m: IMessage) => !m.readedAt).length }}
+              {{
+                getUnreadMessagesCount(chat)
+              }}
             </span>
           </div>
         </div>
@@ -92,6 +105,14 @@ const search = ref("");
 
 const chatsStore = useChatsStore();
 const { getChats } = useChatApi();
+const { user, fetchUser } = useUser();
+
+try {
+  await fetchUser();
+} catch (error) {
+  console.error("Failed to preload user for chat sidebar:", error);
+}
+
 const { data: chatsData } = await getChats();
 
 // После initial fetch только заполняем Store,
@@ -104,44 +125,54 @@ function selectChat(uuid: string) {
   navigateTo(localePath(`/chats/${uuid}`));
 }
 
-const { user } = useUser();
+const getUnreadMessagesCount = (chat: IChat): number => {
+  if (!chat.messages) return 0;
+  return chat.messages.filter(
+    (m: IMessage) => !m.readedAt && m.sender?.uuid !== user.value?.uuid
+  ).length;
+};
 
-// Process chats from store ONLY (reactive)
 const processedChats = computed(() => {
-  if (!chatsStore.chats || !Array.isArray(chatsStore.chats)) return [];
-  return chatsStore.chats.map((chat) => {
-    let outUser: IUser;
-    if (user.value?.uuid) {
-      if (chat.user1?.uuid === user.value.uuid) {
-        outUser = chat.user2;
-      } else if (chat.user2?.uuid === user.value.uuid) {
-        outUser = chat.user1;
-      } else {
-        outUser = chat.user2 || chat.user1;
-      }
-    } else {
-      outUser = chat.user2 || chat.user1;
-    }
-    return {
-      ...chat,
-      outUser,
-    };
-  });
+  if (!Array.isArray(chatsStore.chats)) return [];
+  return chatsStore.chats;
 });
+
+const getOutUser = (chat: IChat): IUser | null => {
+  if (!chat) return null;
+  if (!user.value?.uuid) {
+    return chat.user2 || chat.user1 || null;
+  }
+
+  if (chat.user1?.uuid === user.value.uuid) {
+    return chat.user2 || null;
+  }
+
+  if (chat.user2?.uuid === user.value.uuid) {
+    return chat.user1 || null;
+  }
+
+  return chat.user2 || chat.user1 || null;
+};
 
 const filteredChats = computed(() => {
-  if (!processedChats.value || !Array.isArray(processedChats.value)) return [];
+  if (!processedChats.value.length) return [];
   const q = search.value.trim().toLowerCase();
   if (!q) return processedChats.value;
-  return processedChats.value.filter((c: any) =>
-    [c.name, c.lastMessage].some((v: string) => v?.toLowerCase().includes(q))
-  );
-});
 
-const getOutUser = (chat: IChat & { outUser?: IUser }) => {
-  return (
-    chat.outUser ||
-    (chat.user1?.uuid === user.value?.uuid ? chat.user2 : chat.user1)
-  );
-};
+  return processedChats.value.filter((chat) => {
+    const outUser = getOutUser(chat);
+    const fullName = [outUser?.firstName, outUser?.lastName]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+    const lastMessageContent =
+      chat.messages?.[chat.messages.length - 1]?.content?.toLowerCase() || "";
+
+    return (
+      fullName.includes(q) ||
+      lastMessageContent.includes(q) ||
+      (chat.uuid?.toLowerCase() || "").includes(q)
+    );
+  });
+});
 </script>

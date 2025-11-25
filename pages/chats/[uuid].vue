@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import ChatSidebar from "@/components/chat/sidebar.vue";
+import ChatMessage from "@/components/chat/chat-message.vue";
 import { useChatApi } from "@/composables/api/useChatApi";
 import { useUser } from "@/composables/useUser";
 import { formatMessageTime } from "@/utils/formatMessageTime";
@@ -41,8 +42,11 @@ if (
 }
 
 // 3. chat теперь только из Pinia store
+// Use storeToRefs for proper reactivity
+const { chats } = storeToRefs(chatsStore);
+
 const chat = computed(() =>
-  chatsStore.chats.find((c) => c.uuid === route.params.uuid)
+  chats.value.find((c) => c.uuid === route.params.uuid)
 );
 const selectedChat = computed(() => chat.value);
 
@@ -78,7 +82,7 @@ watch(
     scrollToBottom();
   }
 );
-const { handleTyping, onMessage } = useChatSocket();
+const { handleTyping, onMessage, handleSendMessage } = useChatSocket();
 
 // Дебаунс для typing: false через 500мс без ввода
 const typingTimeoutId = ref<number | null>(null);
@@ -138,18 +142,75 @@ onMessage("user_typing", (data) => {
   }
 });
 // Send message
-const sendMessage = async () => {
-  if (!messageText.value.trim() || !selectedChat.value || isSending.value)
+const appendMessageToStore = (message: IMessage) => {
+  if (!selectedChat.value) return;
+  const currentChat = chatsStore.getChatById
+    ? chatsStore.getChatById(selectedChat.value.uuid)
+    : chatsStore.chats.find((c) => c.uuid === selectedChat.value?.uuid);
+
+  if (!currentChat) return;
+
+  // Check if message already exists to avoid duplicates
+  const exists = (currentChat.messages || []).some(
+    (msg) => msg.uuid === message.uuid
+  );
+  if (exists) {
+    console.log(`[Chat] Message ${message.uuid} already exists, skipping`);
     return;
+  }
+
+  const updatedChat: IChat = {
+    ...currentChat,
+    messages: [...(currentChat.messages || []), message],
+    updatedAt: message.createdAt,
+  };
+
+  chatsStore.updateChat(currentChat.uuid, updatedChat);
+};
+
+const generateMessageUuid = () => {
+  if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
+    return crypto.randomUUID();
+  }
+  return `temp-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+};
+
+const sendMessage = async () => {
+  const text = messageText.value.trim();
+  if (!text || !selectedChat.value || isSending.value) return;
 
   isSending.value = true;
 
+  const messageUuid = generateMessageUuid();
+  const timestamp = new Date();
+  const optimisticMessage: IMessage = {
+    uuid: messageUuid,
+    chat: selectedChat.value,
+    sender: user.value || undefined,
+    content: text,
+    type: "text",
+    metadata: {},
+    attachments: [],
+    createdAt: timestamp,
+    updatedAt: timestamp,
+  };
+
   try {
-    await sendMessageApi(selectedChat.value.uuid, {
-      text: messageText.value.trim(),
-    });
+    appendMessageToStore(optimisticMessage);
+
+    handleSendMessage(
+      {
+        messageUuid: messageUuid,
+        chatUuid: selectedChat.value.uuid,
+        content: text,
+        senderUuid: user.value?.uuid ?? "",
+        type: "text",
+        metadata: {},
+      },
+      null
+    );
+
     messageText.value = "";
-    await refreshChat();
     scrollToBottom();
   } catch (error) {
     console.error("Error sending message:", error);
@@ -249,7 +310,7 @@ const messagesWithSeparators = computed(() => {
         >
           <!-- Chat Header -->
           <div
-            class="px-4 sm:px-6 py-4 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between bg-white dark:bg-gray-900"
+            class="px-4 sm:px-6 py-4 border-b border-gray dark:border-gray-800 flex items-center justify-between bg-white dark:bg-gray-900"
           >
             <div class="flex items-center gap-3 min-w-0 flex-1">
               <div class="relative">
@@ -317,7 +378,7 @@ const messagesWithSeparators = computed(() => {
           >
             <template
               v-for="(item, index) in messagesWithSeparators"
-              :key="index"
+              :key="item.type === 'message' ? (item.data as IMessage).uuid : `separator-${index}`"
             >
               <!-- Date Separator -->
               <div
@@ -331,40 +392,21 @@ const messagesWithSeparators = computed(() => {
                 </span>
               </div>
 
-              <div
+              <ChatMessage
                 v-else-if="item.type === 'message'"
-                class="flex flex-col"
-                :class="isOwnMessage(item.data as IMessage) ? 'items-end' : 'items-start'"
-              >
-                <div
-                  class="max-w-[75%] rounded-2xl px-4 py-2.5 shadow-sm"
-                  :class="
-                    isOwnMessage(item.data as IMessage)
-                      ? 'bg-success text-black rounded-br-md'
-                      : 'bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-bl-md border border-gray-200 dark:border-gray-700'
-                  "
-                >
-                  <p class="whitespace-pre-line break-words text-sm">
-                    {{ (item.data as IMessage).content }}
-                  </p>
-                </div>
-                <div
-                  class="mt-1 flex items-center gap-1.5"
-                  :class="
-                    isOwnMessage(item.data as IMessage) ? 'flex-row-reverse' : 'flex-row'"
-                >
-                  <span class="text-[11px] text-gray-500 dark:text-gray-400">
-                    {{ formatMessageTime((item.data as IMessage).createdAt) }}
-                  </span>
-                </div>
-              </div>
+                :message="item.data as IMessage"
+                :chat-uuid="chat?.uuid as string"
+                :is-own="isOwnMessage(item.data as IMessage)"
+                :container-ref="messagesContainer"
+                :key="(item.data as IMessage).uuid"
+              />
             </template>
           </div>
 
           <div
             class="px-3 sm:px-6 py-3 border-t border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900"
           >
-            <div class="flex items-end gap-2">
+            <div class="flex items-center gap-2 justify-center">
               <button
                 class="p-2 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-colors"
                 :title="t('common.attach') || 'Прикрепить'"
@@ -385,7 +427,7 @@ const messagesWithSeparators = computed(() => {
 
               <div class="flex-1">
                 <div
-                  class="rounded-2xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 px-4 py-2.5 focus-within:ring-2 focus-within:ring-primary-500 focus-within:border-primary-500 transition-all"
+                  class="rounded-2xl border border-gray-200 dark:border-gray-700 px-4 py-2.5 transition-all"
                 >
                   <textarea
                     v-model="messageText"
@@ -393,7 +435,8 @@ const messagesWithSeparators = computed(() => {
                     :placeholder="
                       t('chat.placeholder') || 'Введите сообщение...'
                     "
-                    class="w-full bg-transparent outline-none resize-none text-gray-900 dark:text-gray-100 placeholder:text-gray-400 text-sm max-h-32 overflow-y-auto"
+                    class="w-full resize-none text-gray-900 dark:text-gray-100 placeholder:text-gray-400 text-sm overflow-y-auto border-success"
+                    color="success"
                     @keydown.enter.exact.prevent="sendMessage"
                     @keydown.enter.shift.exact="messageText += '\n'"
                     @blur="
@@ -414,7 +457,7 @@ const messagesWithSeparators = computed(() => {
               <button
                 @click="sendMessage"
                 :disabled="!messageText.trim() || isSending"
-                class="p-3 rounded-xl bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                class="p-3 rounded-xl bg-success text-black hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 :title="t('common.send') || 'Отправить'"
               >
                 <svg

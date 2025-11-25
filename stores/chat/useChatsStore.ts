@@ -37,8 +37,72 @@ export const useChatsStore = defineStore("chats", {
     updateChat(chatUuid: string, updatedChat: IChat) {
       const index = this.chats.findIndex((chat) => chat.uuid === chatUuid);
       if (index !== -1) {
-        this.chats[index] = updatedChat;
+        // Use splice to ensure Vue reactivity
+        // This creates a new array reference, triggering reactivity
+        this.chats.splice(index, 1, updatedChat);
+      } else {
+        // If chat doesn't exist, add it
+        this.chats.push(updatedChat);
       }
+    },
+
+    updateMessageReadStatus(
+      chatUuid: string,
+      messageUuid: string,
+      readedAt: Date
+    ) {
+      const chat = this.getChatById?.(chatUuid);
+      if (!chat || !chat.messages || chat.messages.length === 0) {
+        console.warn(`[Store] Chat ${chatUuid} has no messages`);
+        return false;
+      }
+
+      const messageIndex = chat!.messages.findIndex(
+        (msg) => msg.uuid === messageUuid
+      );
+      if (messageIndex === -1) {
+        console.warn(
+          `[Store] Message ${messageUuid} not found in chat ${chatUuid}`
+        );
+        return false;
+      }
+
+      // Check if already read to avoid unnecessary updates
+      const currentMessage = chat.messages[messageIndex];
+      if (
+        currentMessage.readedAt &&
+        currentMessage.readedAt.getTime() === readedAt.getTime()
+      ) {
+        console.log(
+          `[Store] Message ${messageUuid} already marked as read at same time`
+        );
+        return true;
+      }
+
+      // Update message with new reference to ensure Vue reactivity
+      const updatedMessage = {
+        ...currentMessage,
+        readedAt: readedAt,
+      };
+
+      // Replace the message in the array, don't add it
+      const updatedMessages = chat.messages!.map((msg, idx) => {
+        if (idx === messageIndex) {
+          return updatedMessage;
+        }
+        return msg;
+      });
+
+      this.updateChat(chatUuid, {
+        ...chat,
+        messages: updatedMessages,
+        updatedAt: new Date(),
+      });
+
+      console.log(
+        `[Store] Successfully updated message ${messageUuid} read status`
+      );
+      return true;
     },
 
     addChat(chat: IChat) {

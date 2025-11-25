@@ -74,7 +74,7 @@ const telegramRedirect = () => {
       variant="outline"
       icon="mdi:google"
       @click="googleRedirect"
-      class="mt-4 w-full justify-center flex transition-all hover:scale-95 duration-300 cursor-pointer"
+      class="mt-4 w-full justify-center flex transition-all hover:scale-95 duration-300 cursor-pointer bg-card-bg"
       >{{ t("sign_with_google") }}</UButton
     >
     <UButton
@@ -82,7 +82,7 @@ const telegramRedirect = () => {
       variant="outline"
       icon="mdi:github"
       @click="githubRedirect"
-      class="mt-4 w-full justify-center flex transition-all hover:scale-95 duration-300 cursor-pointer"
+      class="mt-4 w-full justify-center flex transition-all hover:scale-95 duration-300 cursor-pointer bg-card-bg"
       >{{ t("sign_with_github") }}</UButton
     >
     <UButton
@@ -90,7 +90,7 @@ const telegramRedirect = () => {
       variant="outline"
       icon="mdi:telegram"
       @click="telegramRedirect"
-      class="mt-4 w-full justify-center flex transition-all hover:scale-95 duration-300 cursor-pointer"
+      class="mt-4 w-full justify-center flex transition-all hover:scale-95 duration-300 cursor-pointer bg-card-bg"
       >{{ t("sign_with_telegram") }}</UButton
     >
   </div>

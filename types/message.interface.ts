@@ -12,8 +12,7 @@ export interface IMessage {
   metadata?: Record<string, any>;
   createdAt: Date;
   updatedAt: Date;
-  readedAt: Date;
-  deliveredAt: Date;
+  readedAt?: Date;
 }
 
 export interface IMessageAttachment {

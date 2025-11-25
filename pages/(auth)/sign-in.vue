@@ -13,10 +13,10 @@
         @submit="onSubmit"
         :validate-on="[]"
       >
-        <UTabs  :items="items" class="w-full  mt-4" color="neutral" v-model="active" >
+        <UTabs  :items="items" class="w-full  mt-4 " color="neutral" v-model="active" :ui="{ list: 'bg-card-bg' }" >
           <template #email>
             <UFormField label="Email" name="email" class="w-full max-w-[300px]">
-              <UInput v-model="state.email" color="neutral" class="w-full" placeholder="user@example.com"/>
+              <UInput v-model="state.email" color="neutral" class="w-full bg-card-bg" placeholder="user@example.com"/>
             </UFormField>
             <UFormField
               :label="t('sign_in_password')"
@@ -26,7 +26,7 @@
               <UInput
                 v-model="state.password"
                 placeholder="***"
-                class="w-full"
+                class="w-full bg-card-bg"
                 color="neutral"
                 :type="show ? 'text' : 'password'"
                 :ui="{ trailing: 'pe-1' }"
