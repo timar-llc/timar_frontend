@@ -17,6 +17,8 @@ export interface ITask {
   user?: IUser;
   respondes?: IRespond[];
 
+  respondesCount: number;
+
   complexity: "easy" | "medium" | "hard";
   createdAt: Date;
   updatedAt: Date;

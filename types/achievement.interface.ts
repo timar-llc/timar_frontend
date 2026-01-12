@@ -1,7 +1,12 @@
+import type { IUser } from "./user.interface";
+
 export interface IAchievement {
+  uuid: string;
   title: string;
   description: string;
+  slug: string;
+  user: IUser;
   icon: string;
-  date: string;
-  rarity: "Common" | "Rare" | "Epic" | "Legendary";
+  recievedAt: Date | null;
+  rarity: "common" | "rare" | "epic" | "legendary";
 }

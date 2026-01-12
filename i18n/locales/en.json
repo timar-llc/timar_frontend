@@ -37,10 +37,15 @@
     "tasks": {
       "one": "task",
       "other": "tasks"
+    },
+    "freelancers": {
+      "one": "freelancer",
+      "other": "freelancers"
     }
   },
   "common": {
     "back": "Back",
+    "preferences": "Settings",
     "project_statuses": {
       "title": "Status",
       "pending": "Pending",
@@ -67,9 +72,11 @@
       "days_2_4": "days",
       "days_5_plus": "days"
     },
+    "loading": "Loading...",
     "cancel": "Cancel",
     "refresh": "Refresh",
     "clear_filters": "Clear filters",
+    "error": "Error",
     "show_more": "Show more",
     "show_less": "Show less",
     "search": "Search",
@@ -162,6 +169,7 @@
   },
   "add_task": {
     "title": "Add Task",
+    "description": "Create a new task for freelancers",
     "step": "Step",
     "of": "of",
     "save_draft": "Save Draft",
@@ -220,8 +228,8 @@
     "edit_profile": "Edit Profile",
     "default_specialization": "User has not added a specialization yet.",
     "statistics": {
-      "total_projects": "Total projects",
-      "completed_projects": "Completed",
+      "total_orders": "Total orders",
+      "completed_orders": "Completed",
       "satisfied_clients": "Satisfied clients",
       "total_income": "Total income"
     },
@@ -248,7 +256,7 @@
     }
   },
   "tasks": {
-    "title": "My Tasks",
+    "title": "Tasks",
     "subtitle": "Manage your tasks and track respondes",
     "create_task": "Create Task",
     "statistics": {
@@ -310,6 +318,18 @@
     "tasks_title": "Tasks",
     "try_different_filters": "Try different filters",
     "no_tasks_found": "No tasks found",
+    "tabs": {
+      "orders": "Orders",
+      "freelancers": "Freelancers"
+    },
+    "titles": {
+      "orders": "Find the perfect order",
+      "freelancers": "Find the perfect freelancer"
+    },
+    "descriptions": {
+      "orders": "Work with the best clients and develop your career at your own pace",
+      "freelancers": "Find professional freelancers for your projects and tasks"
+    },
     "sidebar": {
       "type": {
         "title": "Type",
@@ -330,18 +350,50 @@
         "title": "Price",
         "low": "From",
         "high": "To"
+      },
+      "rating": {
+        "title": "Rating"
+      },
+      "specialization": {
+        "title": "Specialization",
+        "placeholder": "e.g. Frontend Developer"
+      },
+      "skills": {
+        "title": "Tech Stack",
+        "placeholder": "Vue.js, React, TypeScript",
+        "hint": "Enter skills separated by commas"
       }
     },
     "filters": {
       "sort_by_low": "Most cheapest first",
       "sort_by_high": "Most expensive first",
       "sort_by_new": "Newest first",
-      "sort_by_old": "Oldest first"
-    }
+      "sort_by_old": "Oldest first",
+      "sort_by_rating_high": "Highest rating first",
+      "sort_by_rating_low": "Lowest rating first"
+    },
+    "freelancer": {
+      "no_specialization": "No specialization",
+      "profile_complete": "profile complete",
+      "view_profile": "View profile",
+      "freelancer": "Freelancer",
+      "just_now": "just now",
+      "minutes_ago": "min ago",
+      "hours_ago": "h ago",
+      "days_ago": "days ago",
+      "user": "User"
+    },
+    "no_freelancers_found": "No freelancers found"
   },
   "index": {
     "title": "Explore TimarLance",
     "description": "Work with the best clients and develop your career at your own pace",
+    "slogan": "A new perspective on freelancing",
+    "categories_title": "Choose a category",
+    "categories_subtitle": "Find your dream job",
+    "stats_subtitle": "Our platform in numbers",
+    "news_subtitle": "Stay updated with platform news",
+    "back": "Back",
     "seo": {
       "title": "Expolre TimarLance",
       "description": "Work with the best clients and develop your career at your own pace",
@@ -445,9 +497,36 @@
   },
   "notifications": {
     "title": "Notifications",
-    "description": "Manage your notifications settings",
-    "email_messages": "Email messages",
-    "invoice_messages": "Invoice messages"
+    "description": "View and manage all your notifications",
+    "stats": {
+      "total": "Total notifications",
+      "unread": "Unread",
+      "read": "Read"
+    },
+    "filters": {
+      "all": "All",
+      "unread": "Unread",
+      "read": "Read"
+    },
+    "types": {
+      "success": "Success",
+      "warning": "Warning",
+      "error": "Error",
+      "info": "Info"
+    },
+    "mark_all_read": "Mark all as read",
+    "marked_all_read": "All notifications have been marked as read",
+    "deleted": "Notification deleted",
+    "success": "Success",
+    "load_error": "Error while loading notifications",
+    "mark_all_read_error": "Error while marking all as read",
+    "delete_error": "Error while deleting notification",
+    "empty": {
+      "title": "No notifications yet",
+      "description": "You don't have any notifications yet. When new ones appear, they will be shown here."
+    },
+    "email_messages": "Email notifications",
+    "invoice_messages": "Invoice notifications"
   },
   "privacy": {
     "title": "Privacy",
@@ -506,15 +585,49 @@
       "third_recommendation": "Add development tools and deployment platforms",
       "fourth_recommendation": "You can add your own technologies if they are not in the list",
       "fifth_recommendation": "It is recommended to specify 3-10 main technologies"
-    }
+    },
+    "validation": {
+      "title_required": "Project title is required",
+      "category_required": "Category is required",
+      "subcategory_required": "Subcategory is required",
+      "description_required": "Project description is required",
+      "price_required": "Price must be greater than 0",
+      "duration_required": "Duration is required",
+      "media_required": "At least one media file is required",
+      "technologies_required": "At least one technology is required",
+      "fill_all_fields": "Please fill in all required fields",
+      "fill_basic_info": "Please fill in basic information"
+    },
+    "submit": "Submit",
+    "success": "Success",
+    "created_successfully": "Project created successfully",
+    "create_error": "Failed to create project",
+    "draft_saved": "Draft saved",
+    "draft_saved_description": "Your project draft has been saved",
+    "save_error": "Failed to save draft"
   },
   "achievements": {
     "title": "Achievements",
     "description": "Track your progress and celebrate your achievements on the TimarLance platform",
     "total_achievements": "Total Achievements",
+    "not_received": "Not received",
+    "not_received_yet": "Not received yet",
     "experience_points": "Experience Points",
     "current_level": "Current Level",
     "progress_to_next_level": "Progress to Next Level",
+    "filters": {
+      "search": "Search achievements",
+      "rarity": "Rarity",
+      "sort": "Sort"
+    },
+    "sort": {
+      "latest": "Newest first",
+      "oldest": "Oldest first"
+    },
+    "empty": {
+      "title": "No achievements found yet",
+      "description": "Try adjusting the filters or come back later"
+    },
     "categories": {
       "all": "All achievements",
       "common": "Common",
@@ -525,6 +638,7 @@
   },
   "wallet": {
     "title": "Wallet",
+    "description": "Balance and transaction management",
     "total_balance": {
       "title": "Total Balance",
       "last_update": "Last update:"
@@ -539,13 +653,15 @@
     },
     "history": {
       "title": "Transaction history",
+      "empty": "No transactions",
       "types": {
         "all": "All",
         "income": "Income",
         "withdraw": "Withdraw"
       },
       "methods": {
-        "bank_card": "Bank card",
+        "sbp": "SBP",
+        "card": "Bank card",
         "crypto": "Crypto",
         "bank_transfer": "Bank transfer"
       },
@@ -560,6 +676,8 @@
         "other_amount": "Select another amount",
         "method": "Method of adding funds",
         "submit": "Add",
+        "min_amount_error": "Minimum deposit amount: {min} ₽",
+        "min_amount_info": "Minimum deposit amount: {min} ₽",
         "summary": {
           "title": "Amount to add",
           "commission": "Commission",
@@ -573,6 +691,7 @@
         "available": "Available for withdrawal",
         "method": "Method of withdrawing funds",
         "other_amount": "Select another amount",
+        "amount": "Select the amount of funds to withdraw",
         "summary": {
           "title": "Amount to withdraw",
           "commission": "Commission",
@@ -773,13 +892,29 @@
     "copyright": "© 2024 TimarLance. All rights reserved.",
     "made_with": "Made with ❤️ in Russia"
   },
+  "news": {
+    "empty": "No news available yet",
+    "not_found": "News not found",
+    "description": "Description",
+    "no_description": "No description available",
+    "info": "Information",
+    "published_at": "Published"
+  },
   "project": {
     "tabs": {
       "overview": "Overview",
       "reviews": "Reviews"
     },
     "description": "Project description",
+    "no_description": "No description available",
     "technologies": "Technologies",
+    "contact": "Contact",
+    "info": "Project information",
+    "price": "Price",
+    "duration": "Duration",
+    "category": "Category",
+    "author": "Project author",
+    "view_profile": "View profile",
     "reviews": {
       "title": "Reviews about the project",
       "review_count": "reviews",
@@ -796,12 +931,32 @@
     "online": "Online",
     "select_chat": "Select a chat to start messaging",
     "go_to_chat": "Go to",
+    "file": "File",
     "offer": "Offer",
     "budget": "Budget",
     "term": "Term",
     "payment": "Payment",
     "accept_offer": "Accept offer",
+    "reject_offer": "Reject offer",
+    "offer_accepted": "Offer accepted",
+    "offer_rejected": "Offer rejected",
+    "awaiting_response": "Awaiting response",
     "discuss_terms": "Discuss terms",
+    "voice_message": "Voice message",
+    "message_without_text": "Message",
+    "send": "Send",
+    "send_error": "Error sending message",
+    "offer_already_accepted": "You already have an accepted offer in this chat",
+    "offer_modal": {
+      "title": "New offer",
+      "title_label": "Title *",
+      "title_placeholder": "Enter offer title",
+      "description_label": "Description *",
+      "description_placeholder": "Describe offer conditions",
+      "budget_label": "Budget *",
+      "duration_label": "Deadline *",
+      "submit": "Send offer"
+    },
     "status": {
       "online": "Online",
       "offline": "Offline",
@@ -822,5 +977,102 @@
       "hoursAgo": "last seen {count} h ago",
       "date": "last seen {date}"
     }
+  },
+  "statistics": {
+    "title": "Statistics",
+    "description": "Analyze your performance and track progress",
+    "loading": "Loading data...",
+    "periods": {
+      "week": "Week",
+      "month": "Month",
+      "quarter": "Quarter",
+      "year": "Year"
+    },
+    "stats": {
+      "total_orders": "Total Orders",
+      "completed_orders": "Completed",
+      "in_progress": "In Progress",
+      "failed_orders": "Failed",
+      "average_rating": "Average Rating",
+      "total_revenue": "Total Revenue",
+      "completion_rate": "Completion Rate"
+    },
+    "charts": {
+      "orders_over_time": "Orders Over Time",
+      "orders_by_status": "Orders by Status",
+      "monthly_revenue": "Monthly Revenue",
+      "completed": "Completed",
+      "failed": "Failed",
+      "revenue": "Revenue"
+    },
+    "status": {
+      "completed": "Completed",
+      "in_progress": "In Progress",
+      "failed": "Failed"
+    }
+  },
+  "orders": {
+    "title": "Orders",
+    "description": "Manage your orders as a client and freelancer",
+    "id": "ID",
+    "budget": "Budget",
+    "deadline": "Deadline",
+    "progress": "Progress",
+    "client": "Client",
+    "freelancer": "Freelancer",
+    "unknown": "Unknown",
+    "no_orders_found": "No orders found",
+    "no_orders_description": "Try changing filters or create a new order",
+    "tabs": {
+      "as_client": "As Client",
+      "as_freelancer": "As Freelancer"
+    },
+    "stats": {
+      "total": "Total Orders",
+      "completed": "Completed",
+      "in_progress": "In Progress",
+      "cancelled": "Cancelled"
+    },
+    "status": {
+      "pending": "Pending",
+      "active": "Active",
+      "in_progress": "In Progress",
+      "in_review": "In Review",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    },
+    "filters": {
+      "status": "Status",
+      "all": "All"
+    },
+    "back_to_orders": "Back to orders",
+    "order_details": "Order details",
+    "order_id": "Order ID",
+    "order": "Order",
+    "not_found": "Order not found",
+    "not_found_description": "Order with specified ID does not exist or has been deleted",
+    "participants": "Participants",
+    "price": "Price",
+    "complete": "Complete order",
+    "cancel": "Cancel order",
+    "cancel_confirm": "Are you sure you want to cancel this order?",
+    "no_messages": "No messages. Start a conversation!",
+    "success": "Success",
+    "completed_success": "Order successfully completed",
+    "cancelled_success": "Order successfully cancelled",
+    "complete_error": "Error completing order",
+    "cancel_error": "Error cancelling order",
+    "time_remaining": "Time remaining",
+    "time_expired": "Order time expired!",
+    "in_progress": "In progress",
+    "submit_work": "Submit work",
+    "send_for_revision": "Send for revision",
+    "revision_confirm": "Are you sure you want to send the order for revision?",
+    "submitted_success": "Work successfully submitted for review",
+    "revision_success": "Order sent for revision",
+    "submit_error": "Error submitting work",
+    "revision_error": "Error sending for revision",
+    "chat_coming_soon": "Chat coming soon",
+    "chat_placeholder": "Chat functionality is under development"
   }
 }

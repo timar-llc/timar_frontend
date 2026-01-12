@@ -43,7 +43,11 @@
               'https://i.pravatar.cc/150?u=' +
                 (getOutUser(chat)?.uuid || chat.uuid)
             "
-            alt="avatar"
+            :alt="
+              getOutUser(chat)?.firstName ||
+              getOutUser(chat)?.lastName ||
+              'avatar'
+            "
             class="w-11 h-11 rounded-full object-cover"
           />
           <span
@@ -70,20 +74,62 @@
             </span>
           </div>
           <div class="flex items-center justify-between gap-2 mt-0.5">
-            <p class="truncate text-xs text-gray-800 dark:text-gray-300">
-              {{
-                chat.messages?.length
-                  ? chat.messages[chat.messages.length - 1].content
-                  : ""
-              }}
+            <p
+              class="truncate text-xs text-gray-800 dark:text-gray-300 flex items-center gap-1"
+            >
+              {{ getLastMessagePreview(chat) }}
+              <!-- Read status indicator for last message if it's own -->
+              <span
+                v-if="chat.messages?.length && isLastMessageOwn(chat)"
+                class="shrink-0 flex items-center"
+                :class="
+                  isLastMessageRead(chat)
+                    ? 'text-primary-500'
+                    : 'text-gray-400 dark:text-gray-500'
+                "
+              >
+                <svg
+                  v-if="isLastMessageRead(chat)"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  class="h-3 w-3"
+                  fill="success"
+                  stroke="var(--ui-success)"
+                  stroke-width="2"
+                >
+                  <path
+                    d="m4 12 4 4 6-8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="m11 15 2 2 6-8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <svg
+                  v-else
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  class="h-3 w-3"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="m5 13 4 4L19 7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
             </p>
             <span
               v-if="getUnreadMessagesCount(chat) > 0"
               class="ml-2 shrink-0 inline-flex items-center justify-center w-5 h-5 rounded-full bg-success text-black text-[13px]"
             >
-              {{
-                getUnreadMessagesCount(chat)
-              }}
+              {{ getUnreadMessagesCount(chat) }}
             </span>
           </div>
         </div>
@@ -97,6 +143,14 @@ import type { IChat } from "@/types/chat.interface";
 import type { IMessage } from "@/types/message.interface";
 import type { IUser } from "@/types/user.interface";
 import { useChatsStore } from "@/stores/chat/useChatsStore";
+
+interface Props {
+  onSelectChat?: (chat: IChat) => void;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  onSelectChat: undefined,
+});
 
 const { t } = useI18n();
 
@@ -122,7 +176,14 @@ if (chatsData.value) {
 }
 
 function selectChat(uuid: string) {
-  navigateTo(localePath(`/chats/${uuid}`));
+  const chat = chatsStore.chats.find((c) => c.uuid === uuid);
+  if (chat) {
+    if (props.onSelectChat) {
+      props.onSelectChat(chat);
+    } else {
+      navigateTo(localePath(`/chats/${uuid}`));
+    }
+  }
 }
 
 const getUnreadMessagesCount = (chat: IChat): number => {
@@ -130,6 +191,46 @@ const getUnreadMessagesCount = (chat: IChat): number => {
   return chat.messages.filter(
     (m: IMessage) => !m.readedAt && m.sender?.uuid !== user.value?.uuid
   ).length;
+};
+
+const getLastMessage = (chat: IChat): IMessage | null => {
+  if (!chat.messages || chat.messages.length === 0) return null;
+  return chat.messages[chat.messages.length - 1];
+};
+
+const getLastMessagePreview = (chat: IChat): string => {
+  const lastMessage = getLastMessage(chat);
+  if (!lastMessage) return "";
+
+  const text = lastMessage.content?.trim();
+  if (text) return text;
+
+  const attachmentsCount = lastMessage.attachments?.length || 0;
+  if (attachmentsCount > 0) {
+    return `${t("chat.file") || "Файл"} (${attachmentsCount})`;
+  }
+
+  if (lastMessage.type === "offer") {
+    return t("chat.offer") || "Предложение";
+  }
+
+  if (lastMessage.type === "audio") {
+    return t("chat.voice_message") || "Голосовое сообщение";
+  }
+
+  return t("chat.message_without_text") || "Сообщение";
+};
+
+const isLastMessageOwn = (chat: IChat): boolean => {
+  const lastMessage = getLastMessage(chat);
+  if (!lastMessage || !user.value) return false;
+  return lastMessage.sender?.uuid === user.value.uuid;
+};
+
+const isLastMessageRead = (chat: IChat): boolean => {
+  const lastMessage = getLastMessage(chat);
+  if (!lastMessage) return false;
+  return !!lastMessage.readedAt;
 };
 
 const processedChats = computed(() => {

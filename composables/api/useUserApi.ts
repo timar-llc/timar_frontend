@@ -8,8 +8,11 @@ export const useUserApi = () => {
     });
   };
 
-  const getUser = async (uuid: string) => {
+  const getUser = async (uuid: string, withStats: boolean = false) => {
     return await apiFetch(`/users/${uuid}`, {
+      params: {
+        withStats: withStats,
+      },
       method: "GET",
     });
   };
@@ -21,32 +24,34 @@ export const useUserApi = () => {
   };
 
   // Обновить профиль
-  const updateProfile = async (data: {
-    name?: string;
-    last_name?: string;
-    email?: string;
-    phone?: string;
-    country?: string;
-    specialization?: string;
-    about?: string;
-    profile_photo?: File;
+  const updateUser = async (data: {
+    firstName?: string | null;
+    lastName?: string | null;
+    phoneNumber?: string | null;
+    specialization?: string | null;
+    cv?: string | null;
+    email?: string | null;
+    username?: string | null;
+    technologies?: string[] | null;
   }) => {
-    const formData = new FormData();
-
-    Object.entries(data).forEach(([key, value]) => {
-      if (value instanceof File) {
-        formData.append(key, value);
-      } else if (value !== undefined) {
-        formData.append(key, String(value));
-      }
+    return await apiFetch("/users/me", {
+      method: "PATCH",
+      body: data,
     });
+  };
 
-    return await apiFetch("/users/profile", {
-      method: "PUT",
+  const updateUserAvatar = async (avatar: File | null) => {
+    const formData = new FormData();
+    if (avatar) {
+      formData.append("avatar", avatar);
+    } else {
+      // For deletion, send empty or null value
+      formData.append("avatar", "");
+    }
+
+    return await apiFetch("/users/avatar", {
+      method: "POST",
       body: formData,
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
     });
   };
 
@@ -86,9 +91,27 @@ export const useUserApi = () => {
     });
   };
 
+  // Получить список исполнителей
+  const getFreelancers = async (params?: {
+    take?: string;
+    skip?: string;
+    search?: string;
+    minRating?: number;
+    maxRating?: number;
+    specialization?: string;
+    skills?: string;
+    orderBy?: "ratingDesc" | "ratingAsc" | "createdAtDesc" | "createdAtAsc";
+  }) => {
+    return await apiFetch("/users/freelancers", {
+      method: "GET",
+      params,
+    });
+  };
+
   return {
     getUserProfile,
-    updateProfile,
+    updateUser,
+    updateUserAvatar,
     getUserStats,
     getUserSkills,
     addSkill,
@@ -96,5 +119,6 @@ export const useUserApi = () => {
     getUserAchievements,
     getCurrentUser,
     getUser,
+    getFreelancers,
   };
 };

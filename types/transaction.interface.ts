@@ -1,8 +1,14 @@
+import type { IUser } from "./user.interface";
+
 export interface ITransaction {
   uuid: string;
   amount: number;
-  type: "income" | "withdraw";
-  status: "pending" | "completed" | "failed";
+  type: "deposit" | "withdraw" | "achievement";
+  status: "pending" | "completed" | "failed" | "processing";
   createdAt: Date;
-  method: "bank_card" | "crypto" | "bank_transfer";
+  updatedAt: Date;
+  failedAt?: Date;
+  completedAt?: Date;
+  paymentMethod: "card" | "crypto";
+  user: IUser;
 }

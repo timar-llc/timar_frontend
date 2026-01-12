@@ -55,10 +55,20 @@
       "few": "задачи",
       "many": "задач",
       "other": "задач"
+    },
+    "freelancers": {
+      "one": "исполнитель",
+      "few": "исполнителя",
+      "many": "исполнителей",
+      "other": "исполнителей"
     }
   },
   "common": {
     "back": "Назад",
+    "loading": "Загрузка...",
+    "attach": "Прикрепить",
+    "send": "Отправить",
+    "preferences": "Настройки",
     "project_statuses": {
       "pending": "На рассмотрении",
       "approved": "Одобрен",
@@ -87,6 +97,7 @@
     "cancel": "Отмена",
     "refresh": "Обновить",
     "clear_filters": "Очистить фильтры",
+    "error": "Ошибка",
     "search": "Поиск",
     "show_more": "Показать больше",
     "show_less": "Показать меньше",
@@ -182,6 +193,7 @@
   },
   "add_task": {
     "title": "Добавить задачу",
+    "description": "Создайте новую задачу для фрилансеров",
     "step": "Шаг",
     "of": "из",
     "save_draft": "Сохранить черновик",
@@ -240,8 +252,8 @@
     "edit_profile": "Редактировать профиль",
     "default_specialization": "Пользователь пока не добавил специализацию.",
     "statistics": {
-      "total_projects": "Всего проектов ",
-      "completed_projects": "Завершено",
+      "total_orders": "Всего заказов ",
+      "completed_orders": "Завершено",
       "satisfied_clients": "Довольных клиентов",
       "total_income": "Общий доход"
     },
@@ -268,7 +280,7 @@
     }
   },
   "tasks": {
-    "title": "Мои задачи",
+    "title": "Задачи",
     "subtitle": "Управляйте своими задачами и отслеживайте отклики",
     "create_task": "Создать задачу",
     "statistics": {
@@ -332,7 +344,18 @@
     "tasks_title": "Задачи",
     "try_different_filters": "Попробуйте другие фильтры",
     "no_tasks_found": "Задачи не найдены",
-
+    "tabs": {
+      "orders": "Заказы",
+      "freelancers": "Исполнители"
+    },
+    "titles": {
+      "orders": "Найдите идеальный заказ",
+      "freelancers": "Найдите идеального исполнителя"
+    },
+    "descriptions": {
+      "orders": "Работайте с лучшими заказчиками и развивайте свою карьеру в удобном темпе",
+      "freelancers": "Найдите профессиональных исполнителей для ваших проектов и задач"
+    },
     "sidebar": {
       "type": {
         "title": "Тип",
@@ -353,18 +376,49 @@
         "title": "Цена",
         "low": "От",
         "high": "До"
+      },
+      "rating": {
+        "title": "Рейтинг"
+      },
+      "specialization": {
+        "title": "Специализация",
+        "placeholder": "Например: Frontend Developer"
+      },
+      "skills": {
+        "title": "Стек технологий",
+        "placeholder": "Vue.js, React, TypeScript",
+        "hint": "Введите навыки через запятую"
       }
     },
     "filters": {
       "sort_by_low": "Сначала самые дешевые",
       "sort_by_high": "Сначала самые дорогие",
       "sort_by_new": "Сначала новые",
-      "sort_by_old": "Сначала старые"
-    }
+      "sort_by_old": "Сначала старые",
+      "sort_by_rating_high": "Сначала с высоким рейтингом",
+      "sort_by_rating_low": "Сначала с низким рейтингом"
+    },
+    "freelancer": {
+      "no_specialization": "Специализация не указана",
+      "profile_complete": "профиль заполнен",
+      "view_profile": "Посмотреть профиль",
+      "freelancer": "Исполнитель",
+      "just_now": "только что",
+      "minutes_ago": "мин назад",
+      "hours_ago": "ч назад",
+      "days_ago": "дн назад",
+      "user": "Пользователь"
+    },
+    "no_freelancers_found": "Исполнители не найдены"
   },
   "index": {
     "title": "Откройте для себя TimarLance",
     "description": "Работайте с лучшими клиентами и развивайте свою карьеру в удобном темпе",
+    "slogan": "Новый взгляд на фриланс",
+    "categories_title": "Выберите категорию",
+    "categories_subtitle": "Найдите работу своей мечты",
+    "stats_subtitle": "Наша платформа в цифрах",
+    "news_subtitle": "Следите за новостями платформы",
     "seo": {
       "title": "Откройте для себя TimarLance",
       "description": "Работайте с лучшими клиентами и развивайте свою карьеру в удобном темпе",
@@ -466,6 +520,35 @@
   },
   "notifications": {
     "title": "Уведомления",
+    "description": "Просматривайте и управляйте всеми вашими уведомлениями",
+    "stats": {
+      "total": "Всего уведомлений",
+      "unread": "Непрочитанных",
+      "read": "Прочитанных"
+    },
+    "filters": {
+      "all": "Все",
+      "unread": "Непрочитанные",
+      "read": "Прочитанные"
+    },
+    "types": {
+      "success": "Успех",
+      "warning": "Предупреждение",
+      "error": "Ошибка",
+      "info": "Информация"
+    },
+    "mark_all_read": "Отметить все как прочитанные",
+    "marked_all_read": "Все уведомления отмечены как прочитанные",
+    "deleted": "Уведомление удалено",
+    "success": "Успешно",
+    "load_error": "Ошибка при загрузке уведомлений",
+    "mark_all_read_error": "Ошибка при отметке всех как прочитанных",
+    "delete_error": "Ошибка при удалении уведомления",
+    "empty": {
+      "title": "Нет уведомлений",
+      "description": "У вас пока нет уведомлений. Когда появятся новые, они будут отображаться здесь."
+    },
+    "title": "Уведомления",
     "description": "Управление настройками уведомлений",
     "email_messages": "Рассылка уведомлений на email",
     "invoice_messages": "Рассылка чеков на email"
@@ -527,7 +610,26 @@
       "third_recommendation": "Добавьте инструменты разработки и платформы развертывания",
       "fourth_recommendation": "Можно добавить собственные технологии, если их нет в списке",
       "fifth_recommendation": "Рекомендуется указывать 3-10 основных технологий"
-    }
+    },
+    "validation": {
+      "title_required": "Название проекта обязательно",
+      "category_required": "Категория обязательна",
+      "subcategory_required": "Подкатегория обязательна",
+      "description_required": "Описание проекта обязательно",
+      "price_required": "Стоимость должна быть больше 0",
+      "duration_required": "Срок выполнения обязателен",
+      "media_required": "Необходимо загрузить хотя бы один медиафайл",
+      "technologies_required": "Необходимо выбрать хотя бы одну технологию",
+      "fill_all_fields": "Заполните все обязательные поля",
+      "fill_basic_info": "Заполните основную информацию"
+    },
+    "submit": "Отправить",
+    "success": "Успешно",
+    "created_successfully": "Проект успешно создан",
+    "create_error": "Ошибка при создании проекта",
+    "draft_saved": "Черновик сохранен",
+    "draft_saved_description": "Черновик проекта успешно сохранен",
+    "save_error": "Ошибка при сохранении черновика"
   },
   "achievements": {
     "title": "Достижения",
@@ -536,16 +638,32 @@
     "experience_points": "Очков опыта",
     "current_level": "Текущий уровень",
     "progress_to_next_level": "Прогресс к следующему уровню",
+    "filters": {
+      "search": "Поиск достижений",
+      "rarity": "Редкость",
+      "sort": "Сортировка"
+    },
+    "sort": {
+      "latest": "Сначала новые",
+      "oldest": "Сначала старые"
+    },
+    "empty": {
+      "title": "Достижения пока не найдены",
+      "description": "Попробуйте изменить фильтры или вернитесь позже"
+    },
     "categories": {
       "all": "Все достижения",
       "common": "Обычные",
       "rare": "Редкие",
       "epic": "Эпические",
       "legendary": "Легендарные"
-    }
+    },
+    "not_received": "Не получено",
+    "not_received_yet": "Еще не получено"
   },
   "wallet": {
     "title": "Кошелек",
+    "description": "Управление балансом и транзакциями",
     "total_balance": {
       "title": "Общий баланс",
       "last_update": "Последнее обновление:"
@@ -560,13 +678,15 @@
     },
     "history": {
       "title": "История транзакций",
+      "empty": "Нет транзакций",
       "types": {
         "all": "Все",
         "income": "Пополнение",
         "withdraw": "Вывод"
       },
       "methods": {
-        "bank_card": "Банковская карта",
+        "sbp": "СБП",
+        "card": "Банковская карта",
         "crypto": "Криптовалюта",
         "bank_transfer": "Банковский перевод"
       },
@@ -581,6 +701,8 @@
         "other_amount": "Выберите другую сумму",
         "method": "Способ пополнения",
         "submit": "Пополнить",
+        "min_amount_error": "Минимальная сумма пополнения: {min} ₽",
+        "min_amount_info": "Минимальная сумма пополнения: {min} ₽",
         "summary": {
           "title": "Сумма к пополнению",
           "commission": "Комиссия",
@@ -594,6 +716,7 @@
         "available": "Доступно для вывода",
         "method": "Способ вывода средств",
         "other_amount": "Выберите другую сумму",
+        "amount": "Выберите сумму вывода",
         "summary": {
           "title": "Сумма к выводу",
           "commission": "Комиссия",
@@ -794,13 +917,29 @@
     "copyright": "© 2024 TimarLance. Все права защищены.",
     "made_with": "Сделано с ❤️ в России"
   },
+  "news": {
+    "empty": "Новости пока отсутствуют",
+    "not_found": "Новость не найдена",
+    "description": "Описание",
+    "no_description": "Описание отсутствует",
+    "info": "Информация",
+    "published_at": "Опубликовано"
+  },
   "project": {
     "tabs": {
       "overview": "Обзор",
       "reviews": "Отзывы"
     },
     "description": "Описание проекта",
+    "no_description": "Описание отсутствует",
     "technologies": "Технологии",
+    "contact": "Связаться",
+    "info": "Информация о проекте",
+    "price": "Цена",
+    "duration": "Срок выполнения",
+    "category": "Категория",
+    "author": "Автор проекта",
+    "view_profile": "Посмотреть профиль",
     "reviews": {
       "title": "Отзывы о проекте",
       "review_count": "отзывов",
@@ -812,17 +951,37 @@
 
   "chat": {
     "title": "Чаты",
-    "placeholder": "Здесь будет чат...",
+    "placeholder": "Введите сообщение...",
     "search_placeholder": "Поиск чатов...",
     "online": "Онлайн",
     "select_chat": "Выберите чат для начала общения",
     "go_to_chat": "Перейти",
+    "file": "Файл",
     "offer": "Предложение",
     "budget": "Бюджет",
     "term": "Срок",
     "payment": "Оплата",
     "accept_offer": "Принять предложение",
+    "reject_offer": "Отклонить предложение",
+    "offer_accepted": "Предложение принято",
+    "offer_rejected": "Предложение отклонено",
+    "awaiting_response": "Ожидает ответа",
     "discuss_terms": "Обсудить условия",
+    "voice_message": "Голосовое сообщение",
+    "message_without_text": "Сообщение",
+    "send": "Отправить",
+    "send_error": "Ошибка при отправке сообщения",
+    "offer_already_accepted": "У вас уже есть принятое предложение в этом чате",
+    "offer_modal": {
+      "title": "Новое предложение",
+      "title_label": "Заголовок *",
+      "title_placeholder": "Введите заголовок предложения",
+      "description_label": "Описание *",
+      "description_placeholder": "Опишите условия предложения",
+      "budget_label": "Бюджет *",
+      "duration_label": "Срок выполнения *",
+      "submit": "Отправить предложение"
+    },
     "status": {
       "online": "В сети",
       "offline": "Не в сети",
@@ -843,5 +1002,102 @@
       "hoursAgo": "был(а) {count} часов назад",
       "date": "был(а) {date}"
     }
+  },
+  "statistics": {
+    "title": "Статистика",
+    "description": "Анализируйте свою производительность и отслеживайте прогресс",
+    "loading": "Загрузка данных...",
+    "periods": {
+      "week": "Неделя",
+      "month": "Месяц",
+      "quarter": "Квартал",
+      "year": "Год"
+    },
+    "stats": {
+      "total_orders": "Всего заказов",
+      "completed_orders": "Завершено",
+      "in_progress": "В работе",
+      "failed_orders": "Неудачных",
+      "average_rating": "Средний рейтинг",
+      "total_revenue": "Общий доход",
+      "completion_rate": "Процент выполнения"
+    },
+    "charts": {
+      "orders_over_time": "Заказы по времени",
+      "orders_by_status": "Заказы по статусу",
+      "monthly_revenue": "Доход по месяцам",
+      "completed": "Завершено",
+      "failed": "Неудачные",
+      "revenue": "Доход"
+    },
+    "status": {
+      "completed": "Завершено",
+      "in_progress": "В работе",
+      "failed": "Неудачные"
+    }
+  },
+  "orders": {
+    "title": "Заказы",
+    "description": "Управляйте своими заказами как заказчик и исполнитель",
+    "id": "ID",
+    "budget": "Бюджет",
+    "deadline": "Срок",
+    "progress": "Прогресс",
+    "client": "Заказчик",
+    "freelancer": "Исполнитель",
+    "unknown": "Неизвестно",
+    "no_orders_found": "Заказы не найдены",
+    "no_orders_description": "Попробуйте изменить фильтры или создайте новый заказ",
+    "tabs": {
+      "as_client": "Как заказчик",
+      "as_freelancer": "Как исполнитель"
+    },
+    "stats": {
+      "total": "Всего заказов",
+      "completed": "Завершено",
+      "in_progress": "В работе",
+      "cancelled": "Отменено"
+    },
+    "status": {
+      "pending": "Ожидание",
+      "active": "Активен",
+      "in_progress": "В работе",
+      "in_review": "На проверке",
+      "completed": "Завершено",
+      "cancelled": "Отменено"
+    },
+    "filters": {
+      "status": "Статус",
+      "all": "Все"
+    },
+    "back_to_orders": "Назад к заказам",
+    "order_details": "Детали заказа",
+    "order_id": "ID заказа",
+    "order": "Заказ",
+    "not_found": "Заказ не найден",
+    "not_found_description": "Заказ с указанным ID не существует или был удален",
+    "participants": "Участники",
+    "price": "Цена",
+    "complete": "Подтвердить выполнение",
+    "cancel": "Отменить заказ",
+    "cancel_confirm": "Вы уверены, что хотите отменить этот заказ?",
+    "in_progress": "В работе",
+    "submit_work": "Сдать работу",
+    "send_for_revision": "Отправить на доработку",
+    "revision_confirm": "Вы уверены, что хотите отправить заказ на доработку?",
+    "no_messages": "Нет сообщений. Начните общение!",
+    "success": "Успешно",
+    "completed_success": "Заказ успешно завершен",
+    "cancelled_success": "Заказ успешно отменен",
+    "submitted_success": "Работа успешно отправлена на проверку",
+    "revision_success": "Заказ отправлен на доработку",
+    "complete_error": "Ошибка при завершении заказа",
+    "cancel_error": "Ошибка при отмене заказа",
+    "submit_error": "Ошибка при отправке работы",
+    "revision_error": "Ошибка при отправке на доработку",
+    "time_remaining": "Осталось времени",
+    "time_expired": "Время заказа истекло!",
+    "chat_coming_soon": "Чат скоро появится",
+    "chat_placeholder": "Функция чата находится в разработке"
   }
 }

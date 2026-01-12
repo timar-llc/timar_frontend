@@ -16,6 +16,7 @@ export const useApi = () => {
       baseURL: baseURL as string,
       headers: {
         // Устанавливаем Content-Type только если это не FormData
+        'ngrok-skip-browser-warning': 'true',
         ...(isFormData ? {} : { "Content-Type": "application/json" }),
         ...(token.value ? { Authorization: `Bearer ${token.value}` } : {}),
       },

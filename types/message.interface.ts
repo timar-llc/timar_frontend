@@ -7,6 +7,7 @@ export interface IMessage {
   sender?: IUser;
   replyTo?: IMessage;
   content?: string;
+  offerAccepted?: boolean;
   attachments?: IMessageAttachment[];
   type?: "text" | "offer" | "audio"; // Тип сообщения
   metadata?: Record<string, any>;

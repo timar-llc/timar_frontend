@@ -18,6 +18,7 @@ export default defineNuxtConfig({
       githubClientSecret:
         process.env.GITHUB_CLIENT_SECRET || "your_github_client_secret_here",
       telegramBotToken: process.env.TELEGRAM_BOT_TOKEN || "",
+      deepseekApiKey: process.env.DEEPSEEK_API_KEY || "",
     },
   },
   compatibilityDate: "2025-05-15",
@@ -54,5 +55,8 @@ export default defineNuxtConfig({
       cookieKey: "i18n_redirected",
       redirectOn: "root",
     },
+  },
+  image: {
+    domains: ["lh3.googleusercontent.com"],
   },
 });

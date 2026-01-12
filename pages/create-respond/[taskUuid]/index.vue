@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import { useRoute } from "vue-router";
 import type { ITask } from "@/types/task.interface";
 import TaskDetails from "@/components/create-respond/responde-info.vue";
@@ -37,56 +37,7 @@ if (error.value) {
 const task = data.value as ITask;
 
 // Task data
-const isLoading = ref(true);
 const isSubmitting = ref(false);
-
-// Mock data for demonstration
-const taskTags = ref(["React Native", "Node.js", "MongoDB", "UI/UX Design"]);
-const keyRequirements = ref([
-  "Кроссплатформенная разработка (iOS/Android)",
-  "Интеграция с картами и геолокацией",
-  "Система оплаты и уведомлений",
-  "Административная панель",
-  "API для интеграции с ресторанами",
-]);
-
-const respondes = ref({
-  total: 23,
-  pending: 5,
-  favorites: 2,
-});
-
-// Methods
-const loadTask = async () => {
-  try {
-    isLoading.value = true;
-    // TODO: Load task data from API
-    // For now, using mock data
-    task.value = {
-      uuid: taskUuid as string,
-      title: "Разработка мобильного приложения для доставки еды",
-      description:
-        "Необходимо разработать мобильное приложение для доставки еды с функционалом для клиентов (заказ, отслеживание, оплата) и курьеров (получение заказов, навигация, отчетность).",
-      price: 150000,
-      currency: "RUB",
-      duration: 30,
-      complexity: "medium",
-      views: 47,
-      createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
-      updatedAt: new Date(),
-      endedAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
-      isDraft: false,
-      status: "pending",
-      files: [],
-      category: undefined,
-      user: undefined,
-    } as ITask;
-  } catch (error) {
-    console.error("Error loading task:", error);
-  } finally {
-    isLoading.value = false;
-  }
-};
 
 const handleSubmit = async (data: {
   price: string;
@@ -112,7 +63,4 @@ const handleSubmit = async (data: {
 };
 
 // Lifecycle
-onMounted(() => {
-  loadTask();
-});
 </script>

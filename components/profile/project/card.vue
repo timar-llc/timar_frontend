@@ -12,7 +12,7 @@
     >
       <UBadge
         :color="statusBadgeColor"
-        :variant="!isDark ? 'solid' : 'soft'"
+        variant="solid"
         size="sm"
         class="font-medium shadow-sm"
       >
@@ -21,7 +21,10 @@
     </div>
 
     <!-- Project Image -->
-    <div class="relative h-48 sm:h-56 overflow-hidden">
+    <div
+      class="relative h-48 sm:h-56 overflow-hidden cursor-pointer"
+      @click="$router.push(localePath(`/project/${props.project.uuid}`))"
+    >
       <UCarousel
         v-if="props.project.media && props.project.media.length > 0"
         v-slot="{ item }"
@@ -29,7 +32,8 @@
         class="w-full h-full"
         :autoplay="true"
       >
-        <NuxtLink :to="localePath(`/project/${props.project.uuid}`)">
+        <NuxtLink
+        >
           <img
             :src="item"
             :alt="props.project.title || 'Project image'"
@@ -103,7 +107,7 @@
       <div class="flex items-center justify-between mb-4">
         <div class="flex flex-col">
           <span class="text-2xl font-bold dark:text-success">
-            {{ formatPrice(props.project.price || 0) }}
+            {{ formatPrice(props.project.price || 0) }} ₽
           </span>
           <span class="text-xs text-gray-500 dark:text-gray-400">
             {{ formatDuration(props.project.duration || 0) }}
@@ -124,6 +128,7 @@
           {{ t("profile.project_card.more") }}
         </UButton>
         <UButton
+          v-if="isOwnProfile"
           color="error"
           variant="outline"
           size="sm"
@@ -146,6 +151,12 @@ const { t } = useI18n();
 const props = defineProps<{
   project: IProject;
 }>();
+
+const { user } = useUser();
+const route = useRoute();
+const isOwnProfile = computed(() => {
+  return user.value?.uuid === route.params.uuid;
+});
 
 const emit = defineEmits<{
   delete: [projectId: string];
@@ -178,7 +189,10 @@ const formatDuration = (days: number) => {
   return formatPlural(days, "days");
 };
 const techArray = computed(() => {
-  return props.project.technologies.split(",");
+  if (props.project.technologies && props.project.technologies.length > 0) {
+    return props.project.technologies;
+  }
+  return [];
 });
 
 // Status badge color

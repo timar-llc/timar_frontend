@@ -1,7 +1,6 @@
 <template>
   <div
-    class="group w-full overflow-hidden relative rounded-2xl cursor-pointer border-2 border-gray-200 dark:border-gray-700 dark:bg-gradient-to-br from-black-300 to-black-800 bg-card-bg hover:shadow-lg hover:shadow-gray-200/50 dark:hover:shadow-gray-900/50 transition-all duration-300 hover:-translate-y-1"
-    :class="[borderColor]"
+    class="group w-full overflow-hidden relative rounded-2xl cursor-pointer border-2 border-gray-200 dark:border-gray-700 dark:bg-gradient-to-br from-black-300 to-black-800 bg-card-bg hover:shadow-lg hover:shadow-gray-200/50 dark:hover:shadow-gray-900/50 transition-all duration-300 hover:-translate-y-1 shadow-lg shadow-gray-200/50 dark:shadow-gray-900/50"
   >
     <!-- Main Content -->
     <div class="p-6">
@@ -9,14 +8,12 @@
       <div class="flex items-start justify-between mb-4">
         <div class="flex items-center gap-3">
           <div class="relative">
-            <NuxtImg
-              :src="
-                props.task.user?.avatarUrl ||
-                'https://i.pravatar.cc/150?u=a042581f4e29026024d'
+            <UAvatar
+              :src="props.task.user?.avatarUrl || undefined"
+              :alt="
+                props.task.user?.firstName + ' ' + props.task.user?.lastName
               "
-              width="48"
-              height="48"
-              class="rounded-full ring-2 ring-gray-200 dark:ring-gray-700"
+              class="rounded-full ring-2 ring-gray-200 dark:ring-gray-700 w-[48px] h-[48px]"
             />
             <div
               v-if="props.task.user?.isOnline"
@@ -30,13 +27,31 @@
             <p class="text-xs text-gray-500 dark:text-gray-400">
               {{ props.task.user?.specialization }}
             </p>
+            <div
+              v-if="
+                props.task.user?.technologies &&
+                props.task.user.technologies.length > 0
+              "
+              class="flex flex-wrap gap-1 mt-1"
+            >
+              <UBadge
+                v-for="tech in props.task.user.technologies"
+                :key="tech"
+                color="success"
+                :variant="isDark ? 'outline' : 'solid'"
+                size="xs"
+                class="text-[10px]"
+              >
+                #{{ tech }}
+              </UBadge>
+            </div>
           </div>
         </div>
 
         <!-- Complexity Badge -->
         <UBadge
           :color="complexityBadgeColor"
-          variant="soft"
+          :variant="!isDark ? 'solid' : 'soft'"
           size="sm"
           class="font-medium"
         >
@@ -115,7 +130,7 @@
           v-if="props.task.category"
           size="sm"
           color="success"
-          variant="soft"
+          :variant="!isDark ? 'solid' : 'soft'"
           class="text-xs"
         >
           {{ props.task.category.title }}
@@ -149,15 +164,17 @@
       class="px-6 py-3 bg-gray-50 dark:bg-gray-700/50 border-t border-gray-200 dark:border-gray-600"
     >
       <div
-        class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400"
+        class="flex items-center justify-around text-xs text-gray-500 dark:text-gray-400"
       >
-        <div class="flex items-center gap-1">
+        <!-- <div class="flex items-center gap-1">
           <UIcon name="i-lucide-eye" class="w-3 h-3" />
           <span>{{ formatPlural(props.task.views, "views") }}</span>
-        </div>
+        </div> -->
         <div class="flex items-center gap-1">
           <UIcon name="i-lucide-users" class="w-3 h-3" />
-          <span>{{ formatPlural(3, "respondes") }}</span>
+          <span>{{
+            formatPlural(props.task.respondesCount, "respondes")
+          }}</span>
         </div>
         <div class="flex items-center gap-1">
           <UIcon name="i-lucide-clock" class="w-3 h-3" />
@@ -270,5 +287,15 @@ watch(
 // Check height on mount
 onMounted(() => {
   checkDescriptionHeight();
+});
+
+const colorMode = useColorMode();
+const isDark = computed({
+  get() {
+    return colorMode.value === "dark";
+  },
+  set(_isDark) {
+    colorMode.preference = _isDark ? "dark" : "light";
+  },
 });
 </script>

@@ -19,7 +19,11 @@ export const useChatSocket = () => {
       metadata?: Record<string, any>;
       type: "text" | "offer" | "audio";
     },
-    attachments: any[] | null
+    attachments: Array<{
+      filename: string;
+      mimetype: string;
+      content: string;
+    }> | null
   ) => {
     send("message", {
       ...data,
@@ -101,10 +105,86 @@ export const useChatSocket = () => {
       new Date(data.timestamp)
     );
   };
+  const handleOrderProcess = (data: {
+    offerMessageUuid: string;
+    chatUuid?: string;
+    chatId?: string;
+    orderAccepted: boolean;
+    clientUuid: string;
+    freelancerUuid: string;
+    price: number;
+    duration: number;
+  }) => {
+    console.log("[Socket] order_processing received:", data);
+    console.log("[Socket] Current user:", user.value?.uuid);
+    console.log("[Socket] Client UUID:", data.clientUuid);
+    console.log("[Socket] Freelancer UUID:", data.freelancerUuid);
 
-  // Handle message_status event
+    // Try to get chatUuid from different possible fields
+    const chatUuid = data.chatUuid || data.chatId;
 
-  // Also handle alternative event names that might be sent by the server
+    if (!chatUuid) {
+      // If chatUuid is not provided, try to find chat by message
+      console.warn(
+        `[Socket] chatUuid not provided in order_processing event, trying to find chat by message`
+      );
+      const allChats = chatsStore.chats;
+      for (const chat of allChats) {
+        if (chat.messages?.some((msg) => msg.uuid === data.offerMessageUuid)) {
+          console.log(
+            `[Socket] Found chat ${chat.uuid} by message ${data.offerMessageUuid}`
+          );
+          const result = chatsStore.updateOfferStatus(
+            chat.uuid,
+            data.offerMessageUuid,
+            data.orderAccepted
+          );
+          if (result) {
+            console.log(
+              `[Socket] Successfully updated offer status for message ${data.offerMessageUuid}`
+            );
+          } else {
+            console.error(
+              `[Socket] Failed to update offer status for message ${data.offerMessageUuid}`
+            );
+          }
+          return;
+        }
+      }
+      console.error(
+        `[Socket] Could not find chat for message ${data.offerMessageUuid}`
+      );
+      return;
+    }
+
+    const result = chatsStore.updateOfferStatus(
+      chatUuid,
+      data.offerMessageUuid,
+      data.orderAccepted
+    );
+
+    if (data.orderAccepted) {
+      const accepted = chatsStore.markOffersAfterAccept(
+        chatUuid,
+        data.offerMessageUuid
+      );
+      if (!accepted) {
+        console.error(
+          `[Socket] Failed to mark offers after accepting message ${data.offerMessageUuid}`
+        );
+      }
+    } else {
+      if (result) {
+        console.log(
+          `[Socket] Successfully updated offer status for message ${data.offerMessageUuid}`
+        );
+      } else {
+        console.error(
+          `[Socket] Failed to update offer status for message ${data.offerMessageUuid}`
+        );
+      }
+    }
+  };
   onMessage(
     "message_read",
     (data: { messageUuid?: string; chatUuid?: string; timestamp: string }) => {
@@ -114,6 +194,22 @@ export const useChatSocket = () => {
         chatUuid: data.chatUuid,
         timestamp: data.timestamp,
       });
+    }
+  );
+  onMessage(
+    "order_processing",
+    (data: {
+      offerMessageUuid: string;
+      chatUuid?: string;
+      chatId?: string;
+      orderAccepted: boolean;
+      clientUuid: string;
+      freelancerUuid: string;
+      price: number;
+      duration: number;
+    }) => {
+      console.log("[Socket] order_processing received:", data);
+      handleOrderProcess(data);
     }
   );
 
@@ -133,10 +229,24 @@ export const useChatSocket = () => {
     send("message_read", { ...data });
   };
 
+  const handleOrderProcessing = (data: {
+    offerMessageUuid: string;
+    chatUuid: string;
+    content: string;
+    orderAccepted: boolean;
+    clientUuid: string;
+    freelancerUuid: string;
+    price: number;
+    duration: number;
+  }) => {
+    send("order_processing", { ...data });
+  };
+
   return {
     handleSendMessage,
     handleTyping,
     handleMarkRead,
+    handleOrderProcessing,
     onMessage,
   };
 };

@@ -13,8 +13,8 @@
     <NuxtLink :to="localePath('/feed')">
       <UButton
         :label="t('intro_bar_button')"
-        icon="material-symbols-light:adjust-outline"
-        class="glow-button mt-[40px] text-[20px] text-black animate-bounce rotate-[-6deg]"
+        trailing-icon="material-symbols-light:arrow-forward"
+        class="glow-button mt-[40px] text-[20px] text-black animate-bounce rotate-[-6deg] glow-button-hover"
         size="xl"
         color="neutral"
         variant="solid"
@@ -39,7 +39,10 @@ const localePath = useLocalePath();
 }
 
 .glow-button:hover {
-  box-shadow: 0 0 60px #adff8c, 0 0 20px #adff8c;
+  box-shadow: 0 0 60px #9eff00, 0 0 20px #9eff00;
+}
+.glow-button-hover {
+  box-shadow: 0 0 60px #9eff00, 0 0 20px #9eff00;
 }
 
 .glow-button button {

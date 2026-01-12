@@ -47,15 +47,15 @@
       <!-- Stats -->
       <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
         <div
-          class="bg-card-bg rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700"
+          class="rounded-xl p-6 shadow-sm border border-blue-100 dark:border-blue-500/20 bg-gradient-to-br from-blue-50/90 to-white dark:from-blue-500/10 dark:to-transparent"
         >
           <div class="flex items-center">
             <div
-              class="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex justify-center"
+              class="p-3 bg-blue-100/80 dark:bg-blue-500/15 rounded-lg flex justify-center"
             >
               <UIcon
                 name="i-lucide-file-text"
-                class="w-6 h-6 text-blue-600 dark:text-blue-400"
+                class="w-6 h-6 text-blue-700 dark:text-blue-400"
               />
             </div>
             <div class="ml-4">
@@ -70,15 +70,15 @@
         </div>
 
         <div
-          class="bg-card-bg rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700"
+          class="rounded-xl p-6 shadow-sm border border-green-100 dark:border-green-500/20 bg-gradient-to-br from-green-50/90 to-white dark:from-green-500/10 dark:to-transparent"
         >
           <div class="flex items-center">
             <div
-              class="p-3 bg-green-100 dark:bg-green-900/30 rounded-lg flex justify-center"
+              class="p-3 bg-green-100/80 dark:bg-green-500/15 rounded-lg flex justify-center"
             >
               <UIcon
                 name="i-lucide-check-circle"
-                class="w-6 h-6 text-green-600 dark:text-green-400"
+                class="w-6 h-6 text-green-700 dark:text-green-400"
               />
             </div>
             <div class="ml-4">
@@ -93,15 +93,15 @@
         </div>
 
         <div
-          class="bg-card-bg rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700"
+          class="rounded-xl p-6 shadow-sm border border-amber-100 dark:border-amber-500/20 bg-gradient-to-br from-amber-50/90 to-white dark:from-amber-500/10 dark:to-transparent"
         >
           <div class="flex items-center">
             <div
-              class="p-3 bg-yellow-100 dark:bg-yellow-900/30 rounded-lg flex justify-center"
+              class="p-3 bg-amber-100/80 dark:bg-amber-500/15 rounded-lg flex justify-center"
             >
               <UIcon
                 name="i-lucide-clock"
-                class="w-5 h-5 text-yellow-600 dark:text-yellow-400"
+                class="w-5 h-5 text-amber-700 dark:text-amber-400"
               />
             </div>
             <div class="ml-4">
@@ -116,15 +116,15 @@
         </div>
 
         <div
-          class="bg-card-bg rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700"
+          class="rounded-xl p-6 shadow-sm border border-purple-100 dark:border-purple-500/20 bg-gradient-to-br from-purple-50/90 to-white dark:from-purple-500/10 dark:to-transparent"
         >
           <div class="flex items-center">
             <div
-              class="p-3 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex justify-center"
+              class="p-3 bg-purple-100/80 dark:bg-purple-500/15 rounded-lg flex justify-center"
             >
               <UIcon
                 name="i-lucide-users"
-                class="w-6 h-6 text-purple-600 dark:text-purple-400"
+                class="w-6 h-6 text-purple-700 dark:text-purple-400"
               />
             </div>
             <div class="ml-4">

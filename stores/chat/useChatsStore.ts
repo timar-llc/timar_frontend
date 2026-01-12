@@ -7,6 +7,7 @@ export const useChatsStore = defineStore("chats", {
     isLoading: false,
     error: null as string | null,
     lastLoaded: null as Date | null,
+    isOfferModalOpen: false,
   }),
 
   getters: {
@@ -115,6 +116,94 @@ export const useChatsStore = defineStore("chats", {
 
     setError(error: string | null) {
       this.error = error;
+    },
+
+    updateOfferStatus(
+      chatUuid: string,
+      messageUuid: string,
+      offerAccepted: boolean
+    ) {
+      const chat = this.getChatById?.(chatUuid);
+      if (!chat || !chat.messages || chat.messages.length === 0) {
+        console.warn(`[Store] Chat ${chatUuid} has no messages`);
+        return false;
+      }
+
+      const messageIndex = chat.messages.findIndex(
+        (msg) => msg.uuid === messageUuid
+      );
+      if (messageIndex === -1) {
+        console.warn(
+          `[Store] Message ${messageUuid} not found in chat ${chatUuid}`
+        );
+        return false;
+      }
+
+      const currentMessage = chat.messages[messageIndex];
+
+      // Update message with new reference to ensure Vue reactivity
+      const updatedMessage = {
+        ...currentMessage,
+        offerAccepted: offerAccepted,
+      };
+
+      // Replace the message in the array with new reference
+      const updatedMessages = chat.messages.map((msg, idx) => {
+        if (idx === messageIndex) {
+          return updatedMessage;
+        }
+        return msg;
+      });
+
+      this.updateChat(chatUuid, {
+        ...chat,
+        messages: updatedMessages,
+        updatedAt: new Date(),
+      });
+
+      console.log(
+        `[Store] Successfully updated offer message ${messageUuid} status to ${offerAccepted}`
+      );
+      return true;
+    },
+
+    openOfferModal() {
+      this.isOfferModalOpen = true;
+    },
+
+    closeOfferModal() {
+      this.isOfferModalOpen = false;
+    },
+
+    toggleOfferModal() {
+      this.isOfferModalOpen = !this.isOfferModalOpen;
+    },
+
+    markOffersAfterAccept(chatUuid: string, acceptedMessageUuid: string) {
+      const chat = this.getChatById?.(chatUuid);
+      if (!chat || !chat.messages || chat.messages.length === 0) {
+        console.warn(`[Store] Chat ${chatUuid} has no messages to update`);
+        return false;
+      }
+
+      const updatedMessages = chat.messages.map((msg) => {
+        if (msg.type !== "offer") return msg;
+        if (msg.uuid === acceptedMessageUuid) {
+          return { ...msg, offerAccepted: true };
+        }
+        return { ...msg, offerAccepted: false };
+      });
+
+      this.updateChat(chatUuid, {
+        ...chat,
+        messages: updatedMessages,
+        updatedAt: new Date(),
+      });
+
+      console.log(
+        `[Store] Offer ${acceptedMessageUuid} accepted. Marked others as rejected in chat ${chatUuid}`
+      );
+      return true;
     },
 
     clearChats() {

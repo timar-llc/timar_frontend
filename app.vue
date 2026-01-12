@@ -8,6 +8,7 @@
 
 <script setup>
 import { useWebSocketIo } from "./composables/socket/useWebSocketIo";
+import { useNotificationSocket } from "./composables/socket/useNotificationSocketIo";
 
 // Добавляем Telegram скрипт
 useHead({
@@ -15,6 +16,16 @@ useHead({
     {
       src: "https://telegram.org/js/telegram-widget.js",
       async: true,
+    },
+    {
+      src: "https://cdn.jsdelivr.net/gh/Alaev-Co/snowflakes/dist/Snow.min.js",
+      async: true,
+    },
+  ],
+  link: [
+    {
+      href: "https://cdn.jsdelivr.net/gh/Alaev-Co/snowflakes/dist/snow.min.css",
+      rel: "stylesheet",
     },
   ],
 });
@@ -25,9 +36,14 @@ const { connect, disconnect } = useWebSocketIo();
 
 // Инициализируем только на клиенте
 onMounted(async () => {
+  new Snow({ showSnowBallsIsMobile: false });
   console.log("App mounted, initializing user...");
   await init();
-  connect();
+  if (isAuthenticated.value) {
+    connect();
+    // Инициализируем слушатель уведомлений
+    useNotificationSocket();
+  }
 });
 onUnmounted(() => {
   disconnect();

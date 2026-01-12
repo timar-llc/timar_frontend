@@ -97,7 +97,7 @@
             </div>
             <div class="text-right">
               <div class="text-2xl font-bold dark:text-success mb-1">
-                {{ formatPrice(task.price) }}
+                {{ formatPrice(task.price) }} ₽
               </div>
             </div>
           </div>

@@ -4,7 +4,7 @@
   >
     <!-- Status Badge -->
     <div
-      class="absolute top-4 right-4 z-10"
+      class="absolute top-2 right-2 z-10"
       v-if="props.task.status === 'pending' || props.task.status === 'rejected'"
     >
       <UBadge
@@ -115,7 +115,7 @@
       <div class="flex items-center justify-between mb-4">
         <div class="flex flex-col">
           <span class="text-2xl font-bold dark:text-success">
-            {{ formatPrice(props.task.price || 0) }} {{ props.task.currency }}
+            {{ formatPrice(props.task.price || 0) }} {{ props.task.currency }} ₽
           </span>
         </div>
       </div>

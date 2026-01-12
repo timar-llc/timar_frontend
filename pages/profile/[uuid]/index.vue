@@ -6,7 +6,7 @@
 
   <!-- Основной контент -->
   <div
-    v-if="profileData"
+    v-if="!isLoading && profileData"
     class="min-h-screen bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 rounded-xl"
   >
     <!-- Hero Section -->
@@ -32,22 +32,25 @@
                   class="absolute -inset-1 bg-gradient-to-r from-green-400 to-blue-500 rounded-full opacity-75 group-hover:opacity-100 transition duration-300 blur-sm"
                 ></div>
                 <div class="relative">
-                  <NuxtImg
+                  <UAvatar
                     :src="
-                      profileData.avatarUrl ||
-                      `https://i.pravatar.cc/150?u=${profileData.uuid}`
+                      profileData.user.avatarUrl ||
+                      `https://i.pravatar.cc/150?u=${profileData.user.uuid}`
                     "
-                    width="120"
-                    height="120"
-                    class="rounded-full ring-4 ring-white dark:ring-gray-900 shadow-xl"
+                    :alt="
+                      profileData.user.firstName +
+                      ' ' +
+                      profileData.user.lastName
+                    "
+                    class="rounded-full ring-4 ring-white dark:ring-gray-900 shadow-xl w-[120px] h-[120px]"
                   />
                   <!-- Online Status -->
                   <div
-                    v-if="profileData.isOnline"
-                    class="absolute bottom-2 right-2 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-gray-900 shadow-lg"
+                    v-if="profileData.user.isOnline"
+                    class="absolute bottom-2 right-2 w-4 h-4 bg-success rounded-full border-2 border-white dark:border-gray-900 shadow-lg"
                   >
                     <div
-                      class="w-full h-full bg-green-500 rounded-full animate-pulse"
+                      class="w-full h-full bg-success rounded-full animate-pulse"
                     ></div>
                   </div>
                 </div>
@@ -63,23 +66,41 @@
                   <h1
                     class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-2"
                   >
-                    {{ profileData?.firstName }} {{ profileData?.lastName }}
+                    {{ profileData.user.firstName }}
+                    {{ profileData.user.lastName }}
                   </h1>
                   <p
                     class="text-lg text-gray-600 dark:text-gray-200 mb-2 italic"
                   >
                     {{
-                      profileData?.specialization ||
+                      profileData.user.specialization ||
                       $t("profile.default_specialization")
                     }}
                   </p>
+                  <div
+                    v-if="
+                      profileData.user.technologies &&
+                      profileData.user.technologies.length > 0
+                    "
+                    class="flex flex-wrap gap-2 mt-2"
+                  >
+                    <UBadge
+                      v-for="tech in profileData.user.technologies"
+                      :key="tech"
+                      color="success"
+                      :variant="isDark ? 'outline' : 'solid'"
+                      size="sm"
+                    >
+                      #{{ tech }}
+                    </UBadge>
+                  </div>
                 </div>
 
                 <!-- Action Buttons -->
                 <div class="flex gap-3">
                   <template v-if="isOwnProfile">
                     <NuxtLink
-                      :to="localePath(`/profile/${profileData?.uuid}/edit`)"
+                      :to="localePath(`/profile/${profileData.user.uuid}/edit`)"
                     >
                       <UButton
                         color="success"
@@ -130,10 +151,10 @@
             <div class="flex items-center justify-between">
               <div>
                 <p class="text-sm font-medium text-gray-600 dark:text-gray-300">
-                  {{ $t("profile.statistics.total_projects") }}
+                  {{ $t("profile.statistics.total_orders") }}
                 </p>
                 <p class="text-3xl font-bold dark:text-success">
-                  {{ stats.totalProjects }}
+                  {{ profileData.stats.totalOrders }}
                 </p>
               </div>
               <UIcon name="i-lucide-folder" class="w-8 h-8 dark:text-success" />
@@ -146,10 +167,10 @@
             <div class="flex items-center justify-between">
               <div>
                 <p class="text-sm font-medium text-gray-600 dark:text-gray-300">
-                  {{ $t("profile.statistics.completed_projects") }}
+                  {{ $t("profile.statistics.completed_orders") }}
                 </p>
                 <p class="text-3xl font-bold dark:text-success">
-                  {{ stats.completedProjects }}
+                  {{ profileData.stats.completedOrders }}
                 </p>
               </div>
               <UIcon
@@ -168,7 +189,7 @@
                   {{ $t("profile.statistics.satisfied_clients") }} %
                 </p>
                 <p class="text-3xl font-bold dark:text-success">
-                  {{ stats.satisfiedClients }}%
+                  {{ profileData.stats.satisfiedClientsPercentage }}%
                 </p>
               </div>
               <UIcon name="i-lucide-heart" class="w-8 h-8 dark:text-success" />
@@ -184,7 +205,7 @@
                   {{ $t("profile.statistics.total_income") }} ₽
                 </p>
                 <p class="text-3xl font-bold dark:text-success">
-                  {{ formatPrice(stats.totalIncome) }}
+                  {{ formatPrice(profileData.stats.totalIncome) }}
                 </p>
               </div>
               <UIcon
@@ -196,38 +217,6 @@
         </div>
       </div>
     </div>
-
-    <!-- <div class="px-4 sm:px-6 lg:px-8 py-8">
-      <div class="max-w-7xl mx-auto">
-        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-          Навыки и технологии
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div
-            v-for="skillCategory in skillCategories"
-            :key="skillCategory.name"
-            class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-800"
-          >
-            <h3
-              class="text-lg font-semibold text-gray-900 dark:text-white mb-4"
-            >
-              {{ skillCategory.name }}
-            </h3>
-            <div class="flex flex-wrap gap-2">
-              <UBadge
-                v-for="skill in skillCategory.skills"
-                :key="skill"
-                :variant="!isDark ? 'solid' : 'soft'"
-                size="sm"
-                class="text-xs font-medium"
-              >
-                {{ skill }}
-              </UBadge>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
 
     <!-- Portfolio Section -->
     <div class="px-4 sm:px-6 lg:px-8 py-8">
@@ -250,17 +239,31 @@
           />
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <template v-for="project in filteredProjects" :key="project.uuid">
-            <ProfileProjectCard
-              v-if="
-                selectedCategory === 'all' ||
-                project.category?.parent?.title === selectedCategory
-              "
-              :project="project"
-              @delete="handleDeleteProject"
-            />
-          </template>
+        <div
+          v-if="projectsPending"
+          class="flex justify-center items-center py-8"
+        >
+          <UIcon name="i-lucide-loader-2" class="w-8 h-8 animate-spin" />
+        </div>
+        <div v-else-if="projectsError" class="text-center py-8 text-red-500">
+          {{ $t("profile.portfolio_projects.load_error") }}
+        </div>
+        <div
+          v-else-if="filteredProjects.length === 0"
+          class="text-center py-8 text-gray-500"
+        >
+          {{ $t("profile.portfolio_projects.no_projects") }}
+        </div>
+        <div
+          v-else
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          <ProfileProjectCard
+            v-for="project in filteredProjects"
+            :key="project.uuid"
+            :project="project"
+            @delete="handleDeleteProject"
+          />
         </div>
       </div>
     </div>
@@ -305,7 +308,7 @@
 import type { TabsItem } from "@nuxt/ui";
 import type { IProject } from "@/types/project.interface";
 import { useUserApi } from "@/composables/api/useUserApi";
-import type { IUser } from "@/types/user.interface";
+import type { IUser, IUserWithStats } from "@/types/user.interface";
 import { useProjectApi } from "@/composables/api/useProjectApi";
 const { t } = useI18n();
 definePageMeta({
@@ -333,40 +336,8 @@ const isOwnProfile = computed(() => {
 });
 
 // Состояние для данных профиля
-const profileData = ref<IUser | null>(null);
+const profileData = ref<IUserWithStats | null>(null);
 const isLoading = ref(false);
-
-// Mock statistics data
-const stats = ref({
-  totalProjects: 12,
-  completedProjects: 8,
-  satisfiedClients: 95,
-  totalIncome: 450000,
-});
-
-// Mock skills data
-const skillCategories = ref([
-  {
-    name: "Frontend",
-    skills: [
-      "Vue.js",
-      "Nuxt.js",
-      "Tailwind CSS",
-      "TypeScript",
-      "JavaScript",
-      "HTML5",
-      "CSS3",
-    ],
-  },
-  {
-    name: "Backend",
-    skills: ["Node.js", "Express", "MongoDB", "PostgreSQL", "Redis", "Docker"],
-  },
-  {
-    name: "Design",
-    skills: ["Figma", "Adobe XD", "Photoshop", "Illustrator", "Sketch"],
-  },
-]);
 
 // Format price with spaces
 const formatPrice = (price: number) => {
@@ -380,18 +351,9 @@ const fetchProfileData = async (uuid: string) => {
   isLoading.value = true;
 
   try {
-    // ВАЖНО: На сервере user.value может быть null, поэтому всегда загружаем через API
-    // но сначала проверяем, может это текущий пользователь
-    if (user.value?.uuid === uuid) {
-      console.log("Using current user data");
-      profileData.value = user.value;
-      isLoading.value = false;
-      return;
-    }
-
-    // Для всех остальных случаев загружаем через API
+    // Всегда загружаем данные через API, чтобы получить актуальную статистику
     console.log("Loading profile data from API");
-    const { data, error } = await getUser(uuid);
+    const { data, error } = await getUser(uuid, true);
 
     if (error.value) {
       console.error("Error fetching profile:", error.value);
@@ -400,7 +362,7 @@ const fetchProfileData = async (uuid: string) => {
 
     if (data.value) {
       console.log("Data loaded:", data.value);
-      profileData.value = data.value as IUser;
+      profileData.value = data.value as IUserWithStats;
     } else {
       console.error("No data received from API");
       throw new Error("No profile data received");
@@ -417,44 +379,96 @@ const fetchProfileData = async (uuid: string) => {
   }
 };
 // Используем useAsyncData для правильной работы с SSR
-const { data: profileDataAsync, error: profileError } = await useAsyncData(
-  `profile-${profileUuid}`,
+const { locale } = useI18n();
+const {
+  data: profileDataAsync,
+  error: profileError,
+  refresh: refreshProfile,
+} = await useAsyncData(
+  `profile-${profileUuid}-${locale.value}`,
   () => fetchProfileData(profileUuid),
   {
     server: true, // Загружаем на сервере
-    watch: [() => profileUuid], // Перезагружаем при изменении UUID
+    watch: [() => profileUuid, () => locale.value], // Перезагружаем при изменении UUID или языка
   }
 );
-if (profileDataAsync.value) {
-  profileData.value = profileDataAsync.value;
-}
+
+// Синхронизируем данные из useAsyncData
+watch(
+  profileDataAsync,
+  (newData) => {
+    if (newData) {
+      profileData.value = newData;
+    }
+  },
+  { immediate: true }
+);
 
 // Если есть ошибка - выбрасываем её
 if (profileError.value) {
   throw profileError.value;
 }
 
-const projects = ref<IProject[]>([]);
-const allProjects = ref<IProject[]>([]);
+// Отслеживаем изменения языка и перезагружаем данные
+watch(locale, async () => {
+  if (process.client) {
+    isLoading.value = true;
+    try {
+      await refreshProfile();
+      if (profileDataAsync.value) {
+        profileData.value = profileDataAsync.value;
+      }
+    } finally {
+      isLoading.value = false;
+    }
+  }
+});
+
 const selectedCategory = ref<string>("all");
 
-const fetchProjects = async () => {
-  const { data, error: getProjectsError } = await useProjectApi().getProjects({
-    userUuid: profileUuid,
-  });
-  if (getProjectsError.value) {
-    console.error("Ошибка загрузки проектов:", getProjectsError.value);
-  }
-  allProjects.value = data.value as IProject[];
-  projects.value = allProjects.value;
+// Загрузка проектов с использованием useAsyncData
+const {
+  data: projectsData,
+  error: projectsError,
+  pending: projectsPending,
+  refresh: refreshProjects,
+} = await useAsyncData(
+  `projects-${profileUuid}-${locale.value}`,
+  async () => {
+    const { data, error } = await useProjectApi().getProjects({
+      userUuid: profileUuid,
+    });
 
-  // Debug: log categories
-  console.log("Загруженные проекты:", allProjects.value);
-  console.log(
-    "Категории проектов:",
-    allProjects.value.map((p) => p.category?.parent?.title)
-  );
-};
+    if (error.value) {
+      console.error("Ошибка загрузки проектов:", error.value);
+      return [];
+    }
+
+    const projects = (data.value as IProject[]) || [];
+    console.log("Загруженные проекты:", projects);
+    console.log(
+      "Категории проектов:",
+      projects.map((p) => p.category?.parent?.title)
+    );
+
+    return projects;
+  },
+  {
+    server: true,
+    watch: [() => profileUuid, () => locale.value], // Перезагружаем при изменении UUID или языка
+  }
+);
+
+// Отслеживаем изменения языка и перезагружаем проекты
+watch(locale, async () => {
+  if (process.client) {
+    await refreshProjects();
+  }
+});
+
+const allProjects = computed(() => {
+  return (projectsData.value as IProject[]) || [];
+});
 
 // Фильтрация проектов по категории и статусу
 const filteredProjects = computed(() => {
@@ -475,13 +489,13 @@ const filteredProjects = computed(() => {
   return filtered;
 });
 
-fetchProjects();
-
 // Handle project deletion
 const handleDeleteProject = async (projectId: string) => {
-  allProjects.value = allProjects.value.filter(
-    (project) => project.uuid !== projectId
-  );
+  if (projectsData.value) {
+    projectsData.value = (projectsData.value as IProject[]).filter(
+      (project) => project.uuid !== projectId
+    );
+  }
 
   // Show success message
 };

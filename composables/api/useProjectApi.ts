@@ -24,33 +24,42 @@ export const useProjectApi = () => {
 
   // Создать проект
   const createProject = async (data: {
-    project_name: string;
-    project_category: string;
-    project_subcategory: string;
-    project_description: string;
-    project_price: number;
-    project_duration: number;
+    media: File[];
+    title: string;
+    description: string;
+    price: number;
+    duration: number;
+    subcategoryUuid: string;
     technologies?: string[];
-    media?: File[];
+    isDraft: boolean;
   }) => {
     const formData = new FormData();
 
-    Object.entries(data).forEach(([key, value]) => {
-      if (key === "media" && Array.isArray(value)) {
-        value.forEach((file) => formData.append("media", file));
-      } else if (key === "technologies" && Array.isArray(value)) {
-        formData.append(key, JSON.stringify(value));
-      } else {
-        formData.append(key, String(value));
-      }
-    });
+    // Add media files
+    if (data.media && data.media.length > 0) {
+      data.media.forEach((file) => {
+        formData.append("media", file);
+      });
+    }
+
+    // Add text fields
+    formData.append("title", data.title);
+    formData.append("description", data.description);
+    formData.append("price", String(data.price));
+    formData.append("duration", String(data.duration));
+    formData.append("categoryUuid", data.subcategoryUuid);
+    formData.append("isDraft", String(data.isDraft));
+
+    // Add technologies as array fields (server expects array)
+    if (data.technologies && data.technologies.length > 0) {
+      data.technologies.forEach((tech) => {
+        formData.append("technologies", tech);
+      });
+    }
 
     return await apiFetch("/projects", {
       method: "POST",
       body: formData,
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
     });
   };
 

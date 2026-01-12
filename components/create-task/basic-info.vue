@@ -1,8 +1,7 @@
 <template>
   <div
-    class="flex flex-col gap-4 mt-16 rounded-lg bg-card-bg p-6 dark:border-1 dark:border-[#484848]"
+    class="flex flex-col gap-4 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/70 p-6 shadow-sm"
   >
-    <h3 class="text-lg font-bold">{{ $t("add_task.basic_info.title") }}</h3>
     <UForm
       :state="state"
       :schema="schema"
@@ -44,8 +43,8 @@
         name="task_budget"
       >
         <UButtonGroup>
-          <UInput v-model="state.task_budget" type="number"> </UInput>
-          <USelectMenu :items="currencies" :default-value="currencies[0]" />
+          <UInput v-model.number="state.task_budget" type="number" />
+          <USelect v-model="selectedCurrency" :items="currencies" />
         </UButtonGroup>
       </UFormField>
       <UFormField
@@ -53,9 +52,8 @@
         name="task_deadline"
       >
         <USelectMenu
+          v-model="selectedDeadline"
           :items="deadlineList"
-          :default-value="deadlineList[0]"
-          :label="formatDuration(t, state.task_deadline as number)"
           class="w-40"
         />
       </UFormField>
@@ -146,18 +144,26 @@
           </div>
         </div>
       </UFormField>
-      <div class="flex justify-center items-center gap-4">
-        <UButton type="submit" color="success" class="max-w-[300px]">{{
-          $t("add_task.basic_info.submit")
-        }}</UButton>
-        <UButton
+      <div class="flex justify-end items-center gap-4 pt-4">
+        <!-- <UButton
           :disabled="!state.task_name.trim()"
-          :color="state.task_name.trim() ? 'success' : 'neutral'"
-          variant="solid"
-          class="w-fit transition-colors duration-200"
+          color="neutral"
+          variant="outline"
+          size="lg"
+          class="transition-colors duration-200"
           @click="onSaveDraft"
-          >{{ $t("add_task.basic_info.draft") }}</UButton
         >
+          {{ $t("add_task.basic_info.draft") }}
+        </UButton> -->
+        <UButton
+          type="submit"
+          color="success"
+          variant="solid"
+          size="lg"
+          trailing-icon="i-lucide-check"
+        >
+          {{ $t("add_task.basic_info.submit") }}
+        </UButton>
       </div>
     </UForm>
   </div>
@@ -181,6 +187,8 @@ const state = ref({
   attachments: [] as File[],
 });
 
+const selectedCurrency = ref("RUB");
+
 const currencies = [
   {
     label: "₽",
@@ -189,10 +197,24 @@ const currencies = [
   {
     label: "$",
     value: "USD",
+    disabled: true,
   },
 ];
 
 const deadlineList = getDurationList(t);
+
+// Deadline handling
+const selectedDeadline = computed({
+  get: () => {
+    const found = deadlineList.find(
+      (item) => item.value === state.value.task_deadline
+    );
+    return found || deadlineList[0];
+  },
+  set: (value: { label: string; value: number }) => {
+    state.value.task_deadline = value.value;
+  },
+});
 
 const { getCategories } = useCategoriesApi();
 const { data } = await getCategories();
@@ -386,5 +408,6 @@ const onSaveDraft = async () => {
 /* Firefox */
 :deep(input[type="number"]) {
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 </style>

@@ -32,10 +32,10 @@
 
       <!-- Messages Tab -->
       <NuxtLink
-        :to="localePath('/messages')"
+        :to="localePath('/chats')"
         class="flex flex-col items-center justify-center py-2 px-3 rounded-lg transition-colors duration-200"
         :class="
-          isActive('/messages')
+          isActive('/chats')
             ? 'text-success'
             : 'text-gray-500 dark:text-gray-400'
         "
@@ -48,16 +48,16 @@
 
       <!-- Wallet Tab -->
       <NuxtLink
-        :to="localePath('/wallet')"
+        :to="localePath('/orders')"
         class="flex flex-col items-center justify-center py-2 px-3 rounded-lg transition-colors duration-200"
         :class="
-          isActive('/wallet')
+          isActive('/orders')
             ? 'text-success'
             : 'text-gray-500 dark:text-gray-400'
         "
       >
-        <UIcon name="i-lucide-wallet" class="w-6 h-6 mb-1" />
-        <span class="text-xs font-medium">{{ t("common.header.wallet") }}</span>
+        <UIcon name="i-lucide-list-ordered" class="w-6 h-6 mb-1" />
+        <span class="text-xs font-medium">{{ t("common.header.orders") }}</span>
       </NuxtLink>
 
       <!-- Profile Tab -->
@@ -136,18 +136,14 @@ const profileMenuItems = ref<DropdownMenuItem[]>([
     label: "Мой профиль",
     icon: "i-lucide-user",
     onClick: () => {
-      navigateTo(
-        localePath(`/profile/${user.value?.uuid}`)
-      );
+      navigateTo(localePath(`/profile/${user.value?.uuid}`));
     },
   },
   {
     label: "Настройки",
     icon: "i-lucide-settings",
     onClick: () => {
-      navigateTo(
-        localePath(`/profile/${user.value?.uuid}/edit`)
-      );
+      navigateTo(localePath(`/profile/${user.value?.uuid}/edit`));
     },
   },
   {

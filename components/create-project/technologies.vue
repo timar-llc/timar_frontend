@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col gap-4 mt-16 rounded-lg bg-card-bg p-4 dark:border-1 dark:border-[#484848]"
+    class="flex flex-col gap-4 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/70 p-6 shadow-sm"
   >
     <h3 class="text-lg font-bold">
       {{ $t("add_project.technologies.title") }}
@@ -47,17 +47,40 @@
 </template>
 
 <script setup lang="ts">
-const popularTechnologies = ref(["Vue", "React", "Nuxt", "TypeScript"]);
-const inputTags = ref<string[]>([]);
+import { useCreateProjectState } from "@/composables/useCreateProjectState";
+
+const { state } = useCreateProjectState();
+
+const popularTechnologies = ref([
+  "Vue",
+  "React",
+  "Nuxt",
+  "TypeScript",
+  "JavaScript",
+  "Node.js",
+  "Python",
+  "Java",
+  "PHP",
+  "Go",
+]);
+
+// Sync inputTags with global state
+const inputTags = computed({
+  get: () => state.value.technologies,
+  set: (value) => {
+    state.value.technologies = value;
+  },
+});
 
 const addTag = (tag: string) => {
   if (!inputTags.value.includes(tag)) {
-    inputTags.value = [...inputTags.value, tag]; // создаём новый массив!
+    inputTags.value = [...inputTags.value, tag];
     popularTechnologies.value = popularTechnologies.value.filter(
       (t) => t !== tag
     );
   }
 };
+
 const removeTag = (tag: string) => {
   inputTags.value = inputTags.value.filter((t) => t !== tag);
   if (!popularTechnologies.value.includes(tag)) {

@@ -10,10 +10,12 @@
     <Footer />
 
     <!-- ChatCircle - фиксированная позиция справа внизу -->
+    <div v-if="isAuthenticated">
     <div class="fixed bottom-10 right-10 z-10">
-      <ChatCircle />
+        <ChatCircle />
+      </div>
+      <ChatModal class="z-50" />
     </div>
-    <ChatModal class="z-50" />
 
     <!-- Mobile Bottom Navigation -->
     <MobileBottomNav />

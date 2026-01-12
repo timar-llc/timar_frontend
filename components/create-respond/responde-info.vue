@@ -31,7 +31,9 @@
             </div>
             <div class="flex items-center gap-1">
               <UIcon name="i-lucide-users" class="w-3 h-3" />
-              <span>{{ formatPlural(3, "respondes") }}</span>
+              <span>{{
+                formatPlural(props.task?.respondesCount || 0, "respondes")
+              }}</span>
             </div>
           </div>
           <div class="flex items-baseline gap-2 mb-4">
@@ -104,7 +106,7 @@
       <!-- Tags -->
 
       <!-- Task Description -->
-      <div class="mb-6 sm:mb-8 overflow-hidden">
+      <div class="mb-6 sm:mb-8 overflow-hidden" v-if="props.task?.description">
         <h3
           class="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-3"
         >
@@ -114,7 +116,7 @@
           <p
             class="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed break-words whitespace-pre-wrap"
           >
-            {{ props.task?.description || "Описание загружается..." }}
+            {{ props.task?.description }}
           </p>
         </div>
       </div>

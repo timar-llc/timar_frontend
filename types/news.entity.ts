@@ -1,8 +1,8 @@
 export interface INews {
-  id: number;
+  uuid: string;
   title: string;
   description: string;
-  image?: string;
+  imageUrl?: string;
   createdAt: Date;
   updatedAt: Date;
 }

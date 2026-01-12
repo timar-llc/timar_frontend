@@ -11,7 +11,7 @@ export interface IProject {
   currency: string;
   category: ICategory;
   media: IProjectMedia[];
-  technologies: string;
+  technologies: string[];
   status: "pending" | "approved" | "rejected";
   createdAt: Date;
   updatedAt: Date;

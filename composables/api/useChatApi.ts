@@ -8,6 +8,12 @@ export const useChatApi = () => {
     });
   };
 
+  const getChatByParticipantsIds = async (participantsIds: string[]) => {
+    return await apiFetch(`/chats/participants/${participantsIds.join(",")}`, {
+      method: "GET",
+    });
+  };
+
   // Получить чат по ID
   const getChatById = async (chatUuid: string | number) => {
     return await apiFetch(`/chats/${chatUuid}`, {
@@ -88,6 +94,7 @@ export const useChatApi = () => {
   return {
     getChats,
     getChatById,
+    getChatByParticipantsIds,
     createChat,
     getChatMessages,
     sendMessage,
