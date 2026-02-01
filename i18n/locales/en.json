@@ -236,7 +236,9 @@
     "portfolio_projects": {
       "title": "Portfolio",
       "add_project": "Add project",
-      "delete_project": "Delete project"
+      "delete_project": "Delete project",
+      "no_projects": "No projects",
+      "load_error": "Failed to load projects"
     },
     "project_card": {
       "more": "More",
@@ -259,6 +261,7 @@
     "title": "Tasks",
     "subtitle": "Manage your tasks and track respondes",
     "create_task": "Create Task",
+    "no_tasks_found": "No tasks found",
     "statistics": {
       "total": "Total Tasks",
       "approved": "Approved",
@@ -544,6 +547,8 @@
       "project_name": "Project Name",
       "project_category": "Category",
       "project_subcategory": "Subcategory",
+      "select_category": "Select category",
+      "select_subcategory": "Select subcategory",
       "project_description": "Description",
       "project_price": "Price",
       "project_duration": "Duration",

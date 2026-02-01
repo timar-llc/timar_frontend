@@ -3,7 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
   runtimeConfig: {
     public: {
-      apiUrl: process.env.NUXT_PUBLIC_API_BASE || "http://localhost:8081",
+      apiUrl: process.env.NUXT_PUBLIC_API_URL || "http://localhost:8081",
       socketUrl: process.env.NUXT_PUBLIC_SOCKET_URL || "http://localhost:8081",
       googleRedirectUri:
         process.env.GOOGLE_REDIRECT_URI || "http://localhost:3002/auth/google/",
@@ -28,7 +28,6 @@ export default defineNuxtConfig({
   devServer: {
     port: 3002,
   },
-
   modules: [
     "@nuxt/image",
     "@pinia/nuxt",
@@ -40,7 +39,7 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
     server: {
-      allowedHosts: ["4ca304aa923604.lhr.life"],
+      allowedHosts: ["4ca304aa923604.lhr.life", "ef5910b005a1.ngrok-free.app"],
     },
   },
   i18n: {

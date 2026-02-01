@@ -260,7 +260,9 @@
     "portfolio_projects": {
       "title": "Портфолио",
       "add_project": "Добавить проект",
-      "delete_project": "Удалить проект"
+      "delete_project": "Удалить проект",
+      "no_projects": "Нет проектов",
+      "load_error": "Не удалось загрузить проекты"
     },
     "project_card": {
       "more": "Подробнее",
@@ -283,6 +285,7 @@
     "title": "Задачи",
     "subtitle": "Управляйте своими задачами и отслеживайте отклики",
     "create_task": "Создать задачу",
+    "no_tasks_found": "Задачи не найдены",
     "statistics": {
       "total": "Всего задач",
       "approved": "Одобренные",
@@ -569,6 +572,8 @@
       "project_name": "Название проекта",
       "project_category": "Категория",
       "project_subcategory": "Подкатегория",
+      "select_category": "Выберите категорию",
+      "select_subcategory": "Выберите подкатегорию",
       "project_description": "Описание проекта",
       "project_price": "Стоимость",
       "project_duration": "Срок выполнения",

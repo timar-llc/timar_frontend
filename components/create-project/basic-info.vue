@@ -22,7 +22,7 @@
           v-model="state.categoryUuid"
           :items="categoryOptions"
           :loading="isLoadingCategories"
-          placeholder="Выберите категорию"
+          :placeholder="$t('add_project.basic_info.select_category')"
           class="w-full text-left"
         />
       </UFormField>
@@ -34,7 +34,7 @@
         <USelect
           v-model="state.subcategoryUuid"
           :items="subcategoryOptions"
-          placeholder="Выберите подкатегорию"
+          :placeholder="$t('add_project.basic_info.select_subcategory')"
           class="w-full"
         />
       </UFormField>

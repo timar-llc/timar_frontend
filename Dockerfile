@@ -38,9 +38,14 @@ COPY --from=base /app/.output ./.output
 # Копируем папку public
 COPY --from=base /app/public ./public
 
-# Открываем порт
+# Production port and env
+ENV NODE_ENV=production
+ENV PORT=3002
+ENV HOST=0.0.0.0
+
+# Expose port
 EXPOSE 3002
 
-# Запускаем приложение
-CMD ["pnpm", "run", "preview"]
+# Run Nitro server directly (recommended for production, not nuxt preview)
+CMD ["node", ".output/server/index.mjs"]
 

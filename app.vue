@@ -9,7 +9,6 @@
 <script setup>
 import { useWebSocketIo } from "./composables/socket/useWebSocketIo";
 import { useNotificationSocket } from "./composables/socket/useNotificationSocketIo";
-
 // Добавляем Telegram скрипт
 useHead({
   script: [
@@ -36,7 +35,7 @@ const { connect, disconnect } = useWebSocketIo();
 
 // Инициализируем только на клиенте
 onMounted(async () => {
-  new Snow({ showSnowBallsIsMobile: false });
+  // new Snow({ showSnowBallsIsMobile: false });
   console.log("App mounted, initializing user...");
   await init();
   if (isAuthenticated.value) {
