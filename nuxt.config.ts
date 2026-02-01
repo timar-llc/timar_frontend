@@ -36,6 +36,13 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@vueuse/nuxt",
   ],
+  googleFonts: {
+    families: {
+      Poppins: [400, 500, 600, 700],
+    },
+    display: "swap",
+    preload: true,
+  },
   vite: {
     plugins: [tailwindcss()],
     server: {

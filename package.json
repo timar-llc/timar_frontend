@@ -6,7 +6,7 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview --port 3002 --dotenv .env.build",
+    "preview": "nuxt preview --port 3002 --git commit --amend --reset-authordotenv .env.build",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
